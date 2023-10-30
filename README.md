@@ -4,16 +4,12 @@ to host it/test it you need to:
 
 0) READ THE WHOLEEEEEE DOCUMENTATION (emotionnal 🗣️): https://github.com/haxball/haxball-issues/wiki/Headless-Host
 
-1) go on: https://www.haxball.com/headless
+1) create a new empty folder
 
-2) open the inspector menu (f12 if u r normal, option + command + C if u r on safari)
+2) enter the command: 'npm install haxball.js'
 
-3) go in the console menu and there should be some sort of switch with written 'Auto - haxball.com' or 'https://www.haxball.com/1lpcdnr...'
+3) code ur shit on the room.js file
 
-4) click on this thing and you should see either 'Top' or 'headless' (**not 'headless.html' cuh**)
+4) enter the command: 'node room.js'
 
-5) copy paste the whole script **if u run it for the first time**
-
-6) if you dont run it for the first time and you just wanna add smth, copy paste the function in which u added ur code (for instance, if u added code in 'room.onTeamVictory', copy paste the whole function room.onTeamVictory like yk its not hard rah)
-
-7) then u r done omds
+5) then u r done omds
