@@ -34,7 +34,7 @@ HaxballJS.then((HBInit) => {
 	    maxPlayers: 16,
 	    noPlayer: true, // remove host player
         public: false,
-        token: 'thr1.AAAAAGU_8An0WWGIAS68aw.gqK5k76gq_E',
+        token: 'thr1.AAAAAGVB92mi3y56o10WGw.hKRfDqReag8',
         geo
     });
 
@@ -57,11 +57,24 @@ HaxballJS.then((HBInit) => {
     let poss = [0, 0]
     let kicks = [0, 0]
     let goals = [0, 0]
+    let redTeamPlayers = []
+    let blueTeamPlayers = []
+    class playerStats {
+        playerName;
+        goals;
+        assists;
+        kicks;
+        constructor(playerName, goals, assists, kicks) {
+            this.playerName = playerName
+            this.goals = goals
+            this.assists = assists
+            this.kicks = kicks
+        }
+    }
 
     // ---------- END OF VARS ----------
 
     room.onPlayerChat = function(player, message) {
-        sendDisc(player + ' sent: ' + message)
         if (message.toLowerCase == '!swap') {
             var players = room.getPlayerList()
             for (let i = 0; i < players.length; i++) {
@@ -76,14 +89,14 @@ HaxballJS.then((HBInit) => {
 
         if (message.includes('!set home team')) {
             const output = message.split(' ')
-            output[3].toLowerCase == 'atl' ? room.setTeamColors(1, 60, 0x000000, [0xFF1F1F, 0xFFDD00, 0xFF0000]) : {}
-            output[3].toLowerCase == 'ols' ? room.setTeamColors(1, 60, 0x36FFFF, [0x264E92, 0xE8CC17]) : {}
-            output[3].toLowerCase == 'ftn' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
-            output[3].toLowerCase == 'acs' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
-            output[3].toLowerCase == 'cmt' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
-            output[3].toLowerCase == 'cnt' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
-            output[3].toLowerCase == 'ars' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
-            output[3].toLowerCase == 'efc' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
+            output[3] == 'ATL' ? room.setTeamColors(1, 60, 0x000000, [0xFF1F1F, 0xFFDD00, 0xFF0000]) : {}
+            output[3] == 'OLS' ? room.setTeamColors(1, 60, 0x36FFFF, [0x264E92, 0xE8CC17]) : {}
+            output[3] == 'FTN' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
+            output[3] == 'ACS' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
+            output[3] == 'CMT' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
+            output[3] == 'CNT' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
+            output[3] == 'ARS' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
+            output[3] == 'EFC' ? room.sendAnnouncement('i dont have these kits brother 😔') : {}
         }
 
         if (message.toLowerCase == '!bb') {
@@ -101,16 +114,39 @@ HaxballJS.then((HBInit) => {
         return false;
     }
 
+    // room.onGameStart = function() {
+    //     room.startRecording()
+    // }
+
+    // room.onGameStop = function() {
+    //     var file = fs.createWriteStream('myOutput.txt');
+    //     file.write('Hello world!\n');
+    //     file.write('Another line\n');
+    //     file.end();
+    //     sendDiscFile();
+    // }
+
     room.onGameStart = function() {
-        room.startRecording()
+        for (let i = 0; i < room.getPlayerList().length; i++) {
+            if (room.getPlayerList()[i].team == 1) {
+                console.log('sojii')
+                redTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
+            }
+            if (room.getPlayerList()[i].team == 2) {
+                blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
+            }
+        }
+        console.log(redTeamPlayers)
     }
 
     room.onGameStop = function() {
-        var file = fs.createWriteStream('myOutput.txt');
-        file.write('Hello world!\n');
-        file.write('Another line\n');
-        file.end();
-        sendDiscFile();
+        let totalPoss = kicks[0] + kicks[1]
+        poss = [(kicks[0] * 100) / totalPoss, (kicks[1] * 100) / totalPoss]
+
+        room.sendAnnouncement(`💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${poss[0]}% | blue: ${poss[1]}%\n⚽️ | KICKS:\nred: ${kicks[0]} | blue: ${kicks[1]}`, null, 0xFFFFF00, 'bold')
+
+        goals[0] == 0 ? room.sendAnnouncement('🥅 | The BLUE goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
+        goals[1] == 0 ? room.sendAnnouncement('🥅 | The RED goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
     }
 
     room.onPlayerBallKick = function(player) {
@@ -134,17 +170,7 @@ HaxballJS.then((HBInit) => {
             }
             team == 1 ? kicks[0]++ : kicks[1]++
         }
-    }
-
-    room.onTeamVictory = function(scores) {
-        goals = [scores.red, scores.blue]
-        let totalPoss = kicks[0] + kicks[1]
-        poss = [(kicks[0] * 100) / totalPoss, (kicks[1] * 100) / totalPoss]
-
-        room.sendAnnouncement(`💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${poss[0]}% | blue: ${poss[1]}%\n⚽️ | KICKS:\nred: ${kicks[0]} | blue: ${kicks[1]}`, null, 0xFFFFF00, 'bold')
-
-        scores.red == 0 ? room.sendAnnouncement('🥅 | The BLUE goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
-        scores.blue == 0 ? room.sendAnnouncement('🥅 | The RED goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
+        team == 1 ? goals[0]++ : goals[1]++
     }
 
     room.onRoomLink = function(link) {
