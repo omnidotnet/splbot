@@ -2,12 +2,22 @@
 
 const HaxballJS = require("haxball.js");
 const { Client, GatewayIntentBits } = require('discord.js');
+var fs = require('fs');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 const sendDisc = (message) => {
     const channel = client.channels.cache.get('1165230703101878275');
     channel.send(message)
+}
+
+const sendDiscFile = (message) => {
+    const channel = client.channels.cache.get('1165230703101878275');
+    message.channel.send("Testing message.", {
+        files: [
+            './myOutput.txt'
+        ]
+    });
 }
 
 client.on('ready', () => {
@@ -24,7 +34,7 @@ HaxballJS.then((HBInit) => {
 	    maxPlayers: 16,
 	    noPlayer: true, // remove host player
         public: false,
-        token: 'thr1.AAAAAGU_mMO4Zo252XWBDQ.Cqv6naRXkek',
+        token: 'thr1.AAAAAGU_8An0WWGIAS68aw.gqK5k76gq_E',
         geo
     });
 
@@ -91,6 +101,18 @@ HaxballJS.then((HBInit) => {
         return false;
     }
 
+    room.onGameStart = function() {
+        room.startRecording()
+    }
+
+    room.onGameStop = function() {
+        var file = fs.createWriteStream('myOutput.txt');
+        file.write('Hello world!\n');
+        file.write('Another line\n');
+        file.end();
+        sendDiscFile();
+    }
+
     room.onPlayerBallKick = function(player) {
         assister = goalscorer
         goalscorer = player
@@ -98,12 +120,20 @@ HaxballJS.then((HBInit) => {
     }
 
     room.onTeamGoal = function(team) {
-        if (goalscorer.team == team) {
-            room.sendAnnouncement('⚽️ | Goal scored by ' + goalscorer.name + ' with an assist from ' + assister.name, null, 0xFF0000,   'bold')
+        if (assister == undefined || assister == goalscorer) {
+            if (goalscorer.team == team) {
+                room.sendAnnouncement('⚽️ | Goal scored by ' + goalscorer.name, null, 0xFF0000, 'bold')
+            } else {
+                room.sendAnnouncement('😔 | Broski ' + goalscorer.name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+            }
         } else {
-            room.sendAnnouncement('😔 | Broski ' + goalscorer.name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+            if (goalscorer.team == team) {
+                room.sendAnnouncement('⚽️ | Goal scored by ' + goalscorer.name + ' with an assist from ' + assister.name, null, 0xFF0000,   'bold')
+            } else {
+                room.sendAnnouncement('😔 | Broski ' + goalscorer.name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+            }
+            team == 1 ? kicks[0]++ : kicks[1]++
         }
-        team == 1 ? kicks[0]++ : kicks[1]++
     }
 
     room.onTeamVictory = function(scores) {
@@ -111,7 +141,7 @@ HaxballJS.then((HBInit) => {
         let totalPoss = kicks[0] + kicks[1]
         poss = [(kicks[0] * 100) / totalPoss, (kicks[1] * 100) / totalPoss]
 
-        room.sendAnnouncement(`💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${poss[0]}% | blue: ${poss   [1]}%\n⚽️ | KICKS:\nred: ${kicks[0]} | blue: ${kicks[1]}`, null, 0xFFFFF00, 'bold')
+        room.sendAnnouncement(`💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${poss[0]}% | blue: ${poss[1]}%\n⚽️ | KICKS:\nred: ${kicks[0]} | blue: ${kicks[1]}`, null, 0xFFFFF00, 'bold')
 
         scores.red == 0 ? room.sendAnnouncement('🥅 | The BLUE goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
         scores.blue == 0 ? room.sendAnnouncement('🥅 | The RED goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
@@ -122,4 +152,6 @@ HaxballJS.then((HBInit) => {
     }
 });
 
-client.login('MTE2MDE4NzA1ODI4ODA4NzA1MA.G6502p.t_S0Vz3Vy0gmFlwb4cnMuf_E8e1uxjNJ4yMXwQ');
+let jsonFile = fs.readFileSync('token.json');
+let jsonVar = JSON.parse(jsonFile);
+client.login(jsonVar.discord.token);
