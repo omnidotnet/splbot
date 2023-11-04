@@ -122,7 +122,7 @@ HaxballJS.then((HBInit) => {
             }
         }
 
-        if (message.includes('!set away team')) {
+        if (message.includes('!set away team') || message.split(' ').length == 4) {
             const output = message.split(' ')
             if (availableAwayKits.includes(output[3])) {
                 let vari = eval(output[3])
@@ -140,6 +140,8 @@ HaxballJS.then((HBInit) => {
         if (message == '!discord') {
             room.sendAnnouncement('join our discord server here: https://discord.gg/cx9WWA84dv')
         }
+
+        if (message == 'help')
 
         if (message.charAt(0) != '!') {
             player.admin ? room.sendAnnouncement('[ADMIN] ' + player.name + ': ' + message, null, 0xFFFF00, 'bold') : room. sendAnnouncement('(Player) ' + player.name + ': ' + message)
@@ -174,23 +176,36 @@ HaxballJS.then((HBInit) => {
     }
 
     room.onTeamGoal = function(team) {
+        let ownGoal = false
         if (assister == undefined || assister.name == goalscorer.name || assister.team != goalscorer.team) {
             if (goalscorer.team == team) {
                 room.sendAnnouncement('⚽️ | Goal scored by ' + goalscorer.name, null, 0xFF0000, 'bold')
             } else {
                 room.sendAnnouncement('😔 | Broski ' + goalscorer.name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+                ownGoal = true
             }
         } else {
             if (goalscorer.team == team) {
                 room.sendAnnouncement('⚽️ | Goal scored by ' + goalscorer.name + ' with an assist from ' + assister.name, null, 0xFF0000,   'bold')
             } else {
                 room.sendAnnouncement('😔 | Broski ' + goalscorer.name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+                ownGoal = true
             }
             team == 1 ? kicks[0]++ : kicks[1]++
         }
         team == 1 ? goals[0]++ : goals[1]++
+        let goalType = ''
+        ownGoal ? goalType = 'Own goal' : goalType = 'Goal'
         const msg = {
-            'content': `⚽ | Goal by ${goalscorer.name}!\n📊 | Score is red ${room.getScores().red} - ${room.getScores().blue} blue\n🕙 | Minute ${Math.round(room.getScores().time / 60)} of the game`
+            "content": null,
+            "embeds": [
+              {
+                "title": 'Goal!',
+                "description": `⚽ | ${goalType} by ${goalscorer.name}!\n📊 | Score is red ${room.getScores().red} - ${room.getScores().blue} blue\n🕙 | Minute ${Math.round(room.getScores().time / 60)} of the game`,
+                "color": 5814783
+              }
+            ],
+            "attachments": []
         }
         fetch(webhook,
             {'method': 'POST',
