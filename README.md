@@ -1,15 +1,23 @@
-aight my cuhs to theres the bot
+# SPL haxball host bot
 
-to host it/test it you need to:
+Haxball bot to host a lobby and send stats and events on discord
 
-0) READ THE WHOLEEEEEE DOCUMENTATION (emotionnal 🗣️): https://github.com/haxball/haxball-issues/wiki/Headless-Host
+## Lil tutorial to host the bot and test it
 
-1) close the repo in a new empty folder
+ - [Read the whole documentation](https://github.com/haxball/haxball-issues/wiki/Headless-Host)
+ - Clone the repo in a new empty folder
+ - Enter the command **npm install haxball.js**
+ - Code on the **room.js** file
+ - To host it enter the command **node room.js**
+ - Make a pull request to https://github.com/Yudjenn/splpHostBot/blob/main/README.md
+ - Done
 
-2) enter the command: 'npm install haxball.js'
+## Usuall issues
 
-3) code ur shit on the room.js file
+- If you get the **Error: Invalid Token Provided!** error, go regenerate a token at https://www.haxball.com/headlesstoken
+- If you get any other error that's a skill issue (cold)
 
-4) enter the command: 'node room.js'
+## Authors and contributors
 
-5) then u r done omds
+- [your best mate comrade 🗣️](https://github.com/Yudjenn)
+- [Nova](https://github.com/omnidotnet)
