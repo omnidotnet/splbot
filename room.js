@@ -14,7 +14,7 @@ HaxballJS.then((HBInit) => {
 	    maxPlayers: 16,
 	    noPlayer: true, // remove host player
         public: false,
-        token: 'thr1.AAAAAGVF9opWjRLL1Tz30g.jFdWuTQ_mV4',
+        token: 'thr1.AAAAAGVGQGV3oOGFCo955g.Qw7a9Wwn_mA',
         geo
     });
 
@@ -24,8 +24,8 @@ HaxballJS.then((HBInit) => {
     room.setPassword("SPL")
 
     room.onPlayerJoin = function(player) {
-        admins = ['Yura', 'vvv', 'topof', 'TNAssassin', 'comrade', 'nova', 'TheBoltonKing', 'Percy'] // all of bod
-        player.name == 'Yura' || player.name == 'vvv' || player.name == 'topof' || player.name == 'TNAssassin' || player.name == 'comrade' || player.name == 'nova' || player.name == 'TheBoltonKing' || player.name == 'Percy' ? room.setPlayerAdmin(player.id, true) : room.setPlayerAdmin(player.id, false)
+        admins = ['yura', 'vvv', 'topof', 'TNAssassin', 'comrade', 'nova', 'TheBoltonKing', 'Percy', 'PinotLeGoat (SF GM)'] // all of bod
+        player.name == 'yura' || player.name == 'vvv' || player.name == 'topof' || player.name == 'TNAssassin' || player.name == 'comrade' || player.name == 'nova' || player.name == 'TheBoltonKing' || player.name == 'Percy' || player.name == 'PinotLeGoat (SF GM)' ? room.setPlayerAdmin(player.id, true) : room.setPlayerAdmin(player.id, false)
     }
 
     // ---------- END OF ROOM CONFIG ----------
