@@ -24,7 +24,7 @@ HaxballJS.then((HBInit) => {
     room.setPassword("SPL")
 
     room.onPlayerJoin = function(player) {
-        admins = ['yura', 'vvv', 'topof', 'TNAssassin', 'comrade', 'nova', 'TheBoltonKing', 'Percy', 'PinotLeGoat (SF GM)'] // all of bod
+        admins = ['yura', 'vvv', 'topof', 'TNAssassin', 'comrade', 'nova', 'TheBoltonKing', 'Percy', 'PinotLeGoat (SF GM)', 'ItzKevy'] // all of bod
         player.name == 'yura' || player.name == 'vvv' || player.name == 'topof' || player.name == 'TNAssassin' || player.name == 'comrade' || player.name == 'nova' || player.name == 'TheBoltonKing' || player.name == 'Percy' || player.name == 'PinotLeGoat (SF GM)' ? room.setPlayerAdmin(player.id, true) : room.setPlayerAdmin(player.id, false)
     }
 
