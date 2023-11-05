@@ -14,7 +14,7 @@ HaxballJS.then((HBInit) => {
 	    maxPlayers: 16,
 	    noPlayer: true, // remove host player
         public: false,
-        token: 'thr1.AAAAAGVGQGV3oOGFCo955g.Qw7a9Wwn_mA',
+        token: 'thr1.AAAAAGVHXvi-WeKdJjexsw.sj0aBPEyx3s',
         geo
     });
 
@@ -95,6 +95,10 @@ HaxballJS.then((HBInit) => {
     // ---------- END OF VARS ----------
 
     room.onPlayerChat = function(player, message) {
+        if (message == '!start offi') {
+            offi[0] = true
+        }
+
         if (message == '!swap') {
             var players = room.getPlayerList()
             for (let i = 0; i < players.length; i++) {
@@ -105,10 +109,11 @@ HaxballJS.then((HBInit) => {
                     room.setPlayerTeam(players[i].id, 1)
                 }
             }
-        }
+            let vario = eval(teams[1].teamName)
+            teams[0].setHomeKit(vario[6], vario[7], vario[8], vario[9], vario[10], vario[11])
 
-        if (message == '!start offi') {
-            offi[0] = true
+            let vari = eval(teams[0].teamName)
+            teams[1].setAwayKit(vari[0], vari[1], vari[2], vari[3], vari[4], vari[5])
         }
 
         if (message.includes('!set home team')) {
@@ -122,7 +127,7 @@ HaxballJS.then((HBInit) => {
             }
         }
 
-        if (message.includes('!set away team') || message.split(' ').length == 4) {
+        if (message.includes('!set away team') && message.split(' ').length == 4) {
             const output = message.split(' ')
             if (availableAwayKits.includes(output[3])) {
                 let vari = eval(output[3])
@@ -141,22 +146,37 @@ HaxballJS.then((HBInit) => {
             room.sendAnnouncement('join our discord server here: https://discord.gg/cx9WWA84dv')
         }
 
-        if (message == 'help')
-
-        if (message.charAt(0) != '!') {
+        if (message.charAt(0) != '!' && message.charAt(0) != 't') {
             player.admin ? room.sendAnnouncement('[ADMIN] ' + player.name + ': ' + message, null, 0xFFFF00, 'bold') : room. sendAnnouncement('(Player) ' + player.name + ': ' + message)
+        }
+
+        if (message.charAt(0) == 't') {
+            if (player.team == 1) {
+                for (let i = 0; i < redTeamPlayers.length; i++) {
+                    room.sendAnnouncement('[TEAM CHAT] ' + player.name + ':' + message.substring(1), redTeamPlayers[i].id, 0xDB1604, 'bold')
+                }
+            }
+            if (player.team == 2) {
+                for (let i = 0; i < blueTeamPlayers.length; i++) {
+                    room.sendAnnouncement('[TEAM CHAT] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0x00A2FF, 'bold')
+                }
+            }
         }
 
         return false;
     }
 
-    room.onGameStart = function() {
+    room.onPlayerTeamChange = function(changedPlayer) {
+        redTeamPlayers = []
+        blueTeamPlayers = []
         for (let i = 0; i < room.getPlayerList().length; i++) {
             if (room.getPlayerList()[i].team == 1) {
-                redTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
+                redTeamPlayers.push(room.getPlayerList()[i])
+                // redTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
             }
             if (room.getPlayerList()[i].team == 2) {
-                blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
+                blueTeamPlayers.push(room.getPlayerList()[i])
+                // blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
             }
         }
     }
