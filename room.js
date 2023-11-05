@@ -109,11 +109,15 @@ HaxballJS.then((HBInit) => {
                     room.setPlayerTeam(players[i].id, 1)
                 }
             }
-            let vario = eval(teams[1].teamName)
-            teams[0].setHomeKit(vario[6], vario[7], vario[8], vario[9], vario[10], vario[11])
-
-            let vari = eval(teams[0].teamName)
-            teams[1].setAwayKit(vari[0], vari[1], vari[2], vari[3], vari[4], vari[5])
+            if (teams[1].teamName == undefined || teams[1].teamName == null || teams[0].teamName == undefined || teams[0].teamName == null) {
+                room.sendAnnouncement('Can\'t swap teams bc one of them is not defined', null, 0xFF0000, 'bold')
+            } else {
+                let vario = eval(teams[1].teamName)
+                teams[0].setHomeKit(vario[6], vario[7], vario[8], vario[9], vario[10], vario[11])
+                
+                let vari = eval(teams[0].teamName)
+                teams[1].setAwayKit(vari[0], vari[1], vari[2], vari[3], vari[4], vari[5])
+            }
         }
 
         if (message.includes('!set home team')) {
