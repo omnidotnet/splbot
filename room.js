@@ -25,7 +25,7 @@ HaxballJS.then((HBInit) => {
 
     room.onPlayerJoin = function(player) {
         admins = ['yura', 'vvv', 'topof', 'TNAssassin', 'comrade', 'nova', 'TheBoltonKing', 'Percy', 'PinotLeGoat (SF GM)', 'ItzKevy'] // all of bod
-        player.name == 'yura' || player.name == 'vvv' || player.name == 'topof' || player.name == 'TNAssassin' || player.name == 'comrade' || player.name == 'nova' || player.name == 'TheBoltonKing' || player.name == 'Percy' || player.includes('PinotLeGoat (SF GM)') || player.name == 'ItzKevy' ? room.setPlayerAdmin(player.id, true) : room.setPlayerAdmin(player.id, false)
+        player.name == 'yura' || player.name == 'vvv' || player.name == 'topof' || player.name == 'TNAssassin' || player.name == 'comrade' || player.name == 'nova' || player.name == 'TheBoltonKing' || player.name == 'Percy' || player.includes('PinotLeGoat') || player.name == 'ItzKevy' ? room.setPlayerAdmin(player.id, true) : room.setPlayerAdmin(player.id, false)
     }
 
     // ---------- END OF ROOM CONFIG ----------
