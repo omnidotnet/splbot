@@ -14,7 +14,7 @@ HaxballJS.then((HBInit) => {
 	    maxPlayers: 16,
 	    noPlayer: true, // remove host player
         public: false,
-        token: 'thr1.AAAAAGVHXvi-WeKdJjexsw.sj0aBPEyx3s',
+        token: 'thr1.AAAAAGVYtseJRnzZbPCb3Q.b2IBewNVI48',
         geo
     });
 
@@ -25,7 +25,7 @@ HaxballJS.then((HBInit) => {
 
     room.onPlayerJoin = function(player) {
         admins = ['yura', 'vvv', 'topof', 'TNAssassin', 'comrade', 'nova', 'TheBoltonKing', 'Percy', 'PinotLeGoat (SF GM)', 'ItzKevy'] // all of bod
-        player.name == 'yura' || player.name == 'vvv' || player.name == 'topof' || player.name == 'TNAssassin' || player.name == 'comrade' || player.name == 'nova' || player.name == 'TheBoltonKing' || player.name == 'Percy' || player.includes('PinotLeGoat') || player.name == 'ItzKevy' ? room.setPlayerAdmin(player.id, true) : room.setPlayerAdmin(player.id, false)
+        player.name == 'yura' || player.name == 'vvv' || player.name == 'topof' || player.name == 'TNAssassin' || player.name == 'comrade' || player.name == 'nova' || player.name == 'TheBoltonKing' || player.name == 'Percy' || player.name.includes('PinotLeGoat') || player.name == 'ItzKevy' ? room.setPlayerAdmin(player.id, true) : room.setPlayerAdmin(player.id, false)
     }
 
     // ---------- END OF ROOM CONFIG ----------
@@ -74,8 +74,9 @@ HaxballJS.then((HBInit) => {
     let goals = [0, 0]
     let redTeamPlayers = []
     let blueTeamPlayers = []
-    let offi = [false, 1] //isStarted, currentHalf
+    let specs = []
     let teams = []
+    let offi = [false, 1] //isStarted, currentHalf
 
     let OLS = [2, 60, 0x36FFFF, 0x264E92, 0xE8CC17, null, 3, 60, 0x4F0FFF, 0xFFFFFF, 0xBC8C2B, 0x000000]
     // let OLSaway = [3, 60, 0x4F0FFF, 0xFFFFFF, 0xBC8C2B, 0x000000]
@@ -91,6 +92,11 @@ HaxballJS.then((HBInit) => {
 
     let availableHomeKits = ['OLS', 'ATL', 'FTN', 'CMT', 'EFC', 'CNT']
     let availableAwayKits = ['OLS', 'ATL', 'FTN', 'EFC', 'CNT']
+
+    function sendMess(player, message) {
+        player.admin ? room.sendAnnouncement('[ADMIN] ' + player.name + ': ' + message, null, 0xFFFF00, 'bold') : room. sendAnnouncement('(Player) ' + player.name + ': ' + message)
+    }
+
 
     // ---------- END OF VARS ----------
 
@@ -109,8 +115,8 @@ HaxballJS.then((HBInit) => {
                     room.setPlayerTeam(players[i].id, 1)
                 }
             }
-            if (teams[1].teamName == undefined || teams[1].teamName == null || teams[0].teamName == undefined || teams[0].teamName == null) {
-                room.sendAnnouncement('Can\'t swap teams bc one of them is not defined', null, 0xFF0000, 'bold')
+            if (teams[1] == undefined || teams[1] == null || teams[0] == undefined || teams[0] == null) {
+                room.sendAnnouncement('Can\'t swap kits becuase one of them is not defined, make sure to define them with the !set home/away team command', null, 0xFF0000, 'bold')
             } else {
                 let vario = eval(teams[1].teamName)
                 teams[0].setHomeKit(vario[6], vario[7], vario[8], vario[9], vario[10], vario[11])
@@ -150,29 +156,34 @@ HaxballJS.then((HBInit) => {
             room.sendAnnouncement('join our discord server here: https://discord.gg/cx9WWA84dv')
         }
 
-        if (message.charAt(0) != '!' && message.charAt(0) != 't') {
-            player.admin ? room.sendAnnouncement('[ADMIN] ' + player.name + ': ' + message, null, 0xFFFF00, 'bold') : room. sendAnnouncement('(Player) ' + player.name + ': ' + message)
+        if (message.charAt(0) == '!') {
+            return false
         }
 
-        if (message.charAt(0) == 't') {
+        if (message.charAt(0) == 't' && message.charAt(1) == ' ') {
             if (player.team == 1) {
                 for (let i = 0; i < redTeamPlayers.length; i++) {
-                    room.sendAnnouncement('[TEAM CHAT] ' + player.name + ':' + message.substring(1), redTeamPlayers[i].id, 0xDB1604, 'bold')
+                    room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), redTeamPlayers[i].id, 0xDB1604, 'bold')
                 }
             }
             if (player.team == 2) {
                 for (let i = 0; i < blueTeamPlayers.length; i++) {
-                    room.sendAnnouncement('[TEAM CHAT] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0x00A2FF, 'bold')
+                    room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0x00A2FF, 'bold')
                 }
             }
+            if (player.team == 0) {
+                for (let i = 0; i < specs.length; i++) {
+                    room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0xFFFFFF, 'bold')
+                }
+            }
+            return false
         }
-
-        return false;
     }
 
     room.onPlayerTeamChange = function(changedPlayer) {
         redTeamPlayers = []
         blueTeamPlayers = []
+        specs = []
         for (let i = 0; i < room.getPlayerList().length; i++) {
             if (room.getPlayerList()[i].team == 1) {
                 redTeamPlayers.push(room.getPlayerList()[i])
@@ -182,7 +193,19 @@ HaxballJS.then((HBInit) => {
                 blueTeamPlayers.push(room.getPlayerList()[i])
                 // blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
             }
+            if (room.getPlayerList()[i].team == 0) {
+                specs.push(room.getPlayerList()[i])
+                // blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
+            }
         }
+    }
+
+    room.onGameStart = function() {
+        assister = undefined
+        goalscorer = undefined
+        poss = [0, 0]
+        kicks = [0, 0]
+        goals = [0, 0]
     }
 
     room.onGameStop = function() {
