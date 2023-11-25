@@ -436,6 +436,10 @@ HaxballJS.then((HBInit) => {
             return false
         }
 
+        if (message == '!clear bans') {
+            room.clearBans()
+        }
+
         if (message.charAt(0) == 't' && message.charAt(1) == ' ') {
             if (player.team == 1) {
                 for (let i = 0; i < redTeamPlayers.length; i++) {
