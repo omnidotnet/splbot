@@ -2000,15 +2000,12 @@ function getLastTouch() {
 		let ballPos = room.getBallPosition()
 		let player = room.getPlayerList()[i]
 		let triggerValue = 20.9
-		// console.log([playerPos.x - ballPos.x, playerPos.y - ballPos.y])
 		if (playerPos != null) {
 			if (Math.sqrt(Math.pow(playerPos.x - ballPos.x, 2) + Math.pow(playerPos.y - ballPos.y, 2)) < triggerValue) {
 				handleTouch(player)
 			}
 		}
 	}
-	//radius = ]
-	// console.log(room.getPlayerList()[0].position)
 }
 
 room.onPlayerBallKick = function(player) {

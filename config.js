@@ -12,12 +12,12 @@ let config = {
     },
     // public: {
     //     autoStart: true,
-    //     roomName: '🚨⚽️ 𝓢.𝓟.𝓛. | 𝗙𝘂𝘁𝘀𝗮𝗹 𝟰𝘃𝟰 ⚽️🚨',
+    //     roomName: '🟣⚫⚽️ 𝗦.𝗣.𝗟. 🔥 | Futsal 5v5 ⚽️⚫🟣',
     //     playerName: 'host',
-    //     maxPlayers: 20,
-    //     public: false,
+    //     maxPlayers: 32,
+    //     public: true,
     //     noPlayer: true,
-    //     token: 'thr1.AAAAAGWGl2etV4Y3sQXSKA.-J_PVXor77g',
+    //     token: 'thr1.AAAAAGWP3ie3Mx4n2dcG4g.HN5WjXlsR1I',
     //     geo: {'code': 'gb', 'lat': 50, 'lon': 0},
     //     roomScript: './public.js'
     // }
