@@ -3936,13 +3936,6 @@ room.onPlayerJoin = function(player) {
 
 let getSpecs = []
 
-// room.onGameStart = function() {
-// 	randomInt = Math.floor(Math.random() * availableHomeKits.length)
-// 	randomIntAway = Math.floor(Math.random() * availableAwayKits.length)
-// 	setHomeKit(eval(availableHomeKits[randomInt])[0], eval(availableHomeKits[randomInt])[1], eval(availableHomeKits[randomInt])[2], eval(availableHomeKits[randomInt])[3], eval(availableHomeKits[randomInt])[4], eval(availableHomeKits[randomInt])[5])
-// 	setHomeKit(availableAwayKits[randomIntAway][6], availableAwayKits[randomIntAway][7], availableAwayKits[randomIntAway][8], availableAwayKits[randomIntAway][9], availableAwayKits[randomIntAway][10], availableAwayKits[randomIntAway][11])
-// }
-
 room.onGameStop = function() {
 	getSpecs = []
 	let winningTeam = specs
