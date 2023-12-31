@@ -1,23 +1,40 @@
-# SPL haxball host bot
+# SPL Room
 
-Haxball bot to host a lobby and send stats and events on discord
+A script, running with Haxroomie to host the SPL's public and private rooms
 
-## Lil tutorial to host the bot and test it
+## Deployment
 
- - [Read the whole documentation](https://github.com/haxball/haxball-issues/wiki/Headless-Host)
- - Clone the repo in a new empty folder
- - Enter the command **npm install haxball.js**
- - Code on the **room.js** file
- - To host it enter the command **node room.js**
- - Make a pull request to https://github.com/Yudjenn/splpHostBot/blob/main/README.md
- - Done
+To host the room, you will first need to install haxroomie-cli
 
+```bash
+  npm i haxroomie-cli -g
+```
+
+Then clone the repo in an empty folder
+
+```bash
+  git clone https://github.com/Yudjenn/splpHostBot.git
+```
+
+The code for the pub is in the pub.js file and for the private room in the room.js file. To launch it, be sure to have a valid token and that both of the are uncommented. Then run
+
+```bash
+  haxroomie-cli -c config.js
+```
 ## Usuall issues
 
 - If you get the **Error: Invalid Token Provided!** error, go regenerate a token at https://www.haxball.com/headlesstoken
-- If you get any other error that's a skill issue (cold)
+- Any other issue is a skill issue ngl
 
-## Authors and contributors
+## Authors
 
 - [your best mate comrade 🗣️](https://github.com/Yudjenn)
 - [Nova](https://github.com/omnidotnet)
+
+## Todo list
+
+### Pub:
+- Fix stats
+
+### Private:
+- Send stats in discord at the end of a game
