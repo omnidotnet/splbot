@@ -2951,7 +2951,7 @@ let masterList = [
 
 /* OPTIONS */
 let drawTimeLimit = Infinity;
-let teamSize = 5;
+let teamSize = 4;
 let maxAdmins = 0;
 let disableBans = false;
 let debugMode = false;
@@ -5687,7 +5687,7 @@ function updatePlayerStats(player, teamStats) {
     stats.goals += getGoalsPlayer(pComp);
     stats.assists += getAssistsPlayer(pComp);
     stats.ownGoals += getOwnGoalsPlayer(pComp);
-    stats.CS += getCSPlayer(pComp);
+    // stats.CS += getCSPlayer(pComp);
     stats.playtime += getGametimePlayer(pComp);
     localStorage.setItem(authArray[player.id][0], JSON.stringify(stats));
 }
@@ -6071,17 +6071,6 @@ room.onPlayerJoin = function (player) {
     );
     updateTeams();
     updateAdmins();
-    if (room.getPlayerList().length == 1) {
-        room.sendAnnouncement('⚡️ 1 player present in the room, warmup!', null, 0xFFFF00, 'bold')
-    } else if (room.getPlayerList().length == 2) {
-        room.sendAnnouncement('🔥 2 players present in the room, 1v1!', null, 0xFFFF00, 'bold')
-    } else if (room.getPlayerList().length == 4) {
-        room.sendAnnouncement('💫 4 players present in the room, 2v2!', null, 0xFFFF00, 'bold')
-    } else if (room.getPlayerList().length == 6) {
-        room.sendAnnouncement('⭐️ 4 players present in the room, 3v3!', null, 0xFFFF00, 'bold')
-    } else if (room.getPlayerList().length == 8) {
-        room.sendAnnouncement('🌟 4 players present in the room, 4v4!', null, 0xFFFF00, 'bold')
-    }
     if (masterList.findIndex((auth) => auth == player.auth) != -1) {
         room.sendAnnouncement(
             `Master ${player.name} has joined the room`,
@@ -6463,7 +6452,7 @@ room.onGamePause = function (byPlayer) {
             room.sendAnnouncement(
                 `Game paused by ${byPlayer.name} !`,
                 null,
-                defaultColor,
+                defaultColour,
                 'bold',
                 HaxNotification.NONE
             );
@@ -6471,7 +6460,7 @@ room.onGamePause = function (byPlayer) {
             room.sendAnnouncement(
                 `Game paused !`,
                 null,
-                defaultColor,
+                defaultColour,
                 'bold',
                 HaxNotification.NONE
             );
@@ -6490,7 +6479,7 @@ room.onGameUnpause = function (byPlayer) {
             room.sendAnnouncement(
                 `Game unpaused by ${byPlayer.name} !`,
                 null,
-                defaultColor,
+                defaultColour,
                 'bold',
                 HaxNotification.NONE
             );
@@ -6498,7 +6487,7 @@ room.onGameUnpause = function (byPlayer) {
             room.sendAnnouncement(
                 `Game unpaused !`,
                 null,
-                defaultColor,
+                defaultColour,
                 'bold',
                 HaxNotification.NONE
             );
