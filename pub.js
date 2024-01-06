@@ -1,7 +1,7 @@
 /* VARIABLES */
 
 /* ROOM */
-let password = '1989'
+let password = '1951'
 const headless = false;
 const roomName = 'SPL Pub';
 const maxPlayers = 30;
@@ -3747,7 +3747,7 @@ function swapButton() {
 /* PLAYER COMMANDS */
 
 function leaveCommand(player, message) {
-    room.kickPlayer(player.id, '🔥Bye!', false);
+    room.kickPlayer(player.id, 'Bye!', false);
 }
 
 function helpCommand(player, message) {
@@ -3755,13 +3755,13 @@ function helpCommand(player, message) {
     if (msgArray.length == 0) {
         let commandString = 'Player commands :';
         for (const [key, value] of Object.entries(commands)) {
-            if (value.desc && value.roles == Role.PLAYER) commandString += ` !${key},`;
+            if (value.desc && value.roles == Role.PLAYER) commandString += `!${key},`;
         }
         commandString = commandString.substring(0, commandString.length - 1) + '.\n';
         if (getRole(player) >= Role.ADMIN_TEMP) {
             commandString += `Admin commands :`;
             for (const [key, value] of Object.entries(commands)) {
-                if (value.desc && value.roles == Role.ADMIN_TEMP) commandString += ` !${key},`;
+                if (value.desc && value.roles == Role.ADMIN_TEMP) commandString += `!${key},`;
             }
             if (commandString.slice(commandString.length - 1) == ':')
                 commandString += ` None,`;
@@ -3770,7 +3770,7 @@ function helpCommand(player, message) {
         if (getRole(player) >= Role.MASTER) {
             commandString += `Master commands :`;
             for (const [key, value] of Object.entries(commands)) {
-                if (value.desc && value.roles == Role.MASTER) commandString += ` !${key},`;
+                if (value.desc && value.roles == Role.MASTER) commandString += `!${key},`;
             }
             if (commandString.slice(commandString.length - 1) == ':') commandString += ` None,`;
             commandString = commandString.substring(0, commandString.length - 1) + '.\n';
@@ -3830,7 +3830,7 @@ function renameCommand(player, message) {
         }
         localStorage.setItem(authArray[player.id][0], JSON.stringify(stats));
         room.sendAnnouncement(
-            `You successfully renamed yourself ${stats.playerName} !`,
+            `You successfully renamed yourself ${stats.playerName}!`,
             player.id,
             successColour,
             'bold',
@@ -3838,7 +3838,7 @@ function renameCommand(player, message) {
         );
     } else {
         room.sendAnnouncement(
-            `You haven't played a game in this room yet !`,
+            `You haven't played a game in this room yet!`,
             player.id,
             errorColour,
             'bold',
@@ -3857,7 +3857,7 @@ function afkCommand(player, message) {
         if (AFKSet.has(player.id)) {
             if (AFKMinSet.has(player.id)) {
                 room.sendAnnouncement(
-                    `There is a minimum of ${minAFKDuration} minute of AFK time. Don't abuse the command !`,
+                    `There is a minimum of ${minAFKDuration} minute of AFK time. Don't abuse the command!`,
                     player.id,
                     errorColour,
                     'bold',
@@ -3866,7 +3866,7 @@ function afkCommand(player, message) {
             } else {
                 AFKSet.delete(player.id);
                 room.sendAnnouncement(
-                    `🌅 ${player.name} is not AFK anymore !`,
+                    `🌅 ${player.name} is not AFK anymore!`,
                     null,
                     announcementColour,
                     'normal',
@@ -3878,7 +3878,7 @@ function afkCommand(player, message) {
         } else {
             if (AFKCooldownSet.has(player.id)) {
                 room.sendAnnouncement(
-                    `You can only go AFK every ${AFKCooldown} minutes. Don't abuse the command !`,
+                    `You can only go AFK every ${AFKCooldown} minutes. Don't abuse the command!`,
                     player.id,
                     errorColour,
                     'bold',
@@ -3913,7 +3913,7 @@ function afkCommand(player, message) {
                 }
                 room.setPlayerTeam(player.id, Team.SPECTATORS);
                 room.sendAnnouncement(
-                    `😴 ${player.name} is now AFK !`,
+                    `😴 ${player.name} is now AFK!`,
                     null,
                     announcementColour,
                     'normal',
@@ -3925,7 +3925,7 @@ function afkCommand(player, message) {
         }
     } else {
         room.sendAnnouncement(
-            `You can't go AFK while in a team !`,
+            `You can't go AFK while in a team!`,
             player.id,
             errorColour,
             'bold',
@@ -3962,7 +3962,7 @@ function masterCommand(player, message) {
             adminList = adminList.filter((a) => a[0] != authArray[player.id][0]);
             masterList.push(authArray[player.id][0]);
             room.sendAnnouncement(
-                `${player.name} is now a room master !`,
+                `${player.name} is now a room master!`,
                 null,
                 announcementColour,
                 'bold',
@@ -3970,7 +3970,7 @@ function masterCommand(player, message) {
             );
         } else {
             room.sendAnnouncement(
-                `You are a master already !`,
+                `You are a master already!`,
                 player.id,
                 errorColour,
                 'bold',
@@ -4159,7 +4159,7 @@ function unmuteCommand(player, message) {
                     let muteObj = muteArray.getByPlayerId(playerUnmute.id);
                     muteObj.remove()
                     room.sendAnnouncement(
-                        `${playerUnmute.name} has been unmuted !`,
+                        `${playerUnmute.name} has been unmuted!`,
                         null,
                         announcementColour,
                         'bold',
@@ -4167,7 +4167,7 @@ function unmuteCommand(player, message) {
                     );
                 } else {
                     room.sendAnnouncement(
-                        `This player isn't muted !`,
+                        `This player isn't muted!`,
                         player.id,
                         errorColour,
                         'bold',
@@ -4187,7 +4187,7 @@ function unmuteCommand(player, message) {
             let playerUnmute = muteArray.getById(parseInt(msgArray[0]));
             playerUnmute.remove();
             room.sendAnnouncement(
-                `${playerUnmute.name} has been unmuted !`,
+                `${playerUnmute.name} has been unmuted!`,
                 null,
                 announcementColour,
                 'bold',
@@ -4258,7 +4258,7 @@ function clearbansCommand(player, message) {
             room.clearBan(ID);
             if (banList.length != banList.filter((p) => p[1] != ID).length) {
                 room.sendAnnouncement(
-                    `✔️ ${banList.filter((p) => p[1] == ID)[0][0]} has been unbanned from the room !`,
+                    `✔️ ${banList.filter((p) => p[1] == ID)[0][0]} has been unbanned from the room!`,
                     null,
                     announcementColour,
                     'bold',
@@ -4357,7 +4357,7 @@ function setAdminCommand(player, message) {
                         room.setPlayerAdmin(playerAdmin.id, true);
                         adminList.push([authArray[playerAdmin.id][0], playerAdmin.name]);
                         room.sendAnnouncement(
-                            `${playerAdmin.name} is now a room admin !`,
+                            `${playerAdmin.name} is now a room admin!`,
                             null,
                             announcementColour,
                             'bold',
@@ -4365,7 +4365,7 @@ function setAdminCommand(player, message) {
                         );
                     } else {
                         room.sendAnnouncement(
-                            `This player is a master already !`,
+                            `This player is a master already!`,
                             player.id,
                             errorColour,
                             'bold',
@@ -4374,7 +4374,7 @@ function setAdminCommand(player, message) {
                     }
                 } else {
                     room.sendAnnouncement(
-                        `This player is a permanent admin already !`,
+                        `This player is a permanent admin already!`,
                         player.id,
                         errorColour,
                         'bold',
@@ -4422,7 +4422,7 @@ function removeAdminCommand(player, message) {
                     room.setPlayerAdmin(playerAdmin.id, false);
                     adminList = adminList.filter((a) => a[0] != authArray[playerAdmin.id][0]);
                     room.sendAnnouncement(
-                        `${playerAdmin.name} is not a room admin anymore !`,
+                        `${playerAdmin.name} is not a room admin anymore!`,
                         null,
                         announcementColour,
                         'bold',
@@ -4430,7 +4430,7 @@ function removeAdminCommand(player, message) {
                     );
                 } else {
                     room.sendAnnouncement(
-                        `This player isn't a permanent admin !`,
+                        `This player isn't a permanent admin!`,
                         player.id,
                         errorColour,
                         'bold',
@@ -4456,7 +4456,7 @@ function removeAdminCommand(player, message) {
             }
             adminList.splice(index);
             room.sendAnnouncement(
-                `${playerAdmin[1]} is not a room admin anymore !`,
+                `${playerAdmin[1]} is not a room admin anymore!`,
                 null,
                 announcementColour,
                 'bold',
@@ -4706,7 +4706,7 @@ function choosePlayer() {
         timeOutCap = setTimeout(
             (player) => {
                 room.sendAnnouncement(
-                    `Hurry up ${player.name}, only ${Number.parseInt(String(chooseTime / 2))} seconds left to choose !`,
+                    `Hurry up ${player.name}, only ${Number.parseInt(String(chooseTime / 2))} seconds left to choose!`,
                     player.id,
                     warningColour,
                     'bold',
@@ -4742,7 +4742,7 @@ function chooseModeFunction(player, message) {
                 redCaptainChoice = 'top';
                 clearTimeout(timeOutCap);
                 room.sendAnnouncement(
-                    `${player.name} chose Top !`,
+                    `${player.name} chose Top!`,
                     null,
                     announcementColour,
                     'bold',
@@ -4754,7 +4754,7 @@ function chooseModeFunction(player, message) {
                 redCaptainChoice = 'random';
                 clearTimeout(timeOutCap);
                 room.sendAnnouncement(
-                    `${player.name} chose Random !`,
+                    `${player.name} chose Random!`,
                     null,
                     announcementColour,
                     'bold',
@@ -4765,7 +4765,7 @@ function chooseModeFunction(player, message) {
                 redCaptainChoice = 'bottom';
                 clearTimeout(timeOutCap);
                 room.sendAnnouncement(
-                    `${player.name} chose Bottom !`,
+                    `${player.name} chose Bottom!`,
                     null,
                     announcementColour,
                     'bold',
@@ -4774,7 +4774,7 @@ function chooseModeFunction(player, message) {
             } else if (!Number.isNaN(Number.parseInt(msgArray[0]))) {
                 if (Number.parseInt(msgArray[0]) > teamSpec.length || Number.parseInt(msgArray[0]) < 1) {
                     room.sendAnnouncement(
-                        `Your number is invalid !`,
+                        `Your number is invalid!`,
                         player.id,
                         errorColour,
                         'bold',
@@ -4786,7 +4786,7 @@ function chooseModeFunction(player, message) {
                         Team.RED
                     );
                     room.sendAnnouncement(
-                        `${player.name} chose ${teamSpec[Number.parseInt(msgArray[0]) - 1].name} !`,
+                        `${player.name} chose ${teamSpec[Number.parseInt(msgArray[0]) - 1].name}!`,
                         null,
                         announcementColour,
                         'bold',
@@ -4802,7 +4802,7 @@ function chooseModeFunction(player, message) {
                 blueCaptainChoice = 'top';
                 clearTimeout(timeOutCap);
                 room.sendAnnouncement(
-                    `${player.name} chose Top !`,
+                    `${player.name} chose Top!`,
                     null,
                     announcementColour,
                     'bold',
@@ -4816,7 +4816,7 @@ function chooseModeFunction(player, message) {
                 blueCaptainChoice = 'random';
                 clearTimeout(timeOutCap);
                 room.sendAnnouncement(
-                    `${player.name} chose Random !`,
+                    `${player.name} chose Random!`,
                     null,
                     announcementColour,
                     'bold',
@@ -4827,7 +4827,7 @@ function chooseModeFunction(player, message) {
                 blueCaptainChoice = 'bottom';
                 clearTimeout(timeOutCap);
                 room.sendAnnouncement(
-                    `${player.name} chose Bottom !`,
+                    `${player.name} chose Bottom!`,
                     null,
                     announcementColour,
                     'bold',
@@ -4836,7 +4836,7 @@ function chooseModeFunction(player, message) {
             } else if (!Number.isNaN(Number.parseInt(msgArray[0]))) {
                 if (Number.parseInt(msgArray[0]) > teamSpec.length || Number.parseInt(msgArray[0]) < 1) {
                     room.sendAnnouncement(
-                        `Your number is invalid !`,
+                        `Your number is invalid!`,
                         player.id,
                         errorColour,
                         'bold',
@@ -4848,7 +4848,7 @@ function chooseModeFunction(player, message) {
                         Team.BLUE
                     );
                     room.sendAnnouncement(
-                        `${player.name} chose ${teamSpec[Number.parseInt(msgArray[0]) - 1].name} !`,
+                        `${player.name} chose ${teamSpec[Number.parseInt(msgArray[0]) - 1].name}!`,
                         null,
                         announcementColour,
                         'bold',
@@ -4941,7 +4941,7 @@ function handleActivityPlayer(player) {
         pComp.inactivityTicks++;
         if (pComp.inactivityTicks == 60 * ((2 / 3) * afkLimit)) {
             room.sendAnnouncement(
-                `⛔ ${player.name}, if you don't move or send a message in the next ${Math.floor(afkLimit / 3)} seconds, you will be kicked !`,
+                `⛔ ${player.name}, if you don't move or send a message in the next ${Math.floor(afkLimit / 3)} seconds, you will be kicked!`,
                 player.id,
                 warningColour,
                 'bold',
@@ -6114,7 +6114,7 @@ room.onPlayerTeamChange = function (changedPlayer, byPlayer) {
     if (AFKSet.has(changedPlayer.id) && changedPlayer.team != Team.SPECTATORS) {
         room.setPlayerTeam(changedPlayer.id, Team.SPECTATORS);
         room.sendAnnouncement(
-            `${changedPlayer.name} is AFK !`,
+            `${changedPlayer.name} is AFK!`,
             null,
             errorColour,
             'bold',
@@ -6340,7 +6340,7 @@ room.onPlayerChat = function (player, message) { //chat
     }
     if (!player.admin && muteArray.getByAuth(authArray[player.id][0]) != null) {
         room.sendAnnouncement(
-            `You are muted !`,
+            `You are muted!`,
             player.id,
             errorColour,
             'bold',
@@ -6450,7 +6450,7 @@ room.onGamePause = function (byPlayer) {
     if (mentionPlayersUnpause && gameState == State.PAUSE) {
         if (byPlayer != null) {
             room.sendAnnouncement(
-                `Game paused by ${byPlayer.name} !`,
+                `Game paused by ${byPlayer.name}!`,
                 null,
                 defaultColour,
                 'bold',
@@ -6458,7 +6458,7 @@ room.onGamePause = function (byPlayer) {
             );
         } else {
             room.sendAnnouncement(
-                `Game paused !`,
+                `Game paused!`,
                 null,
                 defaultColour,
                 'bold',
@@ -6477,7 +6477,7 @@ room.onGameUnpause = function (byPlayer) {
     if (mentionPlayersUnpause) {
         if (byPlayer != null) {
             room.sendAnnouncement(
-                `Game unpaused by ${byPlayer.name} !`,
+                `Game unpaused by ${byPlayer.name}!`,
                 null,
                 defaultColour,
                 'bold',
@@ -6485,7 +6485,7 @@ room.onGameUnpause = function (byPlayer) {
             );
         } else {
             room.sendAnnouncement(
-                `Game unpaused !`,
+                `Game unpaused!`,
                 null,
                 defaultColour,
                 'bold',

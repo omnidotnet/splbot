@@ -12,25 +12,25 @@ let config = {
     // },
     publicdiv1: {
         autoStart: true,
-        roomName: '🟣⚫⚽️ 𝗦.𝗣.𝗟. DIV 1 🏆 | Futsal 4v4 ⚽️⚫🟣',
+        roomName: '🟣⚫⚽️ 𝗦.𝗣.𝗟. DIV 1 🏆 | Futsal 4v4 ⚽️⚫🟣 but acc private',
         playerName: 'host',
         maxPlayers: 30,
         public: true,
         noPlayer: true,
-        token: 'thr1.AAAAAGWYQorOaELN-2jTQg.A9B21AKabnQ',
+        token: 'thr1.AAAAAGWZngTTwUBUxwVRig.luZZrB2S-NQ',
         geo: {'code': 'gb', 'lat': 50, 'lon': 0},
         roomScript: './pub.js'
     },
-    publicdiv2: {
-        autoStart: true,
-        roomName: '🟣⚫⚽️ 𝗦.𝗣.𝗟. DIV 2 🔥 | Futsal 4v4 ⚽️⚫🟣',
-        playerName: 'host',
-        maxPlayers: 30,
-        public: true,
-        noPlayer: true,
-        token: 'thr1.AAAAAGWYV2uVDc3nNi-SDg.P2QFF44FfRc',
-        geo: {'code': 'gb', 'lat': 50, 'lon': 0},
-        roomScript: './pub.js'
-    }
+    // publicdiv2: {
+    //     autoStart: true,
+    //     roomName: '🟣⚫⚽️ 𝗦.𝗣.𝗟. DIV 2 🔥 | Futsal 4v4 ⚽️⚫🟣',
+    //     playerName: 'host',
+    //     maxPlayers: 30,
+    //     public: true,
+    //     noPlayer: true,
+    //     token: 'thr1.AAAAAGWYV2uVDc3nNi-SDg.P2QFF44FfRc',
+    //     geo: {'code': 'gb', 'lat': 50, 'lon': 0},
+    //     roomScript: './pub.js'
+    // }
 };
 module.exports = config;
