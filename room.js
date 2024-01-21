@@ -2025,7 +2025,7 @@ HaxballJS.then((HBInit) => {
 	}
 
 	//chat censorsihip 😔
-	const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nigga', 'nigger', 'niga', 'niger', 'nlga', 'nlgga', 'nlger', 'nlgger', 'retard', 'retarded', 'chink', 'coon', 'faggot', 'hitler', 'nibba', 'paki', 'soccer', 'wigan', 'jew', 'jewish']
+	const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nigga', 'nigger', 'niga', 'niger', 'nlga', 'nlgga', 'nlger', 'nlgger', 'retard', 'retarded', 'chink', 'coon', 'faggot', 'hitler', 'nibba', 'paki', 'soccer', 'wigan', 'jew', 'jewish', 'nig', 'nigg', 'niglet', 'reggin', 'wetback', 'beaner', 'fag', 'slope']
 
 	for (let i = 0; i < forbiddenWords.length; i++) {
 		if (message.toLowerCase().includes(forbiddenWords[i])) {
