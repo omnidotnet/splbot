@@ -1897,335 +1897,337 @@ let official = `{
 }`
 
 const webhook = 'https://discord.com/api/webhooks/1170019949994065991/lXgoJHmR6rtK17ts8m-1Nc5aKN2XlCY6pA3HQBZndul4u2STw-771UDEqmI_Wa5vur-i'
+const webhookadmin = 'https://discord.com/api/webhooks/1198548945987711006/K_CwYfQ0xJFG7h1smqsWzPZGTuHI2Fr5fMNAGv4CXTMGePlgi-xOQnjETwfc5fEWuPaz'
 
 // ---------- ROOM CONFIG ----------
 
-geo = {'code': 'gb', 'lat': 50, 'lon': 0}
-var room = HBInit({
-	roomName: 'Statville Premier League',
-	maxPlayers: 16,
-	noPlayer: true, // remove host player
-	public: false,
-	geo
-});
+const HaxballJS = require('haxball.js')
 
-function updateAdmins() { 
-	// Get all players
-	var players = room.getPlayerList();
-	if ( players.length == 0 ) return; // No players left, do nothing.
-	if ( players.find((player) => player.admin) != null ) return; // There's an admin left so do nothing.
-	room.setPlayerAdmin(players[0].id, true); // Give admin to the first non admin player in the list
-	//I STOLE THIS PART ICL COULDNT BE BOTHERED
-	}
+HaxballJS.then((HBInit) => {
+	geo = {'code': 'gb', 'lat': 50, 'lon': 0}
+	var room = HBInit({
+		roomName: 'Statville Premier League',
+		maxPlayers: 16,
+		noPlayer: true, // remove host player
+		token: 'thr1.AAAAAGWs2geCrkbmkrGiBQ.sahzSxmXw8o',
+		public: false,
+		geo
+	});	
 
-room.setCustomStadium(official)
-room.setScoreLimit(0)
-room.setTimeLimit(10)
-room.setPassword("SPL")
+	const claimCode = Math.round(Math.random() * (9999 - 1000) + 1000);
 
-room.onPlayerJoin = function(player) {
-	updateAdmins()
-	for (let i = 0; i < admins.length; i++) {
-		player.auth == admins[i] ? room.setPlayerAdmin(player.id, true) : {}
-	}
-}
+	room.setCustomStadium(official)
+	room.setScoreLimit(0)
+	room.setTimeLimit(10)
+	room.setPassword('SPL')
 
-room.onPlayerLeave = function(player) {
-	updateAdmins();
-}
+	// ---------- END OF ROOM CONFIG ----------
 
-// ---------- END OF ROOM CONFIG ----------
+	// ---------- CLASSES ----------
 
-// ---------- CLASSES ----------
-
-class team {
-	constructor(name) {
-		this.teamName = name
-	}
-
-	setHomeKit(coloursNumber, angle, avatarColour, colour1, colour2, colour3) {
-		let coloursArray = []
-		for (let i = 0; i < coloursNumber; i++) {
-			coloursArray.push(eval(`colour${i+1}`))
+	class team {
+		constructor(name) {
+			this.teamName = name
 		}
-		room.setTeamColors(1, angle, avatarColour, coloursArray)
-	}
 
-	setAwayKit(coloursNumber, angle, avatarColour, colour1, colour2, colour3) {
-		let coloursArray = []
-		for (let i = 0; i < coloursNumber; i++) {
-			coloursArray.push(eval(`colour${i+1}`))
+		setHomeKit(coloursNumber, angle, avatarColour, colour1, colour2, colour3) {
+			let coloursArray = []
+			for (let i = 0; i < coloursNumber; i++) {
+				coloursArray.push(eval(`colour${i+1}`))
+			}
+			room.setTeamColors(1, angle, avatarColour, coloursArray)
 		}
-		room.setTeamColors(2, angle, avatarColour, coloursArray)
+
+		setAwayKit(coloursNumber, angle, avatarColour, colour1, colour2, colour3) {
+			let coloursArray = []
+			for (let i = 0; i < coloursNumber; i++) {
+				coloursArray.push(eval(`colour${i+1}`))
+			}
+			room.setTeamColors(2, angle, avatarColour, coloursArray)
+		}
 	}
-}
 
-class playerStats {
-	constructor(playerName) {
-		this.playerName = playerName
-		this.goals = 0
-		this.assists = 0
-		this.kicks = 0
+	class playerStats {
+		constructor(playerName) {
+			this.playerName = playerName
+			this.goals = 0
+			this.assists = 0
+			this.kicks = 0
+		}
 	}
-}
 
-// ---------- END OF CLASSES ----------
+	// ---------- END OF CLASSES ----------
 
-// ---------- VARS ----------
+	// ---------- VARS ----------
 
-let goalContributers = []
-let poss = [0, 0]
-let touches = [0, 0]
-let goals = [0, 0]
-let redTeamPlayers = []
-let blueTeamPlayers = []
-let specs = []
-let teams = []
-let offi = [false, 1] //isStarted, currentHalf
+	let goalContributers = []
+	let poss = [0, 0]
+	let touches = [0, 0]
+	let goals = [0, 0]
+	let redTeamPlayers = []
+	let blueTeamPlayers = []
+	let specs = []
+	let teams = []
+	let offi = [false, 1] //isStarted, currentHalf
 
-function handleTouch(player) {
-	if (goalContributers.length <= 0) {
-		goalContributers.push(player)
-	} else if (goalContributers[goalContributers.length - 1] != undefined) {
-		if (goalContributers[goalContributers.length - 1].id != player.id) {
+	function handleTouch(player) {
+		if (goalContributers.length <= 0) {
 			goalContributers.push(player)
+		} else if (goalContributers[goalContributers.length - 1] != undefined) {
+			if (goalContributers[goalContributers.length - 1].id != player.id) {
+				goalContributers.push(player)
+			}
 		}
+		player.team == 1 ? touches[0]++ : touches[1]++
 	}
-	player.team == 1 ? touches[0]++ : touches[1]++
-}
 
-function getLastTouch() {
-	for (let i = 0; i < room.getPlayerList().length; i++) {
-		let playerPos = room.getPlayerList()[i].position
-		let ballPos = room.getBallPosition()
-		let player = room.getPlayerList()[i]
-		let triggerValue = 20.9
-		if (playerPos != null) {
-			if (Math.sqrt(Math.pow(playerPos.x - ballPos.x, 2) + Math.pow(playerPos.y - ballPos.y, 2)) < triggerValue) {
-				handleTouch(player)
+	function getLastTouch() {
+		for (let i = 0; i < room.getPlayerList().length; i++) {
+			let playerPos = room.getPlayerList()[i].position
+			let ballPos = room.getBallPosition()
+			let player = room.getPlayerList()[i]
+			let triggerValue = 20.9
+			if (playerPos != null) {
+				if (Math.sqrt(Math.pow(playerPos.x - ballPos.x, 2) + Math.pow(playerPos.y - ballPos.y, 2)) < triggerValue) {
+					handleTouch(player)
+				}
 			}
 		}
 	}
-}
 
-room.onPlayerBallKick = function(player) {
-	handleTouch(player)
-}
+	room.onPlayerBallKick = function(player) {
+		handleTouch(player)
+	}
 
-// KITS
-let OLS = [2, 60, 0x36FFFF, 0x264E92, 0xE8CC17, null, 3, 60, 0x4F0FFF, 0xFFFFFF, 0xBC8C2B, 0x000000]
-let ATL = [3, 60, 0x000000, 0xFF1F1F, 0xFFDD00, 0xFF0000, 3, 60, 0xFFFFFF, 0x636363, 0x3D3D3D, 0x191919]
-let FTN = [3, 180, 0xFFFFFF, 0x025492, 0x0368B5, 0x025492, 3, 100, 0x1b486a, 0xFFFFFF, 0xDECDA3, 0xFFFFFF]
-let CMT = [2, 75, 0x000000, 0x5F059C, 0xF7F7F7, null, 2, 75, 0x000000, 0x5F059C, 0xF7F7F7, null]
-let EFC = [3, 20, 0xFFFFFF, 0x14A2A4, 0x3FB885, 0x6ACF64, 3, 20, 0xFFFFFF, 0xFFAC30, 0xFF893B, 0xF25607]
-let CNT = [3, 90, 0x000000, 0xFFFFFF, 0xFF0000, 0xFFFFFF, 2, 60, 0xFFFFFF, 0x8C0808, 0xFF0000, null]
-let ARS = [3, 90, 0x000000, 0x5F021F, 0xFFFFFF, 0x5F021F, 2, 0, 0xFFD700, 0x7851A9, 0x000000, null]
-let ACS = [3, 0, 0xFFFFFF, 0x000000, 0xFF0505, 0x000000, 3, 0, 0x000000, 0xFFFFFF, 0xFF0505, 0xFFFFFF ]
+	// KITS
+	let OLS = [2, 60, 0x36FFFF, 0x264E92, 0xE8CC17, null, 3, 60, 0x4F0FFF, 0xFFFFFF, 0xBC8C2B, 0x000000]
+	let ATL = [3, 60, 0x000000, 0xFF1F1F, 0xFFDD00, 0xFF0000, 3, 60, 0xFFFFFF, 0x636363, 0x3D3D3D, 0x191919]
+	let FTN = [3, 180, 0xFFFFFF, 0x025492, 0x0368B5, 0x025492, 3, 100, 0x1b486a, 0xFFFFFF, 0xDECDA3, 0xFFFFFF]
+	let CMT = [2, 75, 0x000000, 0x5F059C, 0xF7F7F7, null, 2, 75, 0x000000, 0x5F059C, 0xF7F7F7, null]
+	let EFC = [3, 20, 0xFFFFFF, 0x14A2A4, 0x3FB885, 0x6ACF64, 3, 20, 0xFFFFFF, 0xFFAC30, 0xFF893B, 0xF25607]
+	let CNT = [3, 90, 0x000000, 0xFFFFFF, 0xFF0000, 0xFFFFFF, 2, 60, 0xFFFFFF, 0x8C0808, 0xFF0000, null]
+	let ARS = [3, 90, 0x000000, 0x5F021F, 0xFFFFFF, 0x5F021F, 2, 0, 0xFFD700, 0x7851A9, 0x000000, null]
+	let ACS = [3, 0, 0xFFFFFF, 0x000000, 0xFF0505, 0x000000, 3, 0, 0x000000, 0xFFFFFF, 0xFF0505, 0xFFFFFF ]
 
-let availableHomeKits = ['OLS', 'ATL', 'FTN', 'CMT', 'EFC', 'CNT', 'ARS', 'ACS']
-let availableAwayKits = ['OLS', 'ATL', 'FTN', 'CMT', 'EFC', 'CNT', 'ARS', 'ACS']
+	let availableHomeKits = ['OLS', 'ATL', 'FTN', 'CMT', 'EFC', 'CNT', 'ARS', 'ACS']
+	let availableAwayKits = ['OLS', 'ATL', 'FTN', 'CMT', 'EFC', 'CNT', 'ARS', 'ACS']
 
-let admins = ['BOj3h2H8p9PDUEqbUoHMu9erqCxVYkEl3VC2pNGhhhY', 'SwBqGL0MnnYdIFWsYMbJa9-goTBmr_dcdoUsLn8htmA', 'hji0qRQWt_yTUKzrbNgGcjVxby6hwq-2ba8RAcNelpg', 'KTIuwa5xJDTYqHNRFW0zhvX2t95XuXhI8gZ9_1TBEMw'] //comrade, duck, bolton, yura
+	// ---------- END OF VARS ----------
 
-// ---------- END OF VARS ----------
+	room.onGameTick = function() {
+	getLastTouch()
+	}
 
-room.onGameTick = function() {
-getLastTouch()
-}
+	room.onPlayerChat = function(player, message) {
+	if (message == '!start offi') {
+		offi[0] = true
+		offi[1] = 1
+	}
 
-room.onPlayerChat = function(player, message) {
-if (message == '!start offi') {
-	offi[0] = true
-	offi[1] = 1
-}
+	//chat censorsihip 😔
+	const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nigga', 'nigger', 'niga', 'niger', 'nlga', 'nlgga', 'nlger', 'nlgger', 'retard', 'retarded', 'chink', 'coon', 'faggot', 'hitler', 'nibba', 'paki', 'soccer', 'wigan', 'jew', 'jewish']
 
-//chat censorsihip 😔
-const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nigga', 'nigger', 'niga', 'niger', 'nlga', 'nlgga', 'nlger', 'nlgger', 'retard', 'retarded', 'chink', 'coon', 'faggot', 'hitler', 'nibba', 'paki', 'soccer', 'wigan', 'jew', 'jewish']
+	for (let i = 0; i < forbiddenWords.length; i++) {
+		if (message.toLowerCase().includes(forbiddenWords[i])) {
+			return false
+		}
+	}
 
-for (let i = 0; i < forbiddenWords.length; i++) {
-	if (message.toLowerCase().includes(forbiddenWords[i])) {
+	if (message.split(' ')[0] == '!claim') {	
+		if (message.split(' ')[1] == claimCode.toString() && message.split(' ').length == 2) {
+			room.setPlayerAdmin(player.id, true)
+		}
+	}
+
+	if (message == '!swap') {
+		var players = room.getPlayerList()
+		for (let i = 0; i < players.length; i++) {
+			if (players[i].team == 1) {
+				room.setPlayerTeam(players[i].id, 2)
+			}
+			if (players[i].team == 2) {
+				room.setPlayerTeam(players[i].id, 1)
+			}
+		}
+		if (teams[1] == undefined || teams[1] == null || teams[0] == undefined || teams[0] == null) {
+			room.sendAnnouncement('Can\'t swap kits becuase one of them is not defined, make sure to define them with the !set home/away team command', player.id, 0xFF0000, 'bold')
+		} else {
+			let vario = eval(teams[1].teamName)
+			teams[0].setHomeKit(vario[6], vario[7], vario[8], vario[9], vario[10], vario[11])
+			
+			let vari = eval(teams[0].teamName)
+			teams[1].setAwayKit(vari[0], vari[1], vari[2], vari[3], vari[4], vari[5])
+		}
+	}
+
+	if (message.includes('!set map') && message.split(' ').length == 3) {
+		maps = ['official', 'big', 'small', 'ultrasmall', 'medium']
+		if (maps.includes(message.split(' ')[2])) {
+			room.setCustomStadium(eval(message.split(' ')[2]))
+		} else {
+			room.sendAnnouncement('😔 | Only those stadiums exist:\n\'official\', \'big\', \'small\', \'ultrasmall\', \'medium\'', player.id, 0xFF0000, 'bold')
+		}
+	}
+
+	if (message.includes('!set home team') && message.split(' ').length == 4) {
+		const output = message.split(' ')
+		if (availableHomeKits.includes(output[3])) {
+			let vari = eval(output[3])
+			teams[0] = new team(output[3])
+			teams[0].setHomeKit(vari[0], vari[1], vari[2], vari[3], vari[4], vari[5])
+		} else {
+			room.sendAnnouncement('😔 | I don\'t have those kits cuh', player.id, 0xFF0000, 'bold')
+		}
+	}
+
+	if (message.includes('!set away team') && message.split(' ').length == 4) {
+		const output = message.split(' ')
+		if (availableAwayKits.includes(output[3])) {
+			let vari = eval(output[3])
+			teams[1] = new team(output[3])
+			teams[1].setAwayKit(vari[6], vari[7], vari[7], vari[9], vari[10], vari[11])
+		} else {
+			room.sendAnnouncement('😔 | I don\'t have those kits cuh', player.id, 0xFF0000, 'bold')
+		}
+	}
+
+	if (message == '!bb') {
+		room.kickPlayer(player.id, 'goodbye, now join the discord: https://discord.gg/cx9WWA84dv')
+	}
+
+	if (message == '!discord') {
+		room.sendAnnouncement('join our discord server here: https://discord.gg/cx9WWA84dv')
+	}
+
+	if (message.charAt(0) == '!') {
 		return false
 	}
-}
 
-if (message == '!swap') {
-	var players = room.getPlayerList()
-	for (let i = 0; i < players.length; i++) {
-		if (players[i].team == 1) {
-			room.setPlayerTeam(players[i].id, 2)
+	if (message == '!clear bans') {
+		room.clearBans()
+	}
+
+	if (message.charAt(0) == 't' && message.charAt(1) == ' ') {
+		if (player.team == 1) {
+			for (let i = 0; i < redTeamPlayers.length; i++) {
+				room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), redTeamPlayers[i].id, 0xDB1604, 'bold')
+			}
 		}
-		if (players[i].team == 2) {
-			room.setPlayerTeam(players[i].id, 1)
+		if (player.team == 2) {
+			for (let i = 0; i < blueTeamPlayers.length; i++) {
+				room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0x00A2FF, 'bold')
+			}
+		}
+		if (player.team == 0) {
+			for (let i = 0; i < specs.length; i++) {
+				room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0xFFFFFF, 'bold')
+			}
+		}
+		return false
+	}
+	}
+
+	room.onPlayerTeamChange = function(changedPlayer) {
+	redTeamPlayers = []
+	blueTeamPlayers = []
+	specs = []
+	for (let i = 0; i < room.getPlayerList().length; i++) {
+		if (room.getPlayerList()[i].team == 1) {
+			redTeamPlayers.push(room.getPlayerList()[i])
+			// redTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
+		}
+		if (room.getPlayerList()[i].team == 2) {
+			blueTeamPlayers.push(room.getPlayerList()[i])
+			// blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
+		}
+		if (room.getPlayerList()[i].team == 0) {
+			specs.push(room.getPlayerList()[i])
+			// blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
 		}
 	}
-	if (teams[1] == undefined || teams[1] == null || teams[0] == undefined || teams[0] == null) {
-		room.sendAnnouncement('Can\'t swap kits becuase one of them is not defined, make sure to define them with the !set home/away team command', null, 0xFF0000, 'bold')
+	}
+
+	room.onGameStart = function() {
+	poss = [0, 0]
+	touches = [0, 0]
+	goals = [0, 0]
+	}
+
+	room.onGameStop = function() {
+	let totalPoss = touches[0] + touches[1]
+	poss = [(touches[0] * 100) / totalPoss, (touches[1] * 100) / totalPoss]
+	let getString = `💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${Math.round(poss[0])}% | blue: ${Math.round(poss[1])}%\n⚽️ | KICKS:\nred: ${touches[0]} | blue: ${touches[1]}`
+	room.sendAnnouncement(`${getString}`, null, 0xFFFFF00, 'bold')
+	goals[0] == 0 ? room.sendAnnouncement('🥅 | The BLUE goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
+	goals[1] == 0 ? room.sendAnnouncement('🥅 | The RED goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
+	const msg = {
+		"content": null,
+		"embeds": [
+			{
+			"title": 'Half time/Game over!',
+			"description": `${getString}`,
+			"color": 5814783
+			}
+		],
+		"attachments": []
+	}
+	fetch(webhook,
+		{'method': 'POST',
+		'headers': {'content-type': 'application/json'},
+		'body': JSON.stringify(msg)})
+	}
+
+	room.onTeamGoal = function(team) {
+	let ownGoal = false
+	room.sendAnnouncement(goalContributers.length.toString())
+	if (goalContributers.length < 2|| goalContributers[goalContributers.length - 2].team != goalContributers[goalContributers.length - 1].team) {
+		if (goalContributers[goalContributers.length - 1].team == team) {
+			room.sendAnnouncement('⚽️ | Goal scored by ' + goalContributers[goalContributers.length - 1].name, null, 0xFF0000, 'bold')
+		} else {
+			room.sendAnnouncement('😔 | Broski ' + goalContributers[goalContributers.length - 1].name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+			ownGoal = true
+		}
 	} else {
-		let vario = eval(teams[1].teamName)
-		teams[0].setHomeKit(vario[6], vario[7], vario[8], vario[9], vario[10], vario[11])
-		
-		let vari = eval(teams[0].teamName)
-		teams[1].setAwayKit(vari[0], vari[1], vari[2], vari[3], vari[4], vari[5])
-	}
-}
-
-if (message.includes('!set map') && message.split(' ').length == 3) {
-	maps = ['official', 'big', 'small', 'ultrasmall', 'medium']
-	if (maps.includes(message.split(' ')[2])) {
-		room.setCustomStadium(eval(message.split(' ')[2]))
-	} else {
-		room.sendAnnouncement('😔 | Only those stadiums exist:\n\'official\', \'big\', \'small\', \'ultrasmall\', \'medium\'', player.id, 0xFF0000, 'bold')
-	}
-}
-
-if (message.includes('!set home team') && message.split(' ').length == 4) {
-	const output = message.split(' ')
-	if (availableHomeKits.includes(output[3])) {
-		let vari = eval(output[3])
-		teams[0] = new team(output[3])
-		teams[0].setHomeKit(vari[0], vari[1], vari[2], vari[3], vari[4], vari[5])
-	} else {
-		room.sendAnnouncement('😔 | I don\'t have those kits cuh', player.id, 0xFF0000, 'bold')
-	}
-}
-
-if (message.includes('!set away team') && message.split(' ').length == 4) {
-	const output = message.split(' ')
-	if (availableAwayKits.includes(output[3])) {
-		let vari = eval(output[3])
-		teams[1] = new team(output[3])
-		teams[1].setAwayKit(vari[6], vari[7], vari[7], vari[9], vari[10], vari[11])
-	} else {
-		room.sendAnnouncement('😔 | I don\'t have those kits cuh', player.id, 0xFF0000, 'bold')
-	}
-}
-
-if (message == '!bb') {
-	room.kickPlayer(player.id, 'goodbye, now join the discord: https://discord.gg/cx9WWA84dv')
-}
-
-if (message == '!discord') {
-	room.sendAnnouncement('join our discord server here: https://discord.gg/cx9WWA84dv')
-}
-
-if (message.charAt(0) == '!') {
-	return false
-}
-
-if (message == '!clear bans') {
-	room.clearBans()
-}
-
-if (message.charAt(0) == 't' && message.charAt(1) == ' ') {
-	if (player.team == 1) {
-		for (let i = 0; i < redTeamPlayers.length; i++) {
-			room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), redTeamPlayers[i].id, 0xDB1604, 'bold')
+		if (goalContributers[goalContributers.length - 1].team == team) {
+			room.sendAnnouncement('⚽️ | Goal scored by ' + goalContributers[goalContributers.length - 1].name + ' with an assist from ' + goalContributers[goalContributers.length - 2].name, null, 0xFF0000,   'bold')
+		} else {
+			room.sendAnnouncement('😔 | Broski ' + goalContributers[goalContributers.length - 1].name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+			ownGoal = true
 		}
 	}
-	if (player.team == 2) {
-		for (let i = 0; i < blueTeamPlayers.length; i++) {
-			room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0x00A2FF, 'bold')
+	team == 1 ? goals[0]++ : goals[1]++
+	let goalType = ''
+	ownGoal ? goalType = 'Own goal' : goalType = 'Goal'
+	const msg = {
+		"content": null,
+		"embeds": [
+			{
+			"title": 'Goal!',
+			"description": `⚽ | ${goalType} by ${goalContributers[goalContributers.length - 1].name}!\n📊 | Score is red ${room.getScores().red} - ${room.getScores().blue} blue\n🕙 | Minute ${(room.getScores().time / 60).toFixed(2)} of the game`,
+			"color": 5814783
+			}
+		],
+		"attachments": []
+	}
+	fetch(webhook,
+		{'method': 'POST',
+		'headers': {'content-type': 'application/json'},
+		'body': JSON.stringify(msg)})
+
+	goalContributers = []
+	}
+
+	room.onRoomLink = function(link) {
+		console.log(link)
+		console.log(claimCode)
+		const msg = {
+			'content': `Private room link: ${link}\nAdmin code: ${claimCode}`,
+			'embeds': null,
+			'attachments': []
 		}
+		fetch(webhookadmin,
+			{'method': 'POST',
+			'headers': {'content-type': 'application/json'},
+			'body': JSON.stringify(msg)})
 	}
-	if (player.team == 0) {
-		for (let i = 0; i < specs.length; i++) {
-			room.sendAnnouncement('[team] ' + player.name + ':' + message.substring(1), blueTeamPlayers[i].id, 0xFFFFFF, 'bold')
-		}
-	}
-	return false
-}
-}
-
-room.onPlayerTeamChange = function(changedPlayer) {
-redTeamPlayers = []
-blueTeamPlayers = []
-specs = []
-for (let i = 0; i < room.getPlayerList().length; i++) {
-	if (room.getPlayerList()[i].team == 1) {
-		redTeamPlayers.push(room.getPlayerList()[i])
-		// redTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
-	}
-	if (room.getPlayerList()[i].team == 2) {
-		blueTeamPlayers.push(room.getPlayerList()[i])
-		// blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
-	}
-	if (room.getPlayerList()[i].team == 0) {
-		specs.push(room.getPlayerList()[i])
-		// blueTeamPlayers.push(new playerStats(room.getPlayerList()[i].name, 0, 0, 0))
-	}
-}
-}
-
-room.onGameStart = function() {
-poss = [0, 0]
-touches = [0, 0]
-goals = [0, 0]
-}
-
-room.onGameStop = function() {
-let totalPoss = touches[0] + touches[1]
-poss = [(touches[0] * 100) / totalPoss, (touches[1] * 100) / totalPoss]
-let getString = `💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${Math.round(poss[0])}% | blue: ${Math.round(poss[1])}%\n⚽️ | KICKS:\nred: ${touches[0]} | blue: ${touches[1]}`
-room.sendAnnouncement(`${getString}`, null, 0xFFFFF00, 'bold')
-goals[0] == 0 ? room.sendAnnouncement('🥅 | The BLUE goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
-goals[1] == 0 ? room.sendAnnouncement('🥅 | The RED goalkeeper kept a clean sheet!', null, 0xFFFFF00, 'bold') : {}
-const msg = {
-	"content": null,
-	"embeds": [
-		{
-		"title": 'Half time/Game over!',
-		"description": `${getString}`,
-		"color": 5814783
-		}
-	],
-	"attachments": []
-}
-fetch(webhook,
-	{'method': 'POST',
-	'headers': {'content-type': 'application/json'},
-	'body': JSON.stringify(msg)})
-}
-
-room.onTeamGoal = function(team) {
-let ownGoal = false
-room.sendAnnouncement(goalContributers.length.toString())
-if (goalContributers.length < 2|| goalContributers[goalContributers.length - 2].team != goalContributers[goalContributers.length - 1].team) {
-	if (goalContributers[goalContributers.length - 1].team == team) {
-		room.sendAnnouncement('⚽️ | Goal scored by ' + goalContributers[goalContributers.length - 1].name, null, 0xFF0000, 'bold')
-	} else {
-		room.sendAnnouncement('😔 | Broski ' + goalContributers[goalContributers.length - 1].name + ' be scorin a own goal', null, 0xFF0000, 'bold')
-		ownGoal = true
-	}
-} else {
-	if (goalContributers[goalContributers.length - 1].team == team) {
-		room.sendAnnouncement('⚽️ | Goal scored by ' + goalContributers[goalContributers.length - 1].name + ' with an assist from ' + goalContributers[goalContributers.length - 2].name, null, 0xFF0000,   'bold')
-	} else {
-		room.sendAnnouncement('😔 | Broski ' + goalContributers[goalContributers.length - 1].name + ' be scorin a own goal', null, 0xFF0000, 'bold')
-		ownGoal = true
-	}
-}
-team == 1 ? goals[0]++ : goals[1]++
-let goalType = ''
-ownGoal ? goalType = 'Own goal' : goalType = 'Goal'
-const msg = {
-	"content": null,
-	"embeds": [
-		{
-		"title": 'Goal!',
-		"description": `⚽ | ${goalType} by ${goalContributers[goalContributers.length - 1].name}!\n📊 | Score is red ${room.getScores().red} - ${room.getScores().blue} blue\n🕙 | Minute ${(room.getScores().time / 60).toFixed(2)} of the game`,
-		"color": 5814783
-		}
-	],
-	"attachments": []
-}
-fetch(webhook,
-	{'method': 'POST',
-	'headers': {'content-type': 'application/json'},
-	'body': JSON.stringify(msg)})
-
-goalContributers = []
-}
-
-room.onRoomLink = function(link) {
-console.log(link)
-}
+})
