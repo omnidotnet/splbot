@@ -1907,7 +1907,7 @@ HaxballJS.then((HBInit) => {
 	geo = {'code': 'gb', 'lat': 50, 'lon': 0}
 	var room = HBInit({
 		roomName: 'Statville Premier League',
-		maxPlayers: 20,
+		maxPlayers: 30,
 		noPlayer: true, // remove host player
 		token: 'thr1.AAAAAGWs2geCrkbmkrGiBQ.sahzSxmXw8o',
 		public: false,
