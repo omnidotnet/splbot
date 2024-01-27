@@ -1969,6 +1969,129 @@ HaxballJS.then((HBInit) => {
 	let specs = []
 	let teams = []
 	let offi = [false, 1] //isStarted, currentHalf
+	
+	const def3Mess = false;
+
+	//3def system
+let redLine = -380;
+let blueLine = 380;
+let maxDefenders = 3;
+let redDefenders = [];
+let blueDefenders = [];
+let attackers = [[], []];
+
+function handleDef() {
+    let oldDefenders = [JSON.stringify(redDefenders.map((p) => p.id)), JSON.stringify(blueDefenders.map((p) => p.id))];
+    redDefenders = redDefenders.filter(p => room.getPlayer(p.id) !== null && room.getPlayer(p.id).team == 1);
+    blueDefenders = blueDefenders.filter(p => room.getPlayer(p.id) !== null && room.getPlayer(p.id).team == 2);
+    if (oldDefenders[0] != JSON.stringify(redDefenders.map((p) => p.id)) && redDefenders.length < maxDefenders) {
+        for (let j = 0; j < attackers[0].length; j++) {
+            room.setPlayerDiscProperties(attackers[0][j].id, { cGroup: room.CollisionFlags.red });
+        }
+    }
+    if (oldDefenders[1] != JSON.stringify(blueDefenders.map((p) => p.id)) && blueDefenders.length < maxDefenders) {
+        for (let j = 0; j < attackers[1].length; j++) {
+            room.setPlayerDiscProperties(attackers[1][j].id, { cGroup: room.CollisionFlags.blue });
+        }
+    }
+    let arr = [[], []];
+    for (let i = 0; i < teamRed.length; i++) {
+        if (teamRed[i].position !== null && teamRed[i].position.x <= redLine + playerRadius - 0.01) {
+            if (redDefenders.find(a => a.id == teamRed[i].id) === undefined) {
+                arr[0].push(teamRed[i]);
+            }
+        }
+        else {
+            if (redDefenders.find(a => a.id == teamRed[i].id) !== undefined) {
+                redDefenders = redDefenders.filter(a => a.id !== teamRed[i].id);
+                if (redDefenders.length < maxDefenders) {
+                    for (let j = 0; j < attackers[0].length; j++) {
+                        room.setPlayerDiscProperties(attackers[0][j].id, { cGroup: room.CollisionFlags.red });
+						if(def3Mess) {
+							room.sendAnnouncement(
+								`[3def system] now you can join the defense`,
+								attackers[0][j].id,
+								0xf53131,
+								'normal',
+								null
+							);
+						}
+                    }
+                }
+            }
+        }
+    }
+    arr[0].sort((a, b) => a.position.x - b.position.x);
+    for (let i = 0; i < arr[0].length; i++) {
+        if (redDefenders.length < maxDefenders) {
+            redDefenders.push(arr[0][i]);
+            if (redDefenders.length === maxDefenders) {
+                attackers[0] = teamRed.filter(a => !redDefenders.map(b => b.id).includes(a.id));
+                attackers[0].forEach(a => {
+                    room.setPlayerDiscProperties(a.id, { cGroup: room.CollisionFlags.red | room.CollisionFlags.c0 });
+					if(def3Mess) {
+						room.sendAnnouncement(
+							`[3def system] go attack`,
+							a.id,
+							0xf53131,
+							'normal',
+							null
+						);
+					}
+                });
+                break;
+            }
+        }
+    }
+    for (let i = 0; i < teamBlue.length; i++) {
+        if (teamBlue[i].position !== null && teamBlue[i].position.x >= blueLine - playerRadius + 0.01) {
+            if (blueDefenders.find(a => a.id == teamBlue[i].id) === undefined) {
+                arr[1].push(teamBlue[i]);
+            }
+        }
+        else {
+            if (blueDefenders.find(a => a.id == teamBlue[i].id) !== undefined) {
+                blueDefenders = blueDefenders.filter(a => a.id !== teamBlue[i].id);
+                if (blueDefenders.length < maxDefenders) {
+                    for (let j = 0; j < attackers[1].length; j++) {
+                        room.setPlayerDiscProperties(attackers[1][j].id, { cGroup: room.CollisionFlags.blue });
+                        if(def3Mess) {
+							room.sendAnnouncement(
+								`[3def system] now you can join the defense`,
+								attackers[1][j].id,
+								0x283fed,
+								'normal',
+								null
+							);
+						}
+                    }
+                }
+            }
+        }
+    }
+    arr[1].sort((a, b) => a.position.x - b.position.x);
+    for (let i = 0; i < arr[1].length; i++) {
+        if (blueDefenders.length < maxDefenders) {
+            blueDefenders.push(arr[1][i]);
+            if (blueDefenders.length === maxDefenders) {
+                attackers[1] = teamBlue.filter(a => !blueDefenders.map(b => b.id).includes(a.id));
+                attackers[1].forEach(a => {
+                    room.setPlayerDiscProperties(a.id, { cGroup: room.CollisionFlags.blue | room.CollisionFlags.c1 });
+                    if(def3Mess) {
+						room.sendAnnouncement(
+							`[3def system] go attack`,
+							a.id,
+							0x283fed,
+							'normal',
+							null
+						);
+					}
+                });
+                break;
+            }
+        }
+    }
+}
 
 	function handleTouch(player) {
 		if (goalContributers.length <= 0) {
@@ -2015,7 +2138,8 @@ HaxballJS.then((HBInit) => {
 	// ---------- END OF VARS ----------
 
 	room.onGameTick = function() {
-	getLastTouch()
+		getLastTouch()
+		handleDef()
 	}
 
 	room.onPlayerChat = function(player, message) {
@@ -2184,14 +2308,14 @@ HaxballJS.then((HBInit) => {
 		if (goalContributers[goalContributers.length - 1].team == team) {
 			room.sendAnnouncement('⚽️ | Goal scored by ' + goalContributers[goalContributers.length - 1].name, null, 0xFF0000, 'bold')
 		} else {
-			room.sendAnnouncement('😔 | Broski ' + goalContributers[goalContributers.length - 1].name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+			room.sendAnnouncement('😔 | Own Goal by ' + goalContributers[goalContributers.length - 1].name, null, 0xFF0000, 'bold')
 			ownGoal = true
 		}
 	} else {
 		if (goalContributers[goalContributers.length - 1].team == team) {
 			room.sendAnnouncement('⚽️ | Goal scored by ' + goalContributers[goalContributers.length - 1].name + ' with an assist from ' + goalContributers[goalContributers.length - 2].name, null, 0xFF0000,   'bold')
 		} else {
-			room.sendAnnouncement('😔 | Broski ' + goalContributers[goalContributers.length - 1].name + ' be scorin a own goal', null, 0xFF0000, 'bold')
+			room.sendAnnouncement('😔 | Own goal by ' + goalContributers[goalContributers.length - 1].name, null, 0xFF0000, 'bold')
 			ownGoal = true
 		}
 	}
