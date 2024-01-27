@@ -1907,7 +1907,7 @@ HaxballJS.then((HBInit) => {
 	geo = {'code': 'gb', 'lat': 50, 'lon': 0}
 	var room = HBInit({
 		roomName: 'Statville Premier League',
-		maxPlayers: 16,
+		maxPlayers: 30,
 		noPlayer: true, // remove host player
 		token: 'thr1.AAAAAGWs2geCrkbmkrGiBQ.sahzSxmXw8o',
 		public: false,
@@ -2149,7 +2149,7 @@ function handleDef() {
 	}
 
 	//chat censorsihip 😔
-	const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nigga', 'nigger', 'niga', 'niger', 'nlga', 'nlgga', 'nlger', 'nlgger', 'retard', 'retarded', 'chink', 'coon', 'faggot', 'hitler', 'nibba', 'paki', 'soccer', 'wigan', 'jew', 'jewish']
+	const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nigga', 'nigger', 'niga', 'niger', 'nlga', 'nlgga', 'nlger', 'nlgger', 'retard', 'retarded', 'chink', 'coon', 'faggot', 'hitler', 'nibba', 'paki', 'soccer', 'wigan', 'jew', 'jewish', 'nig', 'nigg', 'niglet', 'reggin', 'wetback', 'beaner', 'fag', 'slope']
 
 	for (let i = 0; i < forbiddenWords.length; i++) {
 		if (message.toLowerCase().includes(forbiddenWords[i])) {
