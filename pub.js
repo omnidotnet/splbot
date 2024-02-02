@@ -15,8 +15,8 @@ const def3Mess = false;
 //webhook settings
 const webhookBlock = false;
 const masterPasswordAuth = true;
-let roomWebhook = 'https://discord.com/api/webhooks/1189619772304920730/u0F2Kwm6p6ZICpKgkRwnV4V1CArfxbJqbEOndKoOwV_DNZ5SOQOtNmrdgt_LUMpyIh2N'; // this webhook is used to send the details of the room (chat, join, leave) ; it should be in a private discord channel
-let gameWebhook = 'https://discord.com/api/webhooks/1190997297924935731/y57It9If25m3fo0et-5rIp8Ik0rBIXUgf0TbIhtFirT5lA5yuQJs1AhTivQJr_6k_X3g'; // this webhook is used to send the summary of the games ; it should be in a public discord channel
+let roomWebhook = 'https://discord.com/api/webhooks/1198548945987711006/K_CwYfQ0xJFG7h1smqsWzPZGTuHI2Fr5fMNAGv4CXTMGePlgi-xOQnjETwfc5fEWuPaz'; // this webhook is used to send the details of the room (chat, join, leave) ; it should be in a private discord channel
+let gameWebhook = 'https://discord.com/api/webhooks/1203056588663820318/ODvao20awif7fy_i0Ob34l9A0K787ybUvUVJXlnVyChoS18h-0wbWdZGj33DjQn6dPW1'; // this webhook is used to send the summary of the games ; it should be in a public discord channel
 if (headless || webhookBlock) {
     roomWebhook = '';
     gameWebhook = '';
@@ -34,7 +34,7 @@ const room = HBInit({
     noPlayer: true,
 });
 
-room.setPassword(password)
+//room.setPassword(password)
 
 const trainingMap = `{
 	"name": "SPL warmup",
