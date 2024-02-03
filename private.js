@@ -23,8 +23,6 @@ if (headless || webhookBlock) {
 }
 
 let fetchRecordingletiable = true;
-let timeLimit = 3;
-let scoreLimit = 3;
 
 const room = HBInit({
     roomName: roomName,
@@ -36,2526 +34,2115 @@ const room = HBInit({
 
 //room.setPassword(password)
 
-const trainingMap = `{
-	"name": "SPL warmup",
-	"width": 480,
-	"height": 230,
-	"bg": {
-		"type": "",
-		"kickOffRadius": 60,
-		"color": "636363"
-	},
-	"vertexes": [
-		{
-			"x": -401.4,
-			"y": -200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 401.4,
-			"y": -200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 401.4,
-			"y": 200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -401.4,
-			"y": 200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": 200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": -200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": -80,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			],
-			"trait": "vertexDefault",
-			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			},
-			"curve": 0
-		},
-		{
-			"x": 0,
-			"y": 80,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			],
-			"trait": "vertexDefault",
-			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			},
-			"curve": 0
-		},
-		{
-			"x": -400,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -400,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": 230,
-			"trait": "vertexDefault",
-			"_data": {
-				"mirror": {}
-			},
-			"curve": 0
-		},
-		{
-			"x": 0,
-			"y": -230,
-			"trait": "vertexDefault",
-			"_data": {
-				"mirror": {}
-			},
-			"curve": 0
-		},
-		{
-			"x": 436.4,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 436.4,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -436.4,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -436.4,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 0,
-			"y": -1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": 1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": -135,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": 400,
-			"y": 135,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -400,
-			"y": -135,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -400,
-			"y": 135,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -400,
-			"y": -201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": -201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": 201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -400,
-			"y": 201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 435,
-			"y": -71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 435,
-			"y": 71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -435,
-			"y": -71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -435,
-			"y": 71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		}
-	],
-	"segments": [
-		{
-			"v0": 5,
-			"v1": 6,
-			"color": "dcdcdc",
-			"trait": "wall_map_nc"
-		},
-		{
-			"v0": 4,
-			"v1": 7,
-			"color": "dcdcdc",
-			"trait": "wall_map_nc"
-		},
-		{
-			"v0": 6,
-			"v1": 13,
-			"curve": 0,
-			"trait": "KO_barrier",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						-80
-					],
-					"b": [
-						0,
-						-230
-					],
-					"curve": 0
-				}
-			}
-		},
-		{
-			"v0": 7,
-			"v1": 12,
-			"curve": 0,
-			"trait": "KO_barrier",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						80
-					],
-					"b": [
-						0,
-						230
-					],
-					"curve": 0
-				}
-			}
-		},
-		{
-			"v0": 6,
-			"v1": 7,
-			"curve": 180,
-			"color": "5b00a3",
-			"trait": "KO_wall_red"
-		},
-		{
-			"v0": 7,
-			"v1": 6,
-			"curve": 180,
-			"color": "5b00a3",
-			"trait": "KO_wall_blue"
-		},
-		{
-			"v0": 18,
-			"v1": 19,
-			"curve": 180,
-			"color": "dcdcdc",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 19,
-			"v1": 18,
-			"curve": 180,
-			"color": "dcdcdc",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 21,
-			"v1": 20,
-			"curve": 150,
-			"color": "707070",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 22,
-			"v1": 23,
-			"curve": 150,
-			"color": "707070",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 10,
-			"v1": 14,
-			"bCoef": 1.7,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 28,
-			"v1": 29,
-			"bCoef": 1.7,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 15,
-			"v1": 11,
-			"bCoef": 1.7,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 8,
-			"v1": 17,
-			"bCoef": 1.7,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 31,
-			"v1": 30,
-			"bCoef": 1.7,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 16,
-			"v1": 9,
-			"bCoef": 1.7,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 9,
-			"v1": 8,
-			"color": "dcdcdc",
-			"trait": "goal_line"
-		},
-		{
-			"v0": 10,
-			"v1": 11,
-			"color": "dcdcdc",
-			"trait": "goal_line"
-		},
-		{
-			"v0": 0,
-			"v1": 1,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 25,
-			"v1": 10,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 11,
-			"v1": 26,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 2,
-			"v1": 3,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 27,
-			"v1": 8,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 9,
-			"v1": 24,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		}
-	],
-	"planes": [
-		{
-			"normal": [
-				0,
-				1
-			],
-			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						-661,
-						-230
-					],
-					"b": [
-						661,
-						-230
-					]
-				}
-			}
-		},
-		{
-			"normal": [
-				0,
-				-1
-			],
-			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						-1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						-661,
-						230
-					],
-					"b": [
-						661,
-						230
-					]
-				}
-			}
-		},
-		{
-			"normal": [
-				1,
-				0
-			],
-			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						-480,
-						-233
-					],
-					"b": [
-						-480,
-						233
-					]
-				}
-			}
-		},
-		{
-			"normal": [
-				-1,
-				0
-			],
-			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						-1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						480,
-						-233
-					],
-					"b": [
-						480,
-						233
-					]
-				}
-			}
-		}
-	],
-	"goals": [],
-	"discs": [
-		{
-			"pos": [
-				-400,
-				-70
-			],
-			"trait": "goal_post"
-		},
-		{
-			"pos": [
-				-400,
-				70
-			],
-			"trait": "goal_post"
-		},
-		{
-			"pos": [
-				400,
-				-70
-			],
-			"trait": "goal_post"
-		},
-		{
-			"pos": [
-				400,
-				70
-			],
-			"trait": "goal_post"
-		}
-	],
-	"playerPhysics": {
-		"bCoef": 0,
-		"acceleration": 0.11,
-		"kickingAcceleration": 0.083,
-		"kickStrength": 4.2,
-		"radius": 15,
-		"invMass": 0.5,
-		"damping": 0.96,
-		"cGroup": [
-			"red",
-			"blue"
-		],
-		"gravity": [
-			0,
-			0
-		],
-		"kickingDamping": 0.96,
-		"kickback": 0
-	},
-	"ballPhysics": {
-		"radius": 5.8,
-		"bCoef": 0.412,
-		"invMass": 1.55,
-		"color": "FFF26D",
-		"cMask": [
-			"all"
-		],
-		"damping": 0.99,
-		"gravity": [
-			0,
-			0
-		],
-		"cGroup": [
-			"ball"
-		]
-	},
-	"spawnDistance": 200,
-	"traits": {
-		"wall_map": {
-			"vis": true,
-			"color": "abc2d5",
-			"bCoef": 1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"wall_map_nc": {
-			"vis": true,
-			"color": "abc2d5",
-			"bCoef": 0,
-			"cMask": [],
-			"cGroup": []
-		},
-		"KO_wall_red": {
-			"vis": true,
-			"color": "d9a472",
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO"
-			]
-		},
-		"KO_wall_blue": {
-			"vis": true,
-			"color": "d9a472",
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"blueKO"
-			]
-		},
-		"vertexDefault": {
-			"bCoef": 1,
-			"cMask": [],
-			"cGroup": []
-		},
-		"decoration_map": {
-			"vis": true,
-			"color": "626262",
-			"bCoef": 0,
-			"cMask": []
-		},
-		"goal_line": {
-			"vis": true,
-			"color": "c5c5c5",
-			"bCoef": 0,
-			"cMask": []
-		},
-		"wall_red_goal": {
-			"vis": true,
-			"color": "ff6666",
-			"bCoef": 0.1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"wall_blue_goal": {
-			"vis": true,
-			"color": "6666ff",
-			"bCoef": 0.1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"goal_post": {
-			"radius": 5.4,
-			"invMass": 0,
-			"color": "031726"
-		},
-		"map_point": {
-			"curve": 180,
-			"vis": true,
-			"color": "626262",
-			"cMask": []
-		},
-		"KO_barrier": {
-			"vis": false,
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			]
-		}
-	},
-	"joints": [],
-	"redSpawnPoints": [],
-	"blueSpawnPoints": [],
-	"canBeStored": false,
-	"cameraWidth": 0,
-	"cameraHeight": 0,
-	"maxViewWidth": 0,
-	"cameraFollow": "ball",
-	"kickOffReset": "partial"
-}`;
-const classicMap = `{
-	"name": "SPL 1v1",
-	"width": 480,
-	"height": 230,
-	"bg": {
-		"type": "",
-		"kickOffRadius": 60,
-		"color": "636363"
-	},
-	"vertexes": [
-		{
-			"x": -401.4,
-			"y": -200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 401.4,
-			"y": -200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 401.4,
-			"y": 200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -401.4,
-			"y": 200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": 200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": -200,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": -80,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			],
-			"trait": "vertexDefault",
-			"color": "5b00a3",
-			"curve": 0
-		},
-		{
-			"x": 0,
-			"y": 80,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			],
-			"trait": "vertexDefault",
-			"color": "5b00a3",
-			"curve": 0
-		},
-		{
-			"x": -400,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -400,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": 230,
-			"trait": "vertexDefault",
-			"curve": 0
-		},
-		{
-			"x": 0,
-			"y": -230,
-			"trait": "vertexDefault",
-			"curve": 0
-		},
-		{
-			"x": 436.4,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 436.4,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -436.4,
-			"y": -70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -436.4,
-			"y": 70,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 0,
-			"y": -1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": 1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": -135,
-			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
-		},
-		{
-			"x": 400,
-			"y": 135,
-			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
-		},
-		{
-			"x": -400,
-			"y": -135,
-			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
-		},
-		{
-			"x": -400,
-			"y": 135,
-			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
-		},
-		{
-			"x": -400,
-			"y": -201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": -201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 400,
-			"y": 201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -400,
-			"y": 201.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 435,
-			"y": -71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 435,
-			"y": 71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -435,
-			"y": -71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -435,
-			"y": 71.4,
-			"bCoef": 1.7,
-			"trait": "vertexDefault"
-		}
-	],
-	"segments": [
-		{
-			"v0": 5,
-			"v1": 6,
-			"color": "dcdcdc",
-			"trait": "wall_map_nc"
-		},
-		{
-			"v0": 4,
-			"v1": 7,
-			"color": "dcdcdc",
-			"trait": "wall_map_nc"
-		},
-		{
-			"v0": 6,
-			"v1": 13,
-			"curve": 0,
-			"trait": "KO_barrier"
-		},
-		{
-			"v0": 7,
-			"v1": 12,
-			"curve": 0,
-			"trait": "KO_barrier"
-		},
-		{
-			"v0": 6,
-			"v1": 7,
-			"curve": 180,
-			"color": "5b00a3",
-			"trait": "KO_wall_red"
-		},
-		{
-			"v0": 7,
-			"v1": 6,
-			"curve": 180,
-			"color": "5b00a3",
-			"trait": "KO_wall_blue"
-		},
-		{
-			"v0": 18,
-			"v1": 19,
-			"curve": 180,
-			"color": "dcdcdc",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 19,
-			"v1": 18,
-			"curve": 180,
-			"color": "dcdcdc",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 21,
-			"v1": 20,
-			"curve": 150,
-			"color": "707070",
-			"trait": "decoration_map",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						400,
-						135
-					],
-					"b": [
-						400,
-						-135
-					],
-					"curve": 150,
-					"radius": 139.7622843553612,
-					"center": [
-						436.1731409782015,
-						0
-					],
-					"from": 1.8325957145940457,
-					"to": -1.8325957145940457
-				}
-			}
-		},
-		{
-			"v0": 22,
-			"v1": 23,
-			"curve": 150,
-			"color": "707070",
-			"trait": "decoration_map",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-400,
-						-135
-					],
-					"b": [
-						-400,
-						135
-					],
-					"curve": 150,
-					"radius": 139.7622843553612,
-					"center": [
-						-436.1731409782015,
-						0
-					],
-					"from": -1.3089969389957476,
-					"to": 1.3089969389957476
-				}
-			}
-		},
-		{
-			"v0": 10,
-			"v1": 14,
-			"bCoef": 1.7,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 28,
-			"v1": 29,
-			"bCoef": 1.7,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 15,
-			"v1": 11,
-			"bCoef": 1.7,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 8,
-			"v1": 17,
-			"bCoef": 1.7,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 31,
-			"v1": 30,
-			"bCoef": 1.7,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 16,
-			"v1": 9,
-			"bCoef": 1.7,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 9,
-			"v1": 8,
-			"color": "dcdcdc",
-			"trait": "goal_line"
-		},
-		{
-			"v0": 10,
-			"v1": 11,
-			"color": "dcdcdc",
-			"trait": "goal_line"
-		},
-		{
-			"v0": 0,
-			"v1": 1,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 25,
-			"v1": 10,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 11,
-			"v1": 26,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 2,
-			"v1": 3,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 27,
-			"v1": 8,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 9,
-			"v1": 24,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		}
-	],
-	"planes": [
-		{
-			"normal": [
-				0,
-				1
-			],
-			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						-524.7231113143321,
-						-230
-					],
-					"b": [
-						524.7231113143321,
-						-230
-					]
-				}
-			}
-		},
-		{
-			"normal": [
-				0,
-				-1
-			],
-			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						-1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						-524.7231113143321,
-						230
-					],
-					"b": [
-						524.7231113143321,
-						230
-					]
-				}
-			}
-		},
-		{
-			"normal": [
-				1,
-				0
-			],
-			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						-480,
-						-184.9629121576995
-					],
-					"b": [
-						-480,
-						184.9629121576995
-					]
-				}
-			}
-		},
-		{
-			"normal": [
-				-1,
-				0
-			],
-			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						-1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						480,
-						-184.9629121576995
-					],
-					"b": [
-						480,
-						184.9629121576995
-					]
-				}
-			}
-		}
-	],
-	"goals": [
-		{
-			"p0": [
-				-403,
-				-70
-			],
-			"p1": [
-				-403,
-				70
-			],
-			"team": "red",
-			"_data": {
-				"mirror": {}
-			}
-		},
-		{
-			"team": "blue",
-			"p0": [
-				403,
-				-70
-			],
-			"p1": [
-				403,
-				70
-			],
-			"_data": {
-				"mirror": {}
-			},
-			"_selected": true
-		}
-	],
-	"discs": [
-		{
-			"pos": [
-				-400,
-				-70
-			],
-			"trait": "goal_post",
-			"_data": {
-				"mirror": {}
-			}
-		},
-		{
-			"pos": [
-				-400,
-				70
-			],
-			"trait": "goal_post"
-		},
-		{
-			"pos": [
-				400,
-				-70
-			],
-			"trait": "goal_post"
-		},
-		{
-			"pos": [
-				400,
-				70
-			],
-			"trait": "goal_post"
-		}
-	],
-	"playerPhysics": {
-		"bCoef": 0,
-		"acceleration": 0.11,
-		"kickingAcceleration": 0.083,
-		"kickStrength": 4.2,
-		"radius": 15,
-		"invMass": 0.5,
-		"damping": 0.96,
-		"cGroup": [
-			"red",
-			"blue"
-		],
-		"gravity": [
-			0,
-			0
-		],
-		"kickingDamping": 0.96,
-		"kickback": 0
-	},
-	"ballPhysics": {
-		"radius": 5.8,
-		"bCoef": 0.412,
-		"invMass": 1.55,
-		"color": "FFF26D",
-		"cMask": [
-			"all"
-		],
-		"damping": 0.99,
-		"gravity": [
-			0,
-			0
-		],
-		"cGroup": [
-			"ball"
-		]
-	},
-	"spawnDistance": 200,
-	"traits": {
-		"wall_map": {
-			"vis": true,
-			"color": "abc2d5",
-			"bCoef": 1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"wall_map_nc": {
-			"vis": true,
-			"color": "abc2d5",
-			"bCoef": 0,
-			"cMask": [],
-			"cGroup": []
-		},
-		"KO_wall_red": {
-			"vis": true,
-			"color": "d9a472",
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO"
-			]
-		},
-		"KO_wall_blue": {
-			"vis": true,
-			"color": "d9a472",
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"blueKO"
-			]
-		},
-		"vertexDefault": {
-			"bCoef": 1,
-			"cMask": [],
-			"cGroup": []
-		},
-		"decoration_map": {
-			"vis": true,
-			"color": "626262",
-			"bCoef": 0,
-			"cMask": []
-		},
-		"goal_line": {
-			"vis": true,
-			"color": "c5c5c5",
-			"bCoef": 0,
-			"cMask": []
-		},
-		"wall_red_goal": {
-			"vis": true,
-			"color": "ff6666",
-			"bCoef": 0.1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"wall_blue_goal": {
-			"vis": true,
-			"color": "6666ff",
-			"bCoef": 0.1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"goal_post": {
-			"radius": 5.4,
-			"invMass": 0,
-			"color": "031726"
-		},
-		"map_point": {
-			"curve": 180,
-			"vis": true,
-			"color": "626262",
-			"cMask": []
-		},
-		"KO_barrier": {
-			"vis": false,
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			]
-		}
-	},
-	"joints": [],
-	"redSpawnPoints": [],
-	"blueSpawnPoints": [],
-	"canBeStored": false,
-	"cameraWidth": 0,
-	"cameraHeight": 0,
-	"maxViewWidth": 0,
-	"cameraFollow": "ball",
-	"kickOffReset": "partial"
-}`
-const bigMap = `{
-	"name": "SPL v4",
-	"width": 800,
+let official = `{
+	"name": "SPL official map",
+	"width": 765,
 	"height": 350,
+	"cameraWidth": 0,
+	"cameraHeight": 0,
+	"maxViewWidth": 0,
+	"cameraFollow": "ball",
+	"spawnDistance": 150,
+	"redSpawnPoints": [],
+	"blueSpawnPoints": [],
+	"canBeStored": false,
+	"kickOffReset": "full",
 	"bg": {
-		"type": "",
-		"kickOffRadius": 80,
-		"color": "636363"
+		"color": "636363",
+		"height": 320,
+		"width": 700
+	},
+	"traits": {
+		"ballArea": {
+			"vis": false,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			]
+		},
+		"goalPost": {
+			"radius": 8,
+			"invMass": 0,
+			"bCoef": 0.5
+		},
+		"goalNet": {
+			"vis": true,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			]
+		},
+		"kickOffBarrier": {
+			"vis": false,
+			"bCoef": 0.1,
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"cMask": [
+				"red",
+				"blue"
+			]
+		}
 	},
 	"vertexes": [
 		{
-			"x": -701.4,
+			"x": -701,
 			"y": -320,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 701.4,
-			"y": -320,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 701.4,
-			"y": 320,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -701.4,
-			"y": 320,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": 320,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": -320,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 0,
-			"y": -80,
+			"bCoef": 1,
 			"cMask": [
-				"red",
-				"blue"
+				"ball"
 			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			],
-			"trait": "vertexDefault",
-			"color": "5b00a3",
-			"curve": 0
+			"color": "151a1e",
+			"bias": -10,
+			"vis": true
 		},
 		{
-			"x": 0,
-			"y": 80,
+			"x": 701,
+			"y": -320,
+			"bCoef": 1,
 			"cMask": [
-				"red",
-				"blue"
+				"ball"
 			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
+			"color": "151a1e",
+			"bias": -10,
+			"vis": true
+		},
+		{
+			"x": -701,
+			"y": 320,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
 			],
-			"trait": "vertexDefault",
-			"color": "5b00a3",
-			"curve": 0
+			"color": "151a1e",
+			"bias": 10,
+			"vis": true
+		},
+		{
+			"x": 701,
+			"y": 320,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": 10,
+			"vis": true
 		},
 		{
 			"x": -700,
 			"y": 85,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": 10,
+			"vis": true
 		},
 		{
 			"x": -700,
-			"y": -320,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -700,
-			"y": 320,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -700,
-			"y": -85,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 700,
-			"y": -85,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
+			"y": 321,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": 10,
+			"vis": true
 		},
 		{
 			"x": 700,
 			"y": 85,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": -10,
+			"vis": true
 		},
 		{
-			"x": 0,
+			"x": 700,
+			"y": 321,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": -10,
+			"vis": true
+		},
+		{
+			"x": -700,
+			"y": -321,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": 10,
+			"vis": true
+		},
+		{
+			"x": -700,
+			"y": -85,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": 10,
+			"vis": true
+		},
+		{
+			"x": 700,
+			"y": -321,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": -10,
+			"vis": true
+		},
+		{
+			"x": 700,
+			"y": -85,
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"color": "151a1e",
+			"bias": -10,
+			"vis": true
+		},
+		{
+			"x": -736,
+			"y": -85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"color": "ff6666"
+		},
+		{
+			"x": -700,
+			"y": -85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"color": "ff6666"
+		},
+		{
+			"x": -736,
+			"y": 85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"color": "ff6666"
+		},
+		{
+			"x": -700,
+			"y": 85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"color": "ff6666"
+		},
+		{
+			"x": -735,
+			"y": -86,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"color": "ff6666"
+		},
+		{
+			"x": -735,
+			"y": 86,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"color": "ff6666"
+		},
+		{
+			"x": 735,
+			"y": -86,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"color": "6666ff"
+		},
+		{
+			"x": 735,
+			"y": 86,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"color": "6666ff"
+		},
+		{
+			"x": 736,
+			"y": -85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"color": "6666ff"
+		},
+		{
+			"x": 700,
+			"y": -85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"color": "6666ff"
+		},
+		{
+			"x": 736,
+			"y": 85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"color": "6666ff"
+		},
+		{
+			"x": 700,
+			"y": 85,
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"color": "6666ff"
+		},
+		{
+			"x": -700,
+			"y": -85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "DCDCDC"
+		},
+		{
+			"x": -700,
+			"y": 85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "DCDCDC"
+		},
+		{
+			"x": 700,
+			"y": -85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "DCDCDC"
+		},
+		{
+			"x": 700,
+			"y": 85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "DCDCDC"
+		},
+		{
+			"x": -360,
+			"y": -350,
+			"cMask": [
+				"c0"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "902cc9",
+			"vis": false
+		},
+		{
+			"x": -360,
 			"y": 350,
-			"trait": "vertexDefault",
-			"curve": 0
+			"cMask": [
+				"c0"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "902cc9",
+			"vis": false
+		},
+		{
+			"x": 360,
+			"y": -350,
+			"cMask": [
+				"c1"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "902cc9",
+			"vis": false
+		},
+		{
+			"x": 360,
+			"y": 350,
+			"cMask": [
+				"c1"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "902cc9",
+			"vis": false
+		},
+		{
+			"x": -698.5,
+			"y": -125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -624,
+			"y": -125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -698.5,
+			"y": 125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -624,
+			"y": 125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -625,
+			"y": -126,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -625,
+			"y": 126,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 625,
+			"y": -126,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 625,
+			"y": 126,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 624,
+			"y": -125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 698.5,
+			"y": -125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 624,
+			"y": 125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 698.5,
+			"y": 125,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 0,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -500,
+			"y": 2.5,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 180,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -500,
+			"y": -2.5,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 180,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 500,
+			"y": 2.5,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 180,
+			"color": "902cc9"
+		},
+		{
+			"x": 500,
+			"y": -2.5,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"curve": 180,
+			"color": "902cc9"
 		},
 		{
 			"x": 0,
 			"y": -350,
-			"trait": "vertexDefault",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"vis": false,
+			"color": "818FB0"
+		},
+		{
+			"x": 0,
+			"y": -85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"vis": false,
+			"color": "818FB0"
+		},
+		{
+			"x": 0,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"color": "818FB0",
+			"vis": false
+		},
+		{
+			"x": 0,
+			"y": 350,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"color": "818FB0",
+			"vis": false
+		},
+		{
+			"x": 0,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "902cc9",
+			"vis": true,
+			"curve": 180
+		},
+		{
+			"x": 0,
+			"y": -85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "902cc9",
+			"vis": true,
+			"curve": 180
+		},
+		{
+			"x": 0,
+			"y": -85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "902cc9",
+			"vis": true
+		},
+		{
+			"x": 0,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "902cc9",
+			"vis": true
+		},
+		{
+			"x": 0,
+			"y": -86,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"c1"
+			],
+			"color": "902cc9"
+		},
+		{
+			"x": 0,
+			"y": 86,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"c1"
+			],
+			"color": "902cc9"
+		},
+		{
+			"x": -698,
+			"y": -85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
 			"curve": 0
 		},
 		{
-			"x": 736.4,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 736.4,
+			"x": -698,
 			"y": 85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
+			"curve": 0
 		},
 		{
-			"x": -736.4,
+			"x": -702,
 			"y": -85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
+			"curve": 0
 		},
 		{
-			"x": -736.4,
+			"x": -702,
 			"y": 85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
+			"curve": 0
 		},
 		{
-			"x": -360,
-			"y": -318.5,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 698,
+			"y": -85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
+			"curve": 0
 		},
 		{
-			"x": -360,
-			"y": 318.5,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 698,
+			"y": 85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
+			"curve": 0
 		},
 		{
-			"x": 360,
-			"y": -318.5,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 702,
+			"y": -85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
+			"curve": 0
 		},
 		{
-			"x": 360,
-			"y": 318.5,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 702,
+			"y": 85,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "454C5E",
+			"curve": 0
 		},
 		{
 			"x": 0,
-			"y": -1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
+			"y": -2.5,
+			"bCoef": 0.75,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
 			"x": 0,
-			"y": 1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
+			"y": 2.5,
+			"bCoef": 0.75,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": 698.5,
-			"y": 125,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 0,
+			"y": -318.5,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"vis": true,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": 698.5,
-			"y": -125,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 0,
+			"y": -88,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"vis": true,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": 628.6,
-			"y": -125,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 0,
+			"y": 88,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"vis": true,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": 628.6,
-			"y": 125,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 0,
+			"y": 318.5,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"vis": true,
+			"color": "707070",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": 360,
-			"y": -135,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 380,
+			"y": 318.5,
+			"cMask": [
+				"c1"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"vis": true,
+			"color": "5b00a3",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": 360,
-			"y": 135,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": 380,
+			"y": -318.5,
+			"cMask": [
+				"c1"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"vis": true,
+			"color": "5b00a3",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": -360,
-			"y": -135,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": -380,
+			"y": 318.5,
+			"cMask": [
+				"c0"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"vis": true,
+			"color": "5b00a3",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": -360,
-			"y": 135,
-			"trait": "vertexDefault",
-			"color": "707070"
+			"x": -380,
+			"y": -318.5,
+			"cMask": [
+				"c0"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"vis": true,
+			"color": "5b00a3",
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": -698.5,
-			"y": 125,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -628.4,
-			"y": 125,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -628.6,
-			"y": -125,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -698.5,
-			"y": -125,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -500,
-			"y": 1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -500,
-			"y": -1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 500,
-			"y": 1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 500,
-			"y": -1.5,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -702.5,
+			"x": 0,
 			"y": -85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "902cc9",
+			"vis": true
 		},
 		{
-			"x": -705,
+			"x": 0,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "902cc9",
+			"vis": true
+		},
+		{
+			"x": 0,
 			"y": -85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": -707.5,
+			"x": 0,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": -380,
 			"y": -85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": -710,
+			"x": -380,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 0,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "902cc9",
+			"vis": true,
+			"curve": 180
+		},
+		{
+			"x": 0,
 			"y": -85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "902cc9",
+			"vis": true,
+			"curve": 180
 		},
 		{
-			"x": -712.5,
+			"x": 0,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"curve": 180,
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 0,
 			"y": -85,
-			"trait": "vertexDefault"
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"curve": 180,
+			"_data": {
+				"mirror": {}
+			}
 		},
 		{
-			"x": -715,
+			"x": 380,
+			"y": 85,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"curve": 180,
+			"_data": {
+				"mirror": {}
+			}
+		},
+		{
+			"x": 380,
 			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -717.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -720,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -722.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -725,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -727.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -730,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -732.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -735,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -702.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -705,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -707.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -710,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -712.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -715,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -717.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -720,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -722.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -725,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -727.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -730,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -732.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -735,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 702.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 705,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 707.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 710,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 712.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 715,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 717.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 720,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 722.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 725,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 727.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 730,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 732.5,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 735,
-			"y": 85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 702.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 705,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 707.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 710,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 712.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 715,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 717.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 720,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 722.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 725,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 727.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 730,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 732.5,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 735,
-			"y": -85,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -700,
-			"y": -321.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 700,
-			"y": -321.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": 700,
-			"y": 321.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -700,
-			"y": 321.4,
-			"trait": "vertexDefault",
-			"color": "dcdcdc"
-		},
-		{
-			"x": -630,
-			"y": -126.4,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": -630,
-			"y": 126.4,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": 630,
-			"y": -126.4,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": 630,
-			"y": 126.4,
-			"trait": "vertexDefault",
-			"color": "707070"
-		},
-		{
-			"x": 735,
-			"y": -86.4,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": 735,
-			"y": 86.4,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -735,
-			"y": -86.4,
-			"trait": "vertexDefault"
-		},
-		{
-			"x": -735,
-			"y": 86.4,
-			"trait": "vertexDefault"
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"color": "5b00a3",
+			"vis": true,
+			"curve": 180,
+			"_data": {
+				"mirror": {}
+			}
 		}
 	],
 	"segments": [
 		{
 			"v0": 0,
 			"v1": 1,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 99,
-			"v1": 12,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 13,
-			"v1": 100,
-			"color": "dcdcdc",
-			"trait": "wall_map"
+			"vis": true,
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"bias": -10,
+			"y": -320
 		},
 		{
 			"v0": 2,
 			"v1": 3,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 101,
-			"v1": 8,
-			"color": "dcdcdc",
-			"trait": "wall_map"
-		},
-		{
-			"v0": 5,
-			"v1": 6,
-			"color": "dcdcdc",
-			"trait": "wall_map_nc"
+			"vis": true,
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"bias": 10,
+			"y": 320
 		},
 		{
 			"v0": 4,
-			"v1": 7,
-			"color": "dcdcdc",
-			"trait": "wall_map_nc"
-		},
-		{
-			"v0": 11,
-			"v1": 98,
-			"color": "dcdcdc",
-			"trait": "wall_map"
+			"v1": 5,
+			"vis": true,
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"bias": 10,
+			"x": -700
 		},
 		{
 			"v0": 6,
+			"v1": 7,
+			"vis": true,
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"bias": -10,
+			"x": 700
+		},
+		{
+			"v0": 8,
+			"v1": 9,
+			"vis": true,
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"bias": 10,
+			"x": -700
+		},
+		{
+			"v0": 10,
+			"v1": 11,
+			"vis": true,
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"ball"
+			],
+			"bias": -10,
+			"x": 700
+		},
+		{
+			"v0": 12,
+			"v1": 13,
+			"color": "ff6666",
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10
+		},
+		{
+			"v0": 14,
 			"v1": 15,
-			"curve": 0,
-			"trait": "KO_barrier"
+			"color": "ff6666",
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"y": 70
 		},
 		{
-			"v0": 7,
-			"v1": 14,
-			"curve": 0,
-			"trait": "KO_barrier"
+			"v0": 16,
+			"v1": 17,
+			"color": "ff6666",
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10,
+			"x": -735
 		},
 		{
-			"v0": 6,
-			"v1": 7,
-			"curve": 180,
-			"color": "5b00a3",
-			"trait": "KO_wall_red"
+			"v0": 18,
+			"v1": 19,
+			"color": "6666ff",
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"x": 735
 		},
 		{
-			"v0": 7,
-			"v1": 6,
-			"curve": 180,
-			"color": "5b00a3",
-			"trait": "KO_wall_blue"
+			"v0": 20,
+			"v1": 21,
+			"color": "6666ff",
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": 10
 		},
 		{
-			"v0": 21,
-			"v1": 20,
-			"color": "707070",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 23,
-			"v1": 22,
-			"color": "707070",
-			"trait": "decoration_map"
+			"v0": 22,
+			"v1": 23,
+			"color": "6666ff",
+			"bCoef": 0.1,
+			"cMask": [
+				"ball"
+			],
+			"cGroup": [
+				"ball"
+			],
+			"bias": -10,
+			"y": 70
 		},
 		{
 			"v0": 24,
 			"v1": 25,
-			"curve": 180,
-			"color": "dcdcdc",
-			"trait": "decoration_map"
+			"color": "DCDCDC",
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"x": -700
 		},
 		{
-			"v0": 25,
-			"v1": 24,
-			"curve": 180,
-			"color": "dcdcdc",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 27,
-			"v1": 28,
-			"color": "707070",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 29,
-			"v1": 26,
-			"color": "707070",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 31,
-			"v1": 30,
-			"curve": 90,
-			"color": "707070",
-			"trait": "decoration_map"
+			"v0": 26,
+			"v1": 27,
+			"color": "DCDCDC",
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"x": 700
 		},
 		{
 			"v0": 32,
 			"v1": 33,
-			"curve": 90,
+			"curve": 0,
 			"color": "707070",
-			"trait": "decoration_map"
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"y": -125,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						-698.5,
+						-125
+					],
+					"b": [
+						-624,
+						-125
+					],
+					"curve": 0
+				}
+			}
 		},
 		{
 			"v0": 34,
 			"v1": 35,
+			"curve": 0,
 			"color": "707070",
-			"trait": "decoration_map"
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"y": 125,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						-698.5,
+						125
+					],
+					"b": [
+						-624,
+						125
+					],
+					"curve": 0
+				}
+			}
 		},
 		{
-			"v0": 37,
-			"v1": 36,
+			"v0": 36,
+			"v1": 37,
+			"curve": 0,
 			"color": "707070",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 39,
-			"v1": 38,
-			"color": "dcdcdc",
-			"trait": "map_point"
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"x": -625,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						-625,
+						-126
+					],
+					"b": [
+						-625,
+						126
+					],
+					"curve": 0
+				}
+			}
 		},
 		{
 			"v0": 38,
 			"v1": 39,
-			"color": "dcdcdc",
-			"trait": "map_point"
-		},
-		{
-			"v0": 41,
-			"v1": 40,
-			"color": "dcdcdc",
-			"trait": "map_point"
+			"curve": 0,
+			"color": "707070",
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"x": 625,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						625,
+						-126
+					],
+					"b": [
+						625,
+						126
+					],
+					"curve": 0
+				}
+			}
 		},
 		{
 			"v0": 40,
 			"v1": 41,
-			"color": "dcdcdc",
-			"trait": "map_point"
-		},
-		{
-			"v0": 12,
-			"v1": 16,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 106,
-			"v1": 107,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 17,
-			"v1": 13,
-			"trait": "wall_blue_goal"
-		},
-		{
-			"v0": 8,
-			"v1": 19,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 109,
-			"v1": 108,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 18,
-			"v1": 11,
-			"trait": "wall_red_goal"
-		},
-		{
-			"v0": 11,
-			"v1": 8,
-			"color": "dcdcdc",
-			"trait": "goal_line"
-		},
-		{
-			"v0": 12,
-			"v1": 13,
-			"color": "dcdcdc",
-			"trait": "goal_line"
-		},
-		{
-			"v0": 102,
-			"v1": 103,
+			"curve": 0,
 			"color": "707070",
-			"trait": "decoration_map"
-		},
-		{
-			"v0": 105,
-			"v1": 104,
-			"color": "707070",
-			"trait": "decoration_map"
-		}
-	],
-	"planes": [
-		{
-			"normal": [
-				0,
-				1
+			"cMask": [
+				"wall"
 			],
-			"dist": -350,
-			"bCoef": 0,
+			"cGroup": [
+				"wall"
+			],
+			"y": -125,
 			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						1
-					],
-					"dist": -350,
-					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
-					],
+				"mirror": {},
+				"arc": {
 					"a": [
-						-432.2151076015804,
-						-350
+						624,
+						-125
 					],
 					"b": [
-						432.2151076015804,
-						-350
-					]
+						698.5,
+						-125
+					],
+					"curve": 0
 				}
 			}
 		},
 		{
-			"normal": [
-				0,
-				-1
+			"v0": 42,
+			"v1": 43,
+			"curve": 0,
+			"color": "707070",
+			"cMask": [
+				"wall"
 			],
-			"dist": -350,
-			"bCoef": 0,
+			"cGroup": [
+				"wall"
+			],
+			"y": 125,
 			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						-1
-					],
-					"dist": -350,
-					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
-					],
+				"mirror": {},
+				"arc": {
 					"a": [
-						-432.2151076015804,
-						350
+						624,
+						125
 					],
 					"b": [
-						432.2151076015804,
-						350
-					]
+						698.5,
+						125
+					],
+					"curve": 0
 				}
 			}
 		},
 		{
-			"normal": [
-				1,
-				0
+			"v0": 44,
+			"v1": 45,
+			"curve": 0,
+			"color": "707070",
+			"cMask": [
+				"wall"
 			],
-			"dist": -800,
-			"bCoef": 0,
+			"cGroup": [
+				"wall"
+			],
+			"x": -500,
 			"_data": {
-				"extremes": {
-					"normal": [
-						1,
+				"mirror": {},
+				"arc": {
+					"a": [
+						-500,
+						2.5
+					],
+					"b": [
+						-500,
+						-2.5
+					],
+					"curve": 0
+				}
+			}
+		},
+		{
+			"v0": 45,
+			"v1": 44,
+			"curve": 180,
+			"color": "707070",
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"x": -500,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						-500,
+						-2.5
+					],
+					"b": [
+						-500,
+						2.5
+					],
+					"curve": 180,
+					"radius": 2.5,
+					"center": [
+						-500,
 						0
 					],
-					"dist": -800,
-					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
-					],
-					"a": [
-						-800,
-						-189.09410957569142
-					],
-					"b": [
-						-800,
-						189.09410957569142
-					]
+					"from": -1.5707963267948966,
+					"to": 1.5707963267948966
 				}
 			}
 		},
 		{
-			"normal": [
-				-1,
-				0
+			"v0": 44,
+			"v1": 45,
+			"curve": 180,
+			"color": "707070",
+			"cMask": [
+				"wall"
 			],
-			"dist": -800,
-			"bCoef": 0,
+			"cGroup": [
+				"wall"
+			],
+			"x": -500,
 			"_data": {
-				"extremes": {
-					"normal": [
-						-1,
+				"mirror": {},
+				"arc": {
+					"a": [
+						-500,
+						2.5
+					],
+					"b": [
+						-500,
+						-2.5
+					],
+					"curve": 180,
+					"radius": 2.5,
+					"center": [
+						-500,
 						0
 					],
-					"dist": -800,
-					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
-					],
-					"a": [
-						800,
-						-189.09410957569142
-					],
-					"b": [
-						800,
-						189.09410957569142
-					]
+					"from": 1.5707963267948966,
+					"to": -1.5707963267948966
 				}
 			}
 		},
 		{
-			"normal": [
-				-1,
-				0
+			"v0": 46,
+			"v1": 47,
+			"curve": 0,
+			"color": "902cc9",
+			"cMask": [
+				"wall"
 			],
-			"dist": -360,
-			"bCoef": 0,
+			"cGroup": [
+				"wall"
+			],
+			"x": 500
+		},
+		{
+			"v0": 47,
+			"v1": 46,
+			"curve": 180,
+			"color": "902cc9",
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"x": 500
+		},
+		{
+			"v0": 46,
+			"v1": 47,
+			"curve": 180,
+			"color": "902cc9",
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"x": 500
+		},
+		{
+			"v0": 48,
+			"v1": 49,
+			"vis": false,
+			"color": "818FB0",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"x": 0
+		},
+		{
+			"v0": 50,
+			"v1": 51,
+			"vis": false,
+			"color": "818FB0",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"x": 0
+		},
+		{
+			"v0": 52,
+			"v1": 53,
+			"curve": 180,
+			"vis": true,
+			"color": "902cc9",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"x": 0
+		},
+		{
+			"v0": 54,
+			"v1": 55,
+			"curve": 180,
+			"vis": true,
+			"color": "902cc9",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"x": 0
+		},
+		{
+			"v0": 66,
+			"v1": 67,
+			"color": "707070",
+			"bCoef": 0.75,
+			"cMask": [
+				"wall"
+			],
+			"cGroup": [
+				"wall"
+			],
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						0,
+						-2.5
+					],
+					"b": [
+						0,
+						2.5
+					],
+					"radius": null,
+					"center": [
+						null,
+						null
+					],
+					"from": null,
+					"to": null
+				}
+			}
+		},
+		{
+			"v0": 68,
+			"v1": 69,
+			"vis": true,
+			"color": "707070",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"x": 0,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						0,
+						-318.5
+					],
+					"b": [
+						0,
+						-88
+					],
+					"radius": null,
+					"center": [
+						null,
+						null
+					],
+					"from": null,
+					"to": null
+				}
+			}
+		},
+		{
+			"v0": 70,
+			"v1": 71,
+			"vis": true,
+			"color": "707070",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO",
+				"blueKO"
+			],
+			"x": 0,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						0,
+						88
+					],
+					"b": [
+						0,
+						318.5
+					],
+					"radius": null,
+					"center": [
+						null,
+						null
+					],
+					"from": null,
+					"to": null
+				}
+			}
+		},
+		{
+			"v0": 72,
+			"v1": 73,
+			"vis": true,
+			"color": "5b00a3",
 			"cMask": [
 				"c1"
 			],
+			"cGroup": [
+				"wall"
+			],
+			"x": 380,
 			"_data": {
-				"extremes": {
-					"normal": [
-						-1,
-						0
-					],
-					"dist": -360,
-					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
-					],
+				"mirror": {},
+				"arc": {
 					"a": [
-						360,
-						-189.09410957569142
+						380,
+						318.5
 					],
 					"b": [
-						360,
-						189.09410957569142
-					]
+						380,
+						-318.5
+					],
+					"radius": null,
+					"center": [
+						null,
+						null
+					],
+					"from": null,
+					"to": null
 				}
 			}
 		},
 		{
-			"normal": [
-				1,
-				0
-			],
-			"dist": -360,
-			"bCoef": 0,
+			"v0": 74,
+			"v1": 75,
+			"vis": true,
+			"color": "5b00a3",
 			"cMask": [
 				"c0"
 			],
+			"cGroup": [
+				"wall"
+			],
+			"x": -380,
 			"_data": {
-				"extremes": {
-					"normal": [
-						1,
-						0
-					],
-					"dist": -360,
-					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
-					],
+				"mirror": {},
+				"arc": {
 					"a": [
-						-360,
-						-189.09410957569142
+						-380,
+						318.5
 					],
 					"b": [
-						-360,
-						189.09410957569142
-					]
+						-380,
+						-318.5
+					],
+					"radius": null,
+					"center": [
+						null,
+						null
+					],
+					"from": null,
+					"to": null
+				}
+			}
+		},
+		{
+			"v0": 76,
+			"v1": 77,
+			"curve": 180,
+			"vis": true,
+			"color": "902cc9",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"x": 0
+		},
+		{
+			"v0": 78,
+			"v1": 79,
+			"curve": 180,
+			"vis": true,
+			"color": "5b00a3",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"x": 0,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						0,
+						-85
+					],
+					"b": [
+						0,
+						85
+					],
+					"curve": 180,
+					"radius": 85,
+					"center": [
+						0,
+						0
+					],
+					"from": -1.5707963267948966,
+					"to": 1.5707963267948966
+				}
+			}
+		},
+		{
+			"v0": 80,
+			"v1": 81,
+			"curve": 180,
+			"vis": true,
+			"color": "5b00a3",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"redKO"
+			],
+			"x": -380,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						-380,
+						-85
+					],
+					"b": [
+						-380,
+						85
+					],
+					"curve": 180,
+					"radius": 85,
+					"center": [
+						-380,
+						0
+					],
+					"from": -1.5707963267948966,
+					"to": 1.5707963267948966
+				}
+			}
+		},
+		{
+			"v0": 82,
+			"v1": 83,
+			"curve": 180,
+			"vis": true,
+			"color": "902cc9",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"x": 0
+		},
+		{
+			"v0": 84,
+			"v1": 85,
+			"curve": 180,
+			"vis": true,
+			"color": "5b00a3",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"x": 0,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						0,
+						85
+					],
+					"b": [
+						0,
+						-85
+					],
+					"curve": 180,
+					"radius": 85,
+					"center": [
+						0,
+						0
+					],
+					"from": 1.5707963267948966,
+					"to": -1.5707963267948966
+				}
+			}
+		},
+		{
+			"v0": 86,
+			"v1": 87,
+			"curve": 180,
+			"vis": true,
+			"color": "5b00a3",
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"cGroup": [
+				"blueKO"
+			],
+			"x": 380,
+			"_data": {
+				"mirror": {},
+				"arc": {
+					"a": [
+						380,
+						85
+					],
+					"b": [
+						380,
+						-85
+					],
+					"curve": 180,
+					"radius": 85,
+					"center": [
+						380,
+						0
+					],
+					"from": 1.5707963267948966,
+					"to": -1.5707963267948966
 				}
 			}
 		}
@@ -2563,62 +2150,170 @@ const bigMap = `{
 	"goals": [
 		{
 			"p0": [
-				-707.8,
-				85
+				-705.8,
+				-85
 			],
 			"p1": [
-				-707.8,
-				-85
+				-705.8,
+				85
 			],
 			"team": "red"
 		},
 		{
 			"p0": [
-				707.8,
-				85
+				705.8,
+				-85
 			],
 			"p1": [
-				707.8,
-				-85
+				705.8,
+				85
 			],
 			"team": "blue"
 		}
 	],
 	"discs": [
 		{
+			"radius": 5.4,
+			"invMass": 0,
 			"pos": [
 				-700,
 				-85
 			],
-			"trait": "goal_post"
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"all"
+			],
+			"cGroup": [
+				"all"
+			]
 		},
 		{
+			"radius": 5.4,
+			"invMass": 0,
 			"pos": [
 				-700,
 				85
 			],
-			"trait": "goal_post"
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"all"
+			],
+			"cGroup": [
+				"all"
+			]
 		},
 		{
+			"radius": 5.4,
+			"invMass": 0,
 			"pos": [
 				700,
 				-85
 			],
-			"trait": "goal_post"
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"all"
+			],
+			"cGroup": [
+				"all"
+			]
 		},
 		{
+			"radius": 5.4,
+			"invMass": 0,
 			"pos": [
 				700,
 				85
 			],
-			"trait": "goal_post"
+			"color": "151a1e",
+			"bCoef": 1,
+			"cMask": [
+				"all"
+			],
+			"cGroup": [
+				"all"
+			]
+		}
+	],
+	"planes": [
+		{
+			"normal": [
+				0,
+				1
+			],
+			"dist": -350,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"y": -350,
+			"_data": {
+				"extremes": {
+					"normal": [
+						0,
+						1
+					],
+					"dist": -350,
+					"canvas_rect": [
+						-413.3056966440113,
+						-189.09410957569142,
+						413.3056966440113,
+						189.09410957569142
+					],
+					"a": [
+						-413.3056966440113,
+						-350
+					],
+					"b": [
+						413.3056966440113,
+						-350
+					]
+				}
+			}
+		},
+		{
+			"normal": [
+				0,
+				-1
+			],
+			"dist": -350,
+			"cMask": [
+				"red",
+				"blue"
+			],
+			"y": 350,
+			"_data": {
+				"extremes": {
+					"normal": [
+						0,
+						-1
+					],
+					"dist": -350,
+					"canvas_rect": [
+						-413.3056966440113,
+						-189.09410957569142,
+						413.3056966440113,
+						189.09410957569142
+					],
+					"a": [
+						-413.3056966440113,
+						350
+					],
+					"b": [
+						413.3056966440113,
+						350
+					]
+				}
+			}
 		}
 	],
 	"playerPhysics": {
 		"bCoef": 0,
 		"acceleration": 0.11,
 		"kickingAcceleration": 0.083,
-		"kickStrength": 4.545,
+		"kickStrength": 4.2,
 		"radius": 15,
 		"invMass": 0.5,
 		"damping": 0.96,
@@ -2636,7 +2331,7 @@ const bigMap = `{
 	"ballPhysics": {
 		"radius": 5.8,
 		"bCoef": 0.412,
-		"invMass": 1.5,
+		"invMass": 1.55,
 		"color": "FFF26D",
 		"cMask": [
 			"all"
@@ -2650,122 +2345,12 @@ const bigMap = `{
 			"ball"
 		]
 	},
-	"spawnDistance": 200,
-	"traits": {
-		"vertexDefault": {
-			"bCoef": 1,
-			"cMask": [],
-			"cGroup": []
-		},
-		"wall_map": {
-			"vis": true,
-			"color": "151a1e",
-			"bCoef": 1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"wall_map_nc": {
-			"vis": true,
-			"color": "151a1e",
-			"bCoef": 0,
-			"cMask": [],
-			"cGroup": []
-		},
-		"decoration_map": {
-			"vis": true,
-			"color": "626262",
-			"bCoef": 0,
-			"cMask": []
-		},
-		"goal_line": {
-			"vis": true,
-			"color": "c5c5c5",
-			"bCoef": 0,
-			"cMask": []
-		},
-		"wall_red_goal": {
-			"vis": true,
-			"color": "ff6666",
-			"bCoef": 0.1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"wall_blue_goal": {
-			"vis": true,
-			"color": "6666ff",
-			"bCoef": 0.1,
-			"cMask": [
-				"ball"
-			],
-			"bias": -10
-		},
-		"goal_post": {
-			"radius": 5.4,
-			"invMass": 0,
-			"color": "031726"
-		},
-		"map_point": {
-			"curve": 180,
-			"vis": true,
-			"color": "626262",
-			"cMask": []
-		},
-		"KO_barrier": {
-			"vis": false,
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO",
-				"blueKO"
-			]
-		},
-		"KO_wall_red": {
-			"vis": true,
-			"color": "ce8a4a",
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"redKO"
-			]
-		},
-		"KO_wall_blue": {
-			"vis": true,
-			"color": "ce8a4a",
-			"bCoef": 0.1,
-			"cMask": [
-				"red",
-				"blue"
-			],
-			"cGroup": [
-				"blueKO"
-			]
-		}
-	},
-	"joints": [],
-	"redSpawnPoints": [],
-	"blueSpawnPoints": [],
-	"cameraWidth": 0,
-	"cameraHeight": 0,
-	"maxViewWidth": 0,
-	"cameraFollow": "ball",
-	"canBeStored": true,
-	"kickOffReset": "partial"
+	"joints": []
 }`
-let currentStadium = 'training';
 //let bigMapObj = JSON.parse(trainingMap);
 
-room.setScoreLimit(scoreLimit);
-room.setTimeLimit(timeLimit);
+room.setScoreLimit(0);
+room.setTimeLimit(0);
 room.setTeamsLock(true);
 room.setKickRateLimit(6, 0, 0);
 let masterPassword = 10000 + getRandomInt(90000);
@@ -2789,17 +2374,6 @@ class Game {
         this.goals = [];
         this.rec = room.startRecording();
         this.touchArray = [];
-    }
-}
-
-class PlayerComposition {
-    constructor(player, auth, timeEntry, timeExit) {
-        this.player = player;
-        this.auth = auth;
-        this.timeEntry = timeEntry;
-        this.timeExit = timeExit;
-        this.inactivityTicks = 0;
-        this.GKTicks = 0;
     }
 }
 
@@ -2893,20 +2467,6 @@ class BallTouch {
         this.time = time;
         this.goal = goal;
         this.position = position;
-    }
-}
-
-class HaxStatistics {
-    constructor(playerName = '') {
-        this.playerName = playerName;
-        this.games = 0;
-        this.wins = 0;
-        this.winrate = '0.00%';
-        this.playtime = 0;
-        this.goals = 0;
-        this.assists = 0;
-        this.CS = 0;
-        this.ownGoals = 0;
     }
 }
 
@@ -3802,21 +3362,6 @@ function helpCommand(player, message) {
                 HaxNotification.CHAT
             );
     }
-}
-
-function globalStatsCommand(player, message) {
-    let stats = new HaxStatistics(player.name);
-    if (localStorage.getItem(authArray[player.id][0])) {
-        stats = JSON.parse(localStorage.getItem(authArray[player.id][0]));
-    }
-    let statsString = printPlayerStats(stats);
-    room.sendAnnouncement(
-        statsString,
-        player.id,
-        infoColour,
-        'bold',
-        HaxNotification.CHAT
-    );
 }
 
 function renameCommand(player, message) {
@@ -4933,567 +4478,6 @@ function ghostKickHandle(oldP, newP) {
     }
 }
 
-/* ACTIVITY FUNCTIONS */
-
-function handleActivityPlayer(player) {
-    let pComp = getPlayerComp(player);
-    if (pComp != null) {
-        pComp.inactivityTicks++;
-        if (pComp.inactivityTicks == 60 * ((2 / 3) * afkLimit)) {
-            room.sendAnnouncement(
-                `⛔ ${player.name}, if you don't move or send a message in the next ${Math.floor(afkLimit / 3)} seconds, you will be kicked!`,
-                player.id,
-                warningColour,
-                'bold',
-                HaxNotification.MENTION
-            );
-            return;
-        }
-        if (pComp.inactivityTicks >= 60 * afkLimit) {
-            pComp.inactivityTicks = 0;
-            if (game.scores.time <= afkLimit - 0.5) {
-                setTimeout(() => {
-                    !chooseMode ? instantRestart() : room.stopGame();
-                }, 10);
-            }
-            room.kickPlayer(player.id, 'AFK', false);
-        }
-    }
-}
-
-function handleActivityPlayerTeamChange(changedPlayer) {
-    if (changedPlayer.team == Team.SPECTATORS) {
-        let pComp = getPlayerComp(changedPlayer);
-        if (pComp != null) pComp.inactivityTicks = 0;
-    }
-}
-
-function handleActivityStop() {
-    for (let player of players) {
-        let pComp = getPlayerComp(player);
-        if (pComp != null) pComp.inactivityTicks = 0;
-    }
-}
-
-function handleActivity() {
-    if (gameState === State.PLAY && players.length > 1) {
-        for (let player of teamRed) {
-            handleActivityPlayer(player);
-        }
-        for (let player of teamBlue) {
-            handleActivityPlayer(player);
-        }
-    }
-}
-
-/* LINEUP FUNCTIONS */
-
-function getStartingLineups() {
-    let compositions = [[], []];
-    for (let player of teamRed) {
-        compositions[0].push(
-            new PlayerComposition(player, authArray[player.id][0], [0], [])
-        );
-    }
-    for (let player of teamBlue) {
-        compositions[1].push(
-            new PlayerComposition(player, authArray[player.id][0], [0], [])
-        );
-    }
-    return compositions;
-}
-
-function handleLineupChangeTeamChange(changedPlayer) {
-    if (gameState != State.STOP) {
-        let playerLineup;
-        if (changedPlayer.team == Team.RED) {
-            // player gets in red team
-            let redLineupAuth = game.playerComp[0].map((p) => p.auth);
-            let ind = redLineupAuth.findIndex((auth) => auth == authArray[changedPlayer.id][0]);
-            if (ind != -1) {
-                // Player goes back in
-                playerLineup = game.playerComp[0][ind];
-                if (playerLineup.timeExit.includes(game.scores.time)) {
-                    // gets subbed off then in at the exact same time -> no sub
-                    playerLineup.timeExit = playerLineup.timeExit.filter((t) => t != game.scores.time);
-                } else {
-                    playerLineup.timeEntry.push(game.scores.time);
-                }
-            } else {
-                playerLineup = new PlayerComposition(
-                    changedPlayer,
-                    authArray[changedPlayer.id][0],
-                    [game.scores.time],
-                    []
-                );
-                game.playerComp[0].push(playerLineup);
-            }
-        } else if (changedPlayer.team == Team.BLUE) {
-            // player gets in blue team
-            let blueLineupAuth = game.playerComp[1].map((p) => p.auth);
-            let ind = blueLineupAuth.findIndex((auth) => auth == authArray[changedPlayer.id][0]);
-            if (ind != -1) {
-                // Player goes back in
-                playerLineup = game.playerComp[1][ind];
-                if (playerLineup.timeExit.includes(game.scores.time)) {
-                    // gets subbed off then in at the exact same time -> no sub
-                    playerLineup.timeExit = playerLineup.timeExit.filter((t) => t != game.scores.time);
-                } else {
-                    playerLineup.timeEntry.push(game.scores.time);
-                }
-            } else {
-                playerLineup = new PlayerComposition(
-                    changedPlayer,
-                    authArray[changedPlayer.id][0],
-                    [game.scores.time],
-                    []
-                );
-                game.playerComp[1].push(playerLineup);
-            }
-        }
-        if (teamRed.some((r) => r.id == changedPlayer.id)) {
-            // player leaves red team
-            let redLineupAuth = game.playerComp[0].map((p) => p.auth);
-            let ind = redLineupAuth.findIndex((auth) => auth == authArray[changedPlayer.id][0]);
-            playerLineup = game.playerComp[0][ind];
-            if (playerLineup.timeEntry.includes(game.scores.time)) {
-                // gets subbed off then in at the exact same time -> no sub
-                if (game.scores.time == 0) {
-                    game.playerComp[0].splice(ind, 1);
-                } else {
-                    playerLineup.timeEntry = playerLineup.timeEntry.filter((t) => t != game.scores.time);
-                }
-            } else {
-                playerLineup.timeExit.push(game.scores.time);
-            }
-        } else if (teamBlue.some((r) => r.id == changedPlayer.id)) {
-            // player leaves blue team
-            let blueLineupAuth = game.playerComp[1].map((p) => p.auth);
-            let ind = blueLineupAuth.findIndex((auth) => auth == authArray[changedPlayer.id][0]);
-            playerLineup = game.playerComp[1][ind];
-            if (playerLineup.timeEntry.includes(game.scores.time)) {
-                // gets subbed off then in at the exact same time -> no sub
-                if (game.scores.time == 0) {
-                    game.playerComp[1].splice(ind, 1);
-                } else {
-                    playerLineup.timeEntry = playerLineup.timeEntry.filter((t) => t != game.scores.time);
-                }
-            } else {
-                playerLineup.timeExit.push(game.scores.time);
-            }
-        }
-    }
-}
-
-function handleLineupChangeLeave(player) {
-    if (playSituation != Situation.STOP) {
-        if (player.team == Team.RED) {
-            // player gets in red team
-            let redLineupAuth = game.playerComp[0].map((p) => p.auth);
-            let ind = redLineupAuth.findIndex((auth) => auth == authArray[player.id][0]);
-            let playerLineup = game.playerComp[0][ind];
-            if (playerLineup.timeEntry.includes(game.scores.time)) {
-                // gets subbed off then in at the exact same time -> no sub
-                if (game.scores.time == 0) {
-                    game.playerComp[0].splice(ind, 1);
-                } else {
-                    playerLineup.timeEntry = playerLineup.timeEntry.filter((t) => t != game.scores.time);
-                }
-            } else {
-                playerLineup.timeExit.push(game.scores.time);
-            }
-        } else if (player.team == Team.BLUE) {
-            // player gets in blue team
-            let blueLineupAuth = game.playerComp[1].map((p) => p.auth);
-            let ind = blueLineupAuth.findIndex((auth) => auth == authArray[player.id][0]);
-            let playerLineup = game.playerComp[1][ind];
-            if (playerLineup.timeEntry.includes(game.scores.time)) {
-                // gets subbed off then in at the exact same time -> no sub
-                if (game.scores.time == 0) {
-                    game.playerComp[1].splice(ind, 1);
-                } else {
-                    playerLineup.timeEntry = playerLineup.timeEntry.filter((t) => t != game.scores.time);
-                }
-            } else {
-                playerLineup.timeExit.push(game.scores.time);
-            }
-        }
-    }
-}
-
-/* TEAM BALANCE FUNCTIONS */
-
-function balanceTeams() {
-    if (!chooseMode) {
-        if (players.length == 0) {
-            room.stopGame();
-            room.setScoreLimit(scoreLimit);
-            room.setTimeLimit(timeLimit);
-        } else if (players.length == 1 && teamRed.length == 0) {
-            instantRestart();
-            setTimeout(() => {
-                stadiumCommand(emptyPlayer, `!training`);
-            }, 5);
-            room.setPlayerTeam(players[0].id, Team.RED);
-        } else if (Math.abs(teamRed.length - teamBlue.length) == teamSpec.length && teamSpec.length > 0) {
-            const n = Math.abs(teamRed.length - teamBlue.length);
-            if (players.length == 2) {
-                instantRestart();
-                setTimeout(() => {
-                    stadiumCommand(emptyPlayer, `!classic`);
-                }, 5);
-            }
-            if (teamRed.length > teamBlue.length) {
-                for (let i = 0; i < n; i++) {
-                    room.setPlayerTeam(teamSpec[i].id, Team.BLUE);
-                }
-            } else {
-                for (let i = 0; i < n; i++) {
-                    room.setPlayerTeam(teamSpec[i].id, Team.RED);
-                }
-            }
-        } else if (Math.abs(teamRed.length - teamBlue.length) > teamSpec.length) {
-            const n = Math.abs(teamRed.length - teamBlue.length);
-            if (players.length == 1) {
-                instantRestart();
-                setTimeout(() => {
-                    stadiumCommand(emptyPlayer, `!training`);
-                }, 5);
-                room.setPlayerTeam(players[0].id, Team.RED);
-                return;
-            } else if (teamSize > 2 && players.length == 5) {
-                instantRestart();
-                setTimeout(() => {
-                    stadiumCommand(emptyPlayer, `!classic`);
-                }, 5);
-            }
-            if (players.length == teamSize * 2 - 1) {
-                teamRedStats = [];
-                teamBlueStats = [];
-            }
-            if (teamRed.length > teamBlue.length) {
-                for (let i = 0; i < n; i++) {
-                    room.setPlayerTeam(
-                        teamRed[teamRed.length - 1 - i].id,
-                        Team.SPECTATORS
-                    );
-                }
-            } else {
-                for (let i = 0; i < n; i++) {
-                    room.setPlayerTeam(
-                        teamBlue[teamBlue.length - 1 - i].id,
-                        Team.SPECTATORS
-                    );
-                }
-            }
-        } else if (Math.abs(teamRed.length - teamBlue.length) < teamSpec.length && teamRed.length != teamBlue.length) {
-            room.pauseGame(true);
-            activateChooseMode();
-            choosePlayer();
-        } else if (teamSpec.length >= 2 && teamRed.length == teamBlue.length && teamRed.length < teamSize) {
-            if (teamRed.length == 2) {
-                instantRestart();
-                setTimeout(() => {
-                    stadiumCommand(emptyPlayer, `!big`);
-                }, 5);
-            }
-            topButton();
-        }
-    }
-}
-
-function handlePlayersJoin() {
-    if (chooseMode) {
-        if (teamSize > 2 && players.length == 6) {
-            setTimeout(() => {
-                stadiumCommand(emptyPlayer, `!big`);
-            }, 5);
-        }
-        getSpecList(teamRed.length <= teamBlue.length ? teamRed[0] : teamBlue[0]);
-    }
-    balanceTeams();
-}
-
-function handlePlayersLeave() {
-    if (gameState != State.STOP) {
-        let scores = room.getScores();
-        if (players.length >= 2 * teamSize && scores.time >= (5 / 6) * game.scores.timeLimit && teamRed.length != teamBlue.length) {
-            let rageQuitCheck = false;
-            if (teamRed.length < teamBlue.length) {
-                if (scores.blue - scores.red == 2) {
-                    endGame(Team.BLUE);
-                    rageQuitCheck = true;
-                }
-            } else {
-                if (scores.red - scores.blue == 2) {
-                    endGame(Team.RED);
-                    rageQuitCheck = true;
-                }
-            }
-            if (rageQuitCheck) {
-                room.sendAnnouncement(
-                    "Ragequit detected, game ended.",
-                    null,
-                    infoColour,
-                    'bold',
-                    HaxNotification.MENTION
-                )
-                stopTimeout = setTimeout(() => {
-                    room.stopGame();
-                }, 100);
-                return;
-            }
-        }
-    }
-    if (chooseMode) {
-        if (teamSize > 2 && players.length == 5) {
-            setTimeout(() => {
-                stadiumCommand(emptyPlayer, `!classic`);
-            }, 5);
-        }
-        if (teamRed.length == 0 || teamBlue.length == 0) {
-            room.setPlayerTeam(teamSpec[0].id, teamRed.length == 0 ? Team.RED : Team.BLUE);
-            return;
-        }
-        if (Math.abs(teamRed.length - teamBlue.length) == teamSpec.length) {
-            deactivateChooseMode();
-            resumeGame();
-            let b = teamSpec.length;
-            if (teamRed.length > teamBlue.length) {
-                for (let i = 0; i < b; i++) {
-                    clearTimeout(insertingTimeout);
-                    insertingPlayers = true;
-                    setTimeout(() => {
-                        room.setPlayerTeam(teamSpec[0].id, Team.BLUE);
-                    }, 5 * i);
-                }
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 5 * b);
-            } else {
-                for (let i = 0; i < b; i++) {
-                    clearTimeout(insertingTimeout);
-                    insertingPlayers = true;
-                    setTimeout(() => {
-                        room.setPlayerTeam(teamSpec[0].id, Team.RED);
-                    }, 5 * i);
-                }
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 5 * b);
-            }
-            return;
-        }
-        if (streak == 0 && gameState == State.STOP) {
-            if (Math.abs(teamRed.length - teamBlue.length) == 2) {
-                let teamIn = teamRed.length > teamBlue.length ? teamRed : teamBlue;
-                room.setPlayerTeam(teamIn[teamIn.length - 1].id, Team.SPECTATORS)
-            }
-        }
-        if (teamRed.length == teamBlue.length && teamSpec.length < 2) {
-            deactivateChooseMode();
-            resumeGame();
-            return;
-        }
-
-        if (capLeft) {
-            choosePlayer();
-        } else {
-            getSpecList(teamRed.length <= teamBlue.length ? teamRed[0] : teamBlue[0]);
-        }
-    }
-    balanceTeams();
-}
-
-function handlePlayersTeamChange(byPlayer) {
-    if (chooseMode && !removingPlayers && byPlayer == null) {
-        if (Math.abs(teamRed.length - teamBlue.length) == teamSpec.length) {
-            deactivateChooseMode();
-            resumeGame();
-            let b = teamSpec.length;
-            if (teamRed.length > teamBlue.length) {
-                for (let i = 0; i < b; i++) {
-                    clearTimeout(insertingTimeout);
-                    insertingPlayers = true;
-                    setTimeout(() => {
-                        room.setPlayerTeam(teamSpec[0].id, Team.BLUE);
-                    }, 5 * i);
-                }
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 5 * b);
-            } else {
-                for (let i = 0; i < b; i++) {
-                    clearTimeout(insertingTimeout);
-                    insertingPlayers = true;
-                    setTimeout(() => {
-                        room.setPlayerTeam(teamSpec[0].id, Team.RED);
-                    }, 5 * i);
-                }
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 5 * b);
-            }
-            return;
-        } else if (
-            (teamRed.length == teamSize && teamBlue.length == teamSize) ||
-            (teamRed.length == teamBlue.length && teamSpec.length < 2)
-        ) {
-            deactivateChooseMode();
-            resumeGame();
-        } else if (teamRed.length <= teamBlue.length && redCaptainChoice != '') {
-            if (redCaptainChoice == 'top') {
-                room.setPlayerTeam(teamSpec[0].id, Team.RED);
-            } else if (redCaptainChoice == 'random') {
-                let r = getRandomInt(teamSpec.length);
-                room.setPlayerTeam(teamSpec[r].id, Team.RED);
-            } else {
-                room.setPlayerTeam(teamSpec[teamSpec.length - 1].id, Team.RED);
-            }
-            return;
-        } else if (teamBlue.length < teamRed.length && blueCaptainChoice != '') {
-            if (blueCaptainChoice == 'top') {
-                room.setPlayerTeam(teamSpec[0].id, Team.BLUE);
-            } else if (blueCaptainChoice == 'random') {
-                let r = getRandomInt(teamSpec.length);
-                room.setPlayerTeam(teamSpec[r].id, Team.BLUE);
-            } else {
-                room.setPlayerTeam(teamSpec[teamSpec.length - 1].id, Team.BLUE);
-            }
-            return;
-        } else {
-            choosePlayer();
-        }
-    }
-}
-
-function handlePlayersStop(byPlayer) {
-    if (byPlayer == null && endGameletiable) {
-        if (chooseMode) {
-            if (players.length == 2 * teamSize) {
-                chooseMode = false;
-                resetButton();
-                for (let i = 0; i < teamSize; i++) {
-                    clearTimeout(insertingTimeout);
-                    insertingPlayers = true;
-                    setTimeout(() => {
-                        randomButton();
-                    }, 200 * i);
-                }
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 200 * teamSize);
-                startTimeout = setTimeout(() => {
-                    room.startGame();
-                }, 2000);
-            } else {
-                if (lastWinner == Team.RED) {
-                    blueToSpecButton();
-                } else if (lastWinner == Team.BLUE) {
-                    redToSpecButton();
-                    setTimeout(() => {
-                        swapButton();
-                    }, 10);
-                } else {
-                    resetButton();
-                }
-                clearTimeout(insertingTimeout);
-                insertingPlayers = true;
-                setTimeout(() => {
-                    topButton();
-                }, 300);
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 300);
-            }
-        } else {
-            if (players.length == 2) {
-                if (lastWinner == Team.BLUE) {
-                    swapButton();
-                }
-                startTimeout = setTimeout(() => {
-                    room.startGame();
-                }, 2000);
-            } else if (players.length == 3 || players.length >= 2 * teamSize + 1) {
-                if (lastWinner == Team.RED) {
-                    blueToSpecButton();
-                } else {
-                    redToSpecButton();
-                    setTimeout(() => {
-                        swapButton();
-                    }, 5);
-                }
-                clearTimeout(insertingTimeout);
-                insertingPlayers = true;
-                setTimeout(() => {
-                    topButton();
-                }, 200);
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 300);
-                startTimeout = setTimeout(() => {
-                    room.startGame();
-                }, 2000);
-            } else if (players.length == 4) {
-                resetButton();
-                clearTimeout(insertingTimeout);
-                insertingPlayers = true;
-                setTimeout(() => {
-                    randomButton();
-                    setTimeout(() => {
-                        randomButton();
-                    }, 500);
-                }, 500);
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 2000);
-                startTimeout = setTimeout(() => {
-                    room.startGame();
-                }, 2000);
-            } else if (players.length == 5 || players.length >= 2 * teamSize + 1) {
-                if (lastWinner == Team.RED) {
-                    blueToSpecButton();
-                } else {
-                    redToSpecButton();
-                    setTimeout(() => {
-                        swapButton();
-                    }, 5);
-                }
-                clearTimeout(insertingTimeout);
-                insertingPlayers = true;
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 200);
-                setTimeout(() => {
-                    topButton();
-                }, 200);
-                activateChooseMode();
-            } else if (players.length == 6) {
-                resetButton();
-                clearTimeout(insertingTimeout);
-                insertingPlayers = true;
-                insertingTimeout = setTimeout(() => {
-                    insertingPlayers = false;
-                }, 1500);
-                setTimeout(() => {
-                    randomButton();
-                    setTimeout(() => {
-                        randomButton();
-                        setTimeout(() => {
-                            randomButton();
-                        }, 500);
-                    }, 500);
-                }, 500);
-                startTimeout = setTimeout(() => {
-                    room.startGame();
-                }, 2000);
-            }
-        }
-    }
-}
-
-/* STATS FUNCTIONS */
-
 /* GK FUNCTIONS */
 
 function handleGKTeam(team) {
@@ -5673,228 +4657,6 @@ function getGoalString(team) {
     return goalString;
 }
 
-/* ROOM STATS FUNCTIONS */
-
-function updatePlayerStats(player, teamStats) {
-    let stats = new HaxStatistics(player.name);
-    let pComp = getPlayerComp(player);
-    if (localStorage.getItem(authArray[player.id][0])) {
-        stats = JSON.parse(localStorage.getItem(authArray[player.id][0]));
-    }
-    stats.games++;
-    if (lastWinner == teamStats) stats.wins++;
-    stats.winrate = ((100 * stats.wins) / (stats.games || 1)).toFixed(1) + `%`;
-    stats.goals += getGoalsPlayer(pComp);
-    stats.assists += getAssistsPlayer(pComp);
-    stats.ownGoals += getOwnGoalsPlayer(pComp);
-    // stats.CS += getCSPlayer(pComp);
-    stats.playtime += getGametimePlayer(pComp);
-    localStorage.setItem(authArray[player.id][0], JSON.stringify(stats));
-}
-
-function updateStats() {
-    if (
-        players.length >= 2 * teamSize &&
-        (
-            game.scores.time >= (5 / 6) * game.scores.timeLimit ||
-            game.scores.red == game.scores.scoreLimit ||
-            game.scores.blue == game.scores.scoreLimit
-        ) &&
-        teamRedStats.length >= teamSize && teamBlueStats.length >= teamSize
-    ) {
-        for (let player of teamRedStats) {
-            updatePlayerStats(player, Team.RED);
-        }
-        for (let player of teamBlueStats) {
-            updatePlayerStats(player, Team.BLUE);
-        }
-    }
-}
-
-function printRankings(statKey, id = 0) {
-    let leaderboard = [];
-    statKey = statKey == "cs" ? "CS" : statKey;
-    for (let i = 0; i < localStorage.length; i++) {
-        let key = localStorage.key(i);
-        if (key.length == 43)
-            leaderboard.push([
-                JSON.parse(localStorage.getItem(key)).playerName,
-                JSON.parse(localStorage.getItem(key))[statKey],
-            ]);
-    }
-    if (leaderboard.length < 5) {
-        if (id != 0) {
-            room.sendAnnouncement(
-                'Not enough games played yet!',
-                id,
-                errorColour,
-                'bold',
-                HaxNotification.CHAT
-            );
-        }
-        return;
-    }
-    leaderboard.sort(function (a, b) { return b[1] - a[1]; });
-    let rankingString = `${statKey.charAt(0).toUpperCase() + statKey.slice(1)}> `;
-    for (let i = 0; i < 5; i++) {
-        let playerName = leaderboard[i][0];
-        let playerStat = leaderboard[i][1];
-        if (statKey == 'playtime') playerStat = getTimeStats(playerStat);
-        rankingString += `#${i + 1} ${playerName} : ${playerStat}, `;
-    }
-    rankingString = rankingString.substring(0, rankingString.length - 2);
-    room.sendAnnouncement(
-        rankingString,
-        id,
-        infoColour,
-        'bold',
-        HaxNotification.CHAT
-    );
-}
-
-/* GET STATS FUNCTIONS */
-
-function getGamePlayerStats(player) {
-    let stats = new HaxStatistics(player.name);
-    let pComp = getPlayerComp(player);
-    stats.goals += getGoalsPlayer(pComp);
-    stats.assists += getAssistsPlayer(pComp);
-    stats.ownGoals += getOwnGoalsPlayer(pComp);
-    stats.playtime += getGametimePlayer(pComp);
-    //stats.CS += getCSPlayer(pComp);
-    return stats;
-}
-
-function getGametimePlayer(pComp) {
-    if (pComp == null) return 0;
-    let timePlayer = 0;
-    for (let j = 0; j < pComp.timeEntry.length; j++) {
-        if (pComp.timeExit.length < j + 1) {
-            timePlayer += game.scores.time - pComp.timeEntry[j];
-        } else {
-            timePlayer += pComp.timeExit[j] - pComp.timeEntry[j];
-        }
-    }
-    return Math.floor(timePlayer);
-}
-
-function getGoalsPlayer(pComp) {
-    if (pComp == null) return 0;
-    let goalPlayer = 0;
-    for (let goal of game.goals) {
-        if (goal.striker != null && goal.team === pComp.player.team) {
-            if (authArray[goal.striker.id][0] == pComp.auth) {
-                goalPlayer++;
-            }
-        }
-    }
-    return goalPlayer;
-}
-
-function getOwnGoalsPlayer(pComp) {
-    if (pComp == null) return 0;
-    let goalPlayer = 0;
-    for (let goal of game.goals) {
-        if (goal.striker != null && goal.team !== pComp.player.team) {
-            if (authArray[goal.striker.id][0] == pComp.auth) {
-                goalPlayer++;
-            }
-        }
-    }
-    return goalPlayer;
-}
-
-function getAssistsPlayer(pComp) {
-    if (pComp == null) return 0;
-    let assistPlayer = 0;
-    for (let goal of game.goals) {
-        if (goal.assist != null) {
-            if (authArray[goal.assist.id][0] == pComp.auth) {
-                assistPlayer++;
-            }
-        }
-    }
-    return assistPlayer;
-}
-
-function getGKPlayer(pComp) {
-    if (pComp == null) return 0;
-    let GKRed = getGK(Team.RED);
-    if (pComp.auth == GKRed.auth) {
-        return Team.RED;
-    }
-    let GKBlue = getGK(Team.BLUE);
-    if (pComp.auth == GKBlue.auth) {
-        return Team.BLUE;
-    }
-    return Team.SPECTATORS;
-}
-
-function getCSPlayer(pComp) {
-    if (pComp == null || game.scores == null) return 0;
-    if (getGKPlayer(pComp) == Team.RED && game.scores.blue == 0) {
-        return 1;
-    } else if (getGKPlayer(pComp) == Team.BLUE && game.scores.red == 0) {
-        return 1;
-    }
-    return 0;
-}
-
-function actionReportCountTeam(goals, team) {
-    let playerActionSummaryTeam = [];
-    let indexTeam = team == Team.RED ? 0 : 1;
-    let indexOtherTeam = team == Team.RED ? 1 : 0;
-    for (let goal of goals[indexTeam]) {
-        if (goal[0] != null) {
-            if (playerActionSummaryTeam.find(a => a[0].id == goal[0].id)) {
-                let index = playerActionSummaryTeam.findIndex(a => a[0].id == goal[0].id);
-                playerActionSummaryTeam[index][1]++;
-            } else {
-                playerActionSummaryTeam.push([goal[0], 1, 0, 0]);
-            }
-            if (goal[1] != null) {
-                if (playerActionSummaryTeam.find(a => a[0].id == goal[1].id)) {
-                    let index = playerActionSummaryTeam.findIndex(a => a[0].id == goal[1].id);
-                    playerActionSummaryTeam[index][2]++;
-                } else {
-                    playerActionSummaryTeam.push([goal[1], 0, 1, 0]);
-                }
-            }
-        }
-    }
-    if (goals[indexOtherTeam].length == 0) {
-        /*let playerCS = getGK(team).player;
-        if (playerCS != null) {
-            if (playerActionSummaryTeam.find(a => a[0].id == playerCS.id)) {
-                let index = playerActionSummaryTeam.findIndex(a => a[0].id == playerCS.id);
-                playerActionSummaryTeam[index][3]++;
-            } else {
-                playerActionSummaryTeam.push([playerCS, 0, 0, 1]);
-            }
-        }*/
-    }
-
-    playerActionSummaryTeam.sort((a, b) => (a[1] + a[2] + a[3]) - (b[1] + b[2] + b[3]));
-    return playerActionSummaryTeam;
-}
-
-/* PRINT FUNCTIONS */
-
-function printPlayerStats(stats) {
-    let statsString = '';
-    for (let [key, value] of Object.entries(stats)) {
-        if (key == 'playerName') statsString += `${value}: `;
-        else {
-            if (key == 'playtime') value = getTimeStats(value);
-            let reCamelCase = /([A-Z](?=[a-z]+)|[A-Z]+(?![a-z]))/g;
-            let statName = key.replaceAll(reCamelCase, ' $1').trim();
-            statsString += `${statName.charAt(0).toUpperCase() + statName.slice(1)}: ${value}, `;
-        }
-    }
-    statsString = statsString.substring(0, statsString.length - 2);
-    return statsString;
-}
-
 /* FETCH FUNCTIONS */
 
 function fetchGametimeReport(game) {
@@ -5980,50 +4742,10 @@ function fetchActionsSummaryReport(game) {
 }
 
 function fetchSummaryEmbed(game) {
-    let fetchEndgame = [fetchGametimeReport, fetchActionsSummaryReport];
-    let logChannel = gameWebhook;
-    let fields = [
-        {
-            name: '🔴        **RED TEAM STATS**',
-            value: '=====================\n\n',
-            inline: true,
-        },
-        {
-            name: '🔵       **BLUE TEAM STATS**',
-            value: '=====================\n\n',
-            inline: true,
-        },
-    ];
-    for (let i = 0; i < fetchEndgame.length; i++) {
-        let fieldsReport = fetchEndgame[i](game);
-        fields[0].value += fieldsReport[0].value + '\n\n';
-        fields[1].value += fieldsReport[1].value + '\n\n';
-    }
-    fields[0].value = fields[0].value.substring(0, fields[0].value.length - 2);
-    fields[1].value = fields[1].value.substring(0, fields[1].value.length - 2);
-
-    let possR = possession[0] / (possession[0] + possession[1]);
-    let possB = 1 - possR;
-    let possRString = (possR * 100).toFixed(0).toString();
-    let possBString = (possB * 100).toFixed(0).toString();
-    let zoneR = actionZoneHalf[0] / (actionZoneHalf[0] + actionZoneHalf[1]);
-    let zoneB = 1 - zoneR;
-    let zoneRString = (zoneR * 100).toFixed(0).toString();
-    let zoneBString = (zoneB * 100).toFixed(0).toString();
-    let win = (game.scores.red > game.scores.blue) * 1 + (game.scores.blue > game.scores.red) * 2;
     let objectBodyWebhook = {
         embeds: [
             {
-                title: `📝 MATCH REPORT #${getIdReport()}`,
-                description:
-                    `**${getTimeEmbed(game.scores.time)}** ` +
-                    (win == 1 ? '**Red Team** ' : 'Red Team ') + game.scores.red +
-                    ' - ' +
-                    game.scores.blue + (win == 2 ? ' **Blue Team**' : ' Blue Team') +
-                    '\n```c\nPossession: ' + possRString + '% - ' + possBString + '%' +
-                    '\nAction Zone: ' + zoneRString + '% - ' + zoneBString + '%\n```\n\n',
-                color: 9567999,
-                fields: fields,
+                title: `rah`,
                 footer: {
                     text: `Recording: ${getRecordingName(game)}`,
                 },
@@ -6618,20 +5340,5 @@ room.onStadiumChange = function (newStadiumName, byPlayer) {
 room.onGameTick = function () { //tick
     checkTime();
     getLastTouchOfTheBall();
-    getGameStats();
-    handleActivity();
     handleDef();
 };
-
-class Notify { //darxe notify system
-    discord(){
-        room.sendAnnouncement(`join our discord server here: https://discord.gg/cx9WWA84dv`,null,0xffffff,"bold",null);
-    }
-	rah() {
-		room.sendAnnouncement('SPL PUB', null, 0xffffff, 'bold')
-	}
-}
-const notify = new Notify();
-
-setInterval(notify.discord, 170000); //dc 0xffffff
-setInterval(notify.rah, 200000); //rah
