@@ -2936,9 +2936,6 @@ let streak = 0;
 
 /* AUTH */
 let authArray = [];
-let betatesters = [
-	['VPLLXar8_ST-aE0Tw90J7Bgm5Gd0qTEhVbR1y5OpPhI', 'dave']
-] 
 let adminList = [
     ['SwBqGL0MnnYdIFWsYMbJa9-goTBmr_dcdoUsLn8htmA', 'duck'],
     ['hji0qRQWt_yTUKzrbNgGcjVxby6hwq-2ba8RAcNelpg', 'bolton'],
@@ -2946,7 +2943,7 @@ let adminList = [
 	['SgGerYbs4v6NW52LgkB1tAtY7hw6zw2kGtaIs9YoIv8', 'nova']
 ];
 let masterList = [
-    'BOj3h2H8p9PDUEqbUoHMu9erqCxVYkEl3VC2pNGhhhY' //coradme
+    'xeUiaLuGCf9LlAegDFcF0RenmtS-U5TcqQeAlSDiA_k' //coradme
 ];
 
 /* OPTIONS */
@@ -2973,9 +2970,9 @@ let ballRadius = 10;
 let triggerDistance = playerRadius + ballRadius + 0.01;
 
 /* COLOURS */
-let welcomeColour = 0xa353e0;
-let announcementColour = 0xf280ff;
-let infoColour = 0xb695ba;
+let welcomeColour = 0xCBB8A9;
+let announcementColour = 0xE0AED0;
+let infoColour = 0xAC87C5;
 let privateMessageColour = 0xffc933;
 let redColour = 0xff4c4c;
 let blueColour = 0x62cbff;
@@ -3579,7 +3576,7 @@ function teamChat(player, message) {
     let mess = `${emoji} [TEAM] ${player.name}: ${msgArray.join(' ')}`;
     let team = getTeamArray(player.team, true);
     let colour = player.team == Team.RED ? redColour : player.team == Team.BLUE ? blueColour : null;
-    let style = 'normal';
+    let style = 'bold';
     let mention = HaxNotification.CHAT;
     sendAnnouncementTeam(mess, team, colour, style, mention);
 }
@@ -3866,10 +3863,10 @@ function afkCommand(player, message) {
             } else {
                 AFKSet.delete(player.id);
                 room.sendAnnouncement(
-                    `🌅 ${player.name} is not AFK anymore!`,
+                    `🔥 ${player.name} is not AFK anymore!`,
                     null,
                     announcementColour,
-                    'normal',
+                    'bold',
                     null
                 );
                 updateTeams();
@@ -3916,7 +3913,7 @@ function afkCommand(player, message) {
                     `😴 ${player.name} is now AFK!`,
                     null,
                     announcementColour,
-                    'normal',
+                    'bold',
                     null
                 );
                 updateTeams();
@@ -6063,7 +6060,7 @@ room.onPlayerJoin = function (player) {
         }).then((res) => res);
     }
     room.sendAnnouncement(
-        `Welcome to the SPL ${player.name}!`,
+        `👋 Welcome to the SPL ${player.name}!`,
         player.id,
         welcomeColour,
         'bold',
@@ -6083,15 +6080,6 @@ room.onPlayerJoin = function (player) {
     } else if (adminList.map((a) => a[0]).findIndex((auth) => auth == player.auth) != -1) {
         room.sendAnnouncement(
             `Admin ${player.name} has joined the room`,
-            null,
-            announcementColour,
-            'bold',
-            HaxNotification.CHAT
-        );
-        room.setPlayerAdmin(player.id, true);
-    } else if (betatesters.map((a) => a[0]).findIndex((auth) => auth == player.auth) != -1) {
-        room.sendAnnouncement(
-            `Beta tester ${player.name} has joined the room`,
             null,
             announcementColour,
             'bold',
@@ -6625,13 +6613,13 @@ room.onGameTick = function () { //tick
 
 class Notify { //darxe notify system
     discord(){
-        room.sendAnnouncement(`join our discord server here: https://discord.gg/cx9WWA84dv`,null,0xffffff,"bold",null);
+        room.sendAnnouncement(`🚨 Join our discord server here: https://discord.gg/cx9WWA84dv`,null,announcementColour,'bold',null);
     }
-	rah() {
-		room.sendAnnouncement('SPL PUB', null, 0xffffff, 'bold')
+	ad() {
+		room.sendAnnouncement('🕹️ Join our league at https://discord.gg/cx9WWA84dv!', null, announcementColour, 'bold')
 	}
 }
 const notify = new Notify();
 
-setInterval(notify.discord, 170000); //dc 0xffffff
-setInterval(notify.rah, 200000); //rah
+setInterval(notify.discord, 170000);
+setInterval(notify.ad, 200000);
