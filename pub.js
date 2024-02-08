@@ -2,7 +2,7 @@
 
 /* ROOM */
 let password = '1951'
-const headless = false;
+const headless = true;
 const roomName = 'SPL Pub';
 const maxPlayers = 30;
 const roomPublic = headless ? false : true;
@@ -95,9 +95,6 @@ const trainingMap = `{
 			],
 			"trait": "vertexDefault",
 			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			},
 			"curve": 0
 		},
 		{
@@ -113,9 +110,6 @@ const trainingMap = `{
 			],
 			"trait": "vertexDefault",
 			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			},
 			"curve": 0
 		},
 		{
@@ -150,18 +144,12 @@ const trainingMap = `{
 			"x": 0,
 			"y": 230,
 			"trait": "vertexDefault",
-			"_data": {
-				"mirror": {}
-			},
 			"curve": 0
 		},
 		{
 			"x": 0,
 			"y": -230,
 			"trait": "vertexDefault",
-			"_data": {
-				"mirror": {}
-			},
 			"curve": 0
 		},
 		{
@@ -290,41 +278,13 @@ const trainingMap = `{
 			"v0": 6,
 			"v1": 13,
 			"curve": 0,
-			"trait": "KO_barrier",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						-80
-					],
-					"b": [
-						0,
-						-230
-					],
-					"curve": 0
-				}
-			}
+			"trait": "KO_barrier"
 		},
 		{
 			"v0": 7,
 			"v1": 12,
 			"curve": 0,
-			"trait": "KO_barrier",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						80
-					],
-					"b": [
-						0,
-						230
-					],
-					"curve": 0
-				}
-			}
+			"trait": "KO_barrier"
 		},
 		{
 			"v0": 6,
@@ -460,30 +420,7 @@ const trainingMap = `{
 				1
 			],
 			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						-661,
-						-230
-					],
-					"b": [
-						661,
-						-230
-					]
-				}
-			}
+			"bCoef": 0
 		},
 		{
 			"normal": [
@@ -491,30 +428,7 @@ const trainingMap = `{
 				-1
 			],
 			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						-1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						-661,
-						230
-					],
-					"b": [
-						661,
-						230
-					]
-				}
-			}
+			"bCoef": 0
 		},
 		{
 			"normal": [
@@ -522,30 +436,7 @@ const trainingMap = `{
 				0
 			],
 			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						-480,
-						-233
-					],
-					"b": [
-						-480,
-						233
-					]
-				}
-			}
+			"bCoef": 0
 		},
 		{
 			"normal": [
@@ -553,34 +444,26 @@ const trainingMap = `{
 				0
 			],
 			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						-1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-661,
-						-233,
-						661,
-						233
-					],
-					"a": [
-						480,
-						-233
-					],
-					"b": [
-						480,
-						233
-					]
-				}
-			}
+			"bCoef": 0
 		}
 	],
 	"goals": [],
 	"discs": [
+		{
+			"radius": 6.25,
+			"invMass": 1.5,
+			"pos": [
+				0,
+				0
+			],
+			"color": "FFCC00",
+			"bCoef": 0.4,
+			"cGroup": [
+				"ball",
+				"kick",
+				"score"
+			]
+		},
 		{
 			"pos": [
 				-400,
@@ -629,23 +512,7 @@ const trainingMap = `{
 		"kickingDamping": 0.96,
 		"kickback": 0
 	},
-	"ballPhysics": {
-		"radius": 5.8,
-		"bCoef": 0.412,
-		"invMass": 1.55,
-		"color": "FFF26D",
-		"cMask": [
-			"all"
-		],
-		"damping": 0.99,
-		"gravity": [
-			0,
-			0
-		],
-		"cGroup": [
-			"ball"
-		]
-	},
+	"ballPhysics": "disc0",
 	"spawnDistance": 200,
 	"traits": {
 		"wall_map": {
@@ -756,9 +623,9 @@ const trainingMap = `{
 	"maxViewWidth": 0,
 	"cameraFollow": "ball",
 	"kickOffReset": "partial"
-}`;
+}`
 const classicMap = `{
-	"name": "SPL 1v1",
+	"name": "SPL v1",
 	"width": 480,
 	"height": 230,
 	"bg": {
@@ -913,37 +780,25 @@ const classicMap = `{
 			"x": 400,
 			"y": -135,
 			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 400,
 			"y": 135,
 			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -400,
 			"y": -135,
 			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -400,
 			"y": 135,
 			"trait": "vertexDefault",
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -400,
@@ -1052,56 +907,14 @@ const classicMap = `{
 			"v1": 20,
 			"curve": 150,
 			"color": "707070",
-			"trait": "decoration_map",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						400,
-						135
-					],
-					"b": [
-						400,
-						-135
-					],
-					"curve": 150,
-					"radius": 139.7622843553612,
-					"center": [
-						436.1731409782015,
-						0
-					],
-					"from": 1.8325957145940457,
-					"to": -1.8325957145940457
-				}
-			}
+			"trait": "decoration_map"
 		},
 		{
 			"v0": 22,
 			"v1": 23,
 			"curve": 150,
 			"color": "707070",
-			"trait": "decoration_map",
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-400,
-						-135
-					],
-					"b": [
-						-400,
-						135
-					],
-					"curve": 150,
-					"radius": 139.7622843553612,
-					"center": [
-						-436.1731409782015,
-						0
-					],
-					"from": -1.3089969389957476,
-					"to": 1.3089969389957476
-				}
-			}
+			"trait": "decoration_map"
 		},
 		{
 			"v0": 10,
@@ -1195,30 +1008,7 @@ const classicMap = `{
 				1
 			],
 			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						-524.7231113143321,
-						-230
-					],
-					"b": [
-						524.7231113143321,
-						-230
-					]
-				}
-			}
+			"bCoef": 0
 		},
 		{
 			"normal": [
@@ -1226,30 +1016,7 @@ const classicMap = `{
 				-1
 			],
 			"dist": -230,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						-1
-					],
-					"dist": -230,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						-524.7231113143321,
-						230
-					],
-					"b": [
-						524.7231113143321,
-						230
-					]
-				}
-			}
+			"bCoef": 0
 		},
 		{
 			"normal": [
@@ -1257,30 +1024,7 @@ const classicMap = `{
 				0
 			],
 			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						-480,
-						-184.9629121576995
-					],
-					"b": [
-						-480,
-						184.9629121576995
-					]
-				}
-			}
+			"bCoef": 0
 		},
 		{
 			"normal": [
@@ -1288,30 +1032,7 @@ const classicMap = `{
 				0
 			],
 			"dist": -480,
-			"bCoef": 0,
-			"_data": {
-				"extremes": {
-					"normal": [
-						-1,
-						0
-					],
-					"dist": -480,
-					"canvas_rect": [
-						-524.7231113143321,
-						-184.9629121576995,
-						524.7231113143321,
-						184.9629121576995
-					],
-					"a": [
-						480,
-						-184.9629121576995
-					],
-					"b": [
-						480,
-						184.9629121576995
-					]
-				}
-			}
+			"bCoef": 0
 		}
 	],
 	"goals": [
@@ -1324,13 +1045,9 @@ const classicMap = `{
 				-403,
 				70
 			],
-			"team": "red",
-			"_data": {
-				"mirror": {}
-			}
+			"team": "red"
 		},
 		{
-			"team": "blue",
 			"p0": [
 				403,
 				-70
@@ -1339,22 +1056,32 @@ const classicMap = `{
 				403,
 				70
 			],
-			"_data": {
-				"mirror": {}
-			},
+			"team": "blue",
 			"_selected": true
 		}
 	],
 	"discs": [
 		{
+			"radius": 6.25,
+			"invMass": 1.5,
+			"pos": [
+				0,
+				0
+			],
+			"color": "FFCC00",
+			"bCoef": 0.4,
+			"cGroup": [
+				"ball",
+				"kick",
+				"score"
+			]
+		},
+		{
 			"pos": [
 				-400,
 				-70
 			],
-			"trait": "goal_post",
-			"_data": {
-				"mirror": {}
-			}
+			"trait": "goal_post"
 		},
 		{
 			"pos": [
@@ -1397,23 +1124,7 @@ const classicMap = `{
 		"kickingDamping": 0.96,
 		"kickback": 0
 	},
-	"ballPhysics": {
-		"radius": 5.8,
-		"bCoef": 0.412,
-		"invMass": 1.55,
-		"color": "FFF26D",
-		"cMask": [
-			"all"
-		],
-		"damping": 0.99,
-		"gravity": [
-			0,
-			0
-		],
-		"cGroup": [
-			"ball"
-		]
-	},
+	"ballPhysics": "disc0",
 	"spawnDistance": 200,
 	"traits": {
 		"wall_map": {
@@ -2382,17 +2093,17 @@ const bigMap = `{
 					],
 					"dist": -350,
 					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
+						-740.7407407407405,
+						-324.074074074074,
+						740.7407407407405,
+						324.074074074074
 					],
 					"a": [
-						-432.2151076015804,
+						-740.7407407407405,
 						-350
 					],
 					"b": [
-						432.2151076015804,
+						740.7407407407405,
 						-350
 					]
 				}
@@ -2413,17 +2124,17 @@ const bigMap = `{
 					],
 					"dist": -350,
 					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
+						-740.7407407407405,
+						-324.074074074074,
+						740.7407407407405,
+						324.074074074074
 					],
 					"a": [
-						-432.2151076015804,
+						-740.7407407407405,
 						350
 					],
 					"b": [
-						432.2151076015804,
+						740.7407407407405,
 						350
 					]
 				}
@@ -2444,18 +2155,18 @@ const bigMap = `{
 					],
 					"dist": -800,
 					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
+						-740.7407407407405,
+						-324.074074074074,
+						740.7407407407405,
+						324.074074074074
 					],
 					"a": [
 						-800,
-						-189.09410957569142
+						-324.074074074074
 					],
 					"b": [
 						-800,
-						189.09410957569142
+						324.074074074074
 					]
 				}
 			}
@@ -2475,18 +2186,18 @@ const bigMap = `{
 					],
 					"dist": -800,
 					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
+						-740.7407407407405,
+						-324.074074074074,
+						740.7407407407405,
+						324.074074074074
 					],
 					"a": [
 						800,
-						-189.09410957569142
+						-324.074074074074
 					],
 					"b": [
 						800,
-						189.09410957569142
+						324.074074074074
 					]
 				}
 			}
@@ -2509,18 +2220,18 @@ const bigMap = `{
 					],
 					"dist": -360,
 					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
+						-740.7407407407405,
+						-324.074074074074,
+						740.7407407407405,
+						324.074074074074
 					],
 					"a": [
 						360,
-						-189.09410957569142
+						-324.074074074074
 					],
 					"b": [
 						360,
-						189.09410957569142
+						324.074074074074
 					]
 				}
 			}
@@ -2543,18 +2254,18 @@ const bigMap = `{
 					],
 					"dist": -360,
 					"canvas_rect": [
-						-432.2151076015804,
-						-189.09410957569142,
-						432.2151076015804,
-						189.09410957569142
+						-740.7407407407405,
+						-324.074074074074,
+						740.7407407407405,
+						324.074074074074
 					],
 					"a": [
 						-360,
-						-189.09410957569142
+						-324.074074074074
 					],
 					"b": [
 						-360,
-						189.09410957569142
+						324.074074074074
 					]
 				}
 			}
@@ -2585,6 +2296,21 @@ const bigMap = `{
 		}
 	],
 	"discs": [
+		{
+			"radius": 6.25,
+			"invMass": 1.5,
+			"pos": [
+				0,
+				0
+			],
+			"color": "FFCC00",
+			"bCoef": 0.4,
+			"cGroup": [
+				"ball",
+				"kick",
+				"score"
+			]
+		},
 		{
 			"pos": [
 				-700,
@@ -2633,23 +2359,7 @@ const bigMap = `{
 		"kickingDamping": 0.96,
 		"kickback": 0
 	},
-	"ballPhysics": {
-		"radius": 5.8,
-		"bCoef": 0.412,
-		"invMass": 1.5,
-		"color": "FFF26D",
-		"cMask": [
-			"all"
-		],
-		"damping": 0.99,
-		"gravity": [
-			0,
-			0
-		],
-		"cGroup": [
-			"ball"
-		]
-	},
+	"ballPhysics": "disc0",
 	"spawnDistance": 200,
 	"traits": {
 		"vertexDefault": {
@@ -2945,6 +2655,13 @@ let adminList = [
 let masterList = [
     'xeUiaLuGCf9LlAegDFcF0RenmtS-U5TcqQeAlSDiA_k' //coradme
 ];
+
+function playerAvatar(id,avatarStart,avatarStop,timeout){
+	room.setPlayerAvatar(id,avatarStart);
+	setTimeout(function(){
+        room.setPlayerAvatar(id,avatarStop);
+    }, timeout);
+}
 
 /* OPTIONS */
 let drawTimeLimit = Infinity;
@@ -5632,6 +5349,8 @@ function getGoalAttribution(team) {
     return goalAttribution;
 }
 
+let goalTimeout = 4000;
+
 function getGoalString(team) {
     let goalString;
     let scores = game.scores;
@@ -5640,6 +5359,8 @@ function getGoalString(team) {
         if (goalAttribution[0].team == team) {
             if (goalAttribution[1] != null && goalAttribution[1].team == team) {
                 goalString = `⚽ ${getTimeGame(scores.time)} Goal by ${goalAttribution[0].name}! Assist by ${goalAttribution[1].name}. Goal speed : ${ballSpeed.toFixed(2)}km/h.`;
+                playerAvatar(goalAttribution[0].id, '⚽️', null, goalTimeout)
+                playerAvatar(goalAttribution[1].id, '👟', null, goalTimeout)
                 game.goals.push(
                     new Goal(
                         scores.time,
@@ -5650,12 +5371,14 @@ function getGoalString(team) {
                 );
             } else {
                 goalString = `⚽ ${getTimeGame(scores.time)} Goal by ${goalAttribution[0].name}! Goal speed : ${ballSpeed.toFixed(2)}km/h.`;
+                playerAvatar(goalAttribution[0].id, '⚽️', null, goalTimeout)
                 game.goals.push(
                     new Goal(scores.time, team, goalAttribution[0], null)
                 );
             }
         } else {
             goalString = `😂 ${getTimeGame(scores.time)} Own goal by ${goalAttribution[0].name}! Goal speed : ${ballSpeed.toFixed(2)}km/h.`;
+            playerAvatar(goalAttribution[0].id, '💀', null, goalTimeout)
             game.goals.push(
                 new Goal(scores.time, team, goalAttribution[0], null)
             );
@@ -6490,6 +6213,7 @@ room.onGameUnpause = function (byPlayer) {
 };
 
 room.onTeamGoal = function (team) {
+    room.setDiscProperties(0, {color: 0xFF0000});
     const scores = room.getScores();
     game.scores = scores;
     playSituation = Situation.GOAL;

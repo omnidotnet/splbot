@@ -476,10 +476,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -624,
@@ -491,10 +488,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -698.5,
@@ -506,10 +500,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -624,
@@ -521,10 +512,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -625,
@@ -535,10 +523,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -625,
@@ -549,10 +534,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 625,
@@ -563,10 +545,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 625,
@@ -577,10 +556,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 624,
@@ -592,10 +568,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 698.5,
@@ -607,10 +580,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 624,
@@ -622,10 +592,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 698.5,
@@ -637,10 +604,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 0,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -500,
@@ -652,10 +616,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 180,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": -500,
@@ -667,10 +628,7 @@ let official = `{
 				"wall"
 			],
 			"curve": 180,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 500,
@@ -934,10 +892,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 0,
@@ -949,10 +904,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 0,
@@ -966,10 +918,7 @@ let official = `{
 				"blueKO"
 			],
 			"vis": true,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 0,
@@ -983,10 +932,7 @@ let official = `{
 				"blueKO"
 			],
 			"vis": true,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 0,
@@ -1000,10 +946,7 @@ let official = `{
 				"blueKO"
 			],
 			"vis": true,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 0,
@@ -1017,10 +960,7 @@ let official = `{
 				"blueKO"
 			],
 			"vis": true,
-			"color": "707070",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "707070"
 		},
 		{
 			"x": 380,
@@ -1032,10 +972,7 @@ let official = `{
 				"wall"
 			],
 			"vis": true,
-			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "5b00a3"
 		},
 		{
 			"x": 380,
@@ -1047,10 +984,7 @@ let official = `{
 				"wall"
 			],
 			"vis": true,
-			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "5b00a3"
 		},
 		{
 			"x": -380,
@@ -1062,10 +996,7 @@ let official = `{
 				"wall"
 			],
 			"vis": true,
-			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "5b00a3"
 		},
 		{
 			"x": -380,
@@ -1077,10 +1008,7 @@ let official = `{
 				"wall"
 			],
 			"vis": true,
-			"color": "5b00a3",
-			"_data": {
-				"mirror": {}
-			}
+			"color": "5b00a3"
 		},
 		{
 			"x": 0,
@@ -1119,10 +1047,7 @@ let official = `{
 				"redKO"
 			],
 			"color": "5b00a3",
-			"vis": true,
-			"_data": {
-				"mirror": {}
-			}
+			"vis": true
 		},
 		{
 			"x": 0,
@@ -1135,10 +1060,7 @@ let official = `{
 				"redKO"
 			],
 			"color": "5b00a3",
-			"vis": true,
-			"_data": {
-				"mirror": {}
-			}
+			"vis": true
 		},
 		{
 			"x": -380,
@@ -1151,10 +1073,7 @@ let official = `{
 				"redKO"
 			],
 			"color": "5b00a3",
-			"vis": true,
-			"_data": {
-				"mirror": {}
-			}
+			"vis": true
 		},
 		{
 			"x": -380,
@@ -1167,10 +1086,7 @@ let official = `{
 				"redKO"
 			],
 			"color": "5b00a3",
-			"vis": true,
-			"_data": {
-				"mirror": {}
-			}
+			"vis": true
 		},
 		{
 			"x": 0,
@@ -1212,10 +1128,7 @@ let official = `{
 			],
 			"color": "5b00a3",
 			"vis": true,
-			"curve": 180,
-			"_data": {
-				"mirror": {}
-			}
+			"curve": 180
 		},
 		{
 			"x": 0,
@@ -1229,10 +1142,7 @@ let official = `{
 			],
 			"color": "5b00a3",
 			"vis": true,
-			"curve": 180,
-			"_data": {
-				"mirror": {}
-			}
+			"curve": 180
 		},
 		{
 			"x": 380,
@@ -1246,10 +1156,7 @@ let official = `{
 			],
 			"color": "5b00a3",
 			"vis": true,
-			"curve": 180,
-			"_data": {
-				"mirror": {}
-			}
+			"curve": 180
 		},
 		{
 			"x": 380,
@@ -1263,10 +1170,7 @@ let official = `{
 			],
 			"color": "5b00a3",
 			"vis": true,
-			"curve": 180,
-			"_data": {
-				"mirror": {}
-			}
+			"curve": 180
 		}
 	],
 	"segments": [
@@ -1459,21 +1363,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"y": -125,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-698.5,
-						-125
-					],
-					"b": [
-						-624,
-						-125
-					],
-					"curve": 0
-				}
-			}
+			"y": -125
 		},
 		{
 			"v0": 34,
@@ -1486,21 +1376,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"y": 125,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-698.5,
-						125
-					],
-					"b": [
-						-624,
-						125
-					],
-					"curve": 0
-				}
-			}
+			"y": 125
 		},
 		{
 			"v0": 36,
@@ -1513,21 +1389,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"x": -625,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-625,
-						-126
-					],
-					"b": [
-						-625,
-						126
-					],
-					"curve": 0
-				}
-			}
+			"x": -625
 		},
 		{
 			"v0": 38,
@@ -1540,21 +1402,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"x": 625,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						625,
-						-126
-					],
-					"b": [
-						625,
-						126
-					],
-					"curve": 0
-				}
-			}
+			"x": 625
 		},
 		{
 			"v0": 40,
@@ -1567,21 +1415,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"y": -125,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						624,
-						-125
-					],
-					"b": [
-						698.5,
-						-125
-					],
-					"curve": 0
-				}
-			}
+			"y": -125
 		},
 		{
 			"v0": 42,
@@ -1594,21 +1428,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"y": 125,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						624,
-						125
-					],
-					"b": [
-						698.5,
-						125
-					],
-					"curve": 0
-				}
-			}
+			"y": 125
 		},
 		{
 			"v0": 44,
@@ -1621,21 +1441,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"x": -500,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-500,
-						2.5
-					],
-					"b": [
-						-500,
-						-2.5
-					],
-					"curve": 0
-				}
-			}
+			"x": -500
 		},
 		{
 			"v0": 45,
@@ -1648,28 +1454,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"x": -500,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-500,
-						-2.5
-					],
-					"b": [
-						-500,
-						2.5
-					],
-					"curve": 180,
-					"radius": 2.5,
-					"center": [
-						-500,
-						0
-					],
-					"from": -1.5707963267948966,
-					"to": 1.5707963267948966
-				}
-			}
+			"x": -500
 		},
 		{
 			"v0": 44,
@@ -1682,28 +1467,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"x": -500,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-500,
-						2.5
-					],
-					"b": [
-						-500,
-						-2.5
-					],
-					"curve": 180,
-					"radius": 2.5,
-					"center": [
-						-500,
-						0
-					],
-					"from": 1.5707963267948966,
-					"to": -1.5707963267948966
-				}
-			}
+			"x": -500
 		},
 		{
 			"v0": 46,
@@ -1814,27 +1578,7 @@ let official = `{
 			],
 			"cGroup": [
 				"wall"
-			],
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						-2.5
-					],
-					"b": [
-						0,
-						2.5
-					],
-					"radius": null,
-					"center": [
-						null,
-						null
-					],
-					"from": null,
-					"to": null
-				}
-			}
+			]
 		},
 		{
 			"v0": 68,
@@ -1849,27 +1593,7 @@ let official = `{
 				"redKO",
 				"blueKO"
 			],
-			"x": 0,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						-318.5
-					],
-					"b": [
-						0,
-						-88
-					],
-					"radius": null,
-					"center": [
-						null,
-						null
-					],
-					"from": null,
-					"to": null
-				}
-			}
+			"x": 0
 		},
 		{
 			"v0": 70,
@@ -1884,27 +1608,7 @@ let official = `{
 				"redKO",
 				"blueKO"
 			],
-			"x": 0,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						88
-					],
-					"b": [
-						0,
-						318.5
-					],
-					"radius": null,
-					"center": [
-						null,
-						null
-					],
-					"from": null,
-					"to": null
-				}
-			}
+			"x": 0
 		},
 		{
 			"v0": 72,
@@ -1917,27 +1621,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"x": 380,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						380,
-						318.5
-					],
-					"b": [
-						380,
-						-318.5
-					],
-					"radius": null,
-					"center": [
-						null,
-						null
-					],
-					"from": null,
-					"to": null
-				}
-			}
+			"x": 380
 		},
 		{
 			"v0": 74,
@@ -1950,27 +1634,7 @@ let official = `{
 			"cGroup": [
 				"wall"
 			],
-			"x": -380,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-380,
-						318.5
-					],
-					"b": [
-						-380,
-						-318.5
-					],
-					"radius": null,
-					"center": [
-						null,
-						null
-					],
-					"from": null,
-					"to": null
-				}
-			}
+			"x": -380
 		},
 		{
 			"v0": 76,
@@ -2000,28 +1664,7 @@ let official = `{
 			"cGroup": [
 				"redKO"
 			],
-			"x": 0,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						-85
-					],
-					"b": [
-						0,
-						85
-					],
-					"curve": 180,
-					"radius": 85,
-					"center": [
-						0,
-						0
-					],
-					"from": -1.5707963267948966,
-					"to": 1.5707963267948966
-				}
-			}
+			"x": 0
 		},
 		{
 			"v0": 80,
@@ -2036,28 +1679,7 @@ let official = `{
 			"cGroup": [
 				"redKO"
 			],
-			"x": -380,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						-380,
-						-85
-					],
-					"b": [
-						-380,
-						85
-					],
-					"curve": 180,
-					"radius": 85,
-					"center": [
-						-380,
-						0
-					],
-					"from": -1.5707963267948966,
-					"to": 1.5707963267948966
-				}
-			}
+			"x": -380
 		},
 		{
 			"v0": 82,
@@ -2087,28 +1709,7 @@ let official = `{
 			"cGroup": [
 				"blueKO"
 			],
-			"x": 0,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						0,
-						85
-					],
-					"b": [
-						0,
-						-85
-					],
-					"curve": 180,
-					"radius": 85,
-					"center": [
-						0,
-						0
-					],
-					"from": 1.5707963267948966,
-					"to": -1.5707963267948966
-				}
-			}
+			"x": 0
 		},
 		{
 			"v0": 86,
@@ -2123,28 +1724,7 @@ let official = `{
 			"cGroup": [
 				"blueKO"
 			],
-			"x": 380,
-			"_data": {
-				"mirror": {},
-				"arc": {
-					"a": [
-						380,
-						85
-					],
-					"b": [
-						380,
-						-85
-					],
-					"curve": 180,
-					"radius": 85,
-					"center": [
-						380,
-						0
-					],
-					"from": 1.5707963267948966,
-					"to": -1.5707963267948966
-				}
-			}
+			"x": 380
 		}
 	],
 	"goals": [
@@ -2172,6 +1752,21 @@ let official = `{
 		}
 	],
 	"discs": [
+		{
+			"radius": 6.25,
+			"invMass": 1.5,
+			"pos": [
+				0,
+				0
+			],
+			"color": "FFCC00",
+			"bCoef": 0.4,
+			"cGroup": [
+				"ball",
+				"kick",
+				"score"
+			]
+		},
 		{
 			"radius": 5.4,
 			"invMass": 0,
@@ -2248,30 +1843,7 @@ let official = `{
 				"red",
 				"blue"
 			],
-			"y": -350,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						1
-					],
-					"dist": -350,
-					"canvas_rect": [
-						-413.3056966440113,
-						-189.09410957569142,
-						413.3056966440113,
-						189.09410957569142
-					],
-					"a": [
-						-413.3056966440113,
-						-350
-					],
-					"b": [
-						413.3056966440113,
-						-350
-					]
-				}
-			}
+			"y": -350
 		},
 		{
 			"normal": [
@@ -2283,30 +1855,7 @@ let official = `{
 				"red",
 				"blue"
 			],
-			"y": 350,
-			"_data": {
-				"extremes": {
-					"normal": [
-						0,
-						-1
-					],
-					"dist": -350,
-					"canvas_rect": [
-						-413.3056966440113,
-						-189.09410957569142,
-						413.3056966440113,
-						189.09410957569142
-					],
-					"a": [
-						-413.3056966440113,
-						350
-					],
-					"b": [
-						413.3056966440113,
-						350
-					]
-				}
-			}
+			"y": 350
 		}
 	],
 	"playerPhysics": {
@@ -2328,23 +1877,7 @@ let official = `{
 		"kickingDamping": 0.96,
 		"kickback": 0
 	},
-	"ballPhysics": {
-		"radius": 5.8,
-		"bCoef": 0.412,
-		"invMass": 1.55,
-		"color": "FFF26D",
-		"cMask": [
-			"all"
-		],
-		"damping": 0.99,
-		"gravity": [
-			0,
-			0
-		],
-		"cGroup": [
-			"ball"
-		]
-	},
+	"ballPhysics": "disc0",
 	"joints": []
 }`
 //let bigMapObj = JSON.parse(trainingMap);
