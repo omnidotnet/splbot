@@ -6104,7 +6104,31 @@ room.onPlayerBallKick = function (player) {
 
 /* GAME MANAGEMENT */
 
+let redKits = [
+    [1, 90, 0x000000, [0xFFFFFF, 0xFF0000, 0xFFFFFF]], //central
+    [1, 58, 0xFFF952, [0x850000, 0x000000, 0x850000]], //stingers
+    [1, 0, 0xFFFFFF, [0x000000, 0xFF0505, 0x000000]], //ac
+    [2, 90, 0xEDEDED, [0xBC0900, 0x0D7311]] //kamino
+]
+
+let blueKits = [
+    [2, 180, 0x000000, [0xFFE630, 0x2A4E99]], //ol
+    [2, 180, 0xFFFFFF, [0x025492, 0x0368B5, 0x025492]], //fortuna
+    [2, 75, 0x000000, [0x5F059C, 0xF7F7F7]], //comets
+    [2, 20, 0xFFFFFF, [0x14A2A4, 0x3FB885, 0x6ACF64]], //east
+    [2, 21, 0xFFFFFF, [0xC300FF, 0x3F0077]] //dragons
+]
+
+const setKits = (array) => {
+    room.setTeamColors(array[0], array[1], array[2], array[3])
+}
+
 room.onGameStart = function (byPlayer) {
+    redKits.sort( () => .5 - Math.random() );
+    setKits(redKits[0])
+    blueKits.sort( () => .5 - Math.random() );
+    setKits(blueKits[0])
+
     clearTimeout(startTimeout);
     if (byPlayer != null) clearTimeout(stopTimeout);
     game = new Game();
