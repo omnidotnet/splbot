@@ -1717,7 +1717,7 @@ let official = `{
 	],
 	"discs": [
 		{
-			"radius": 6.25,
+			"radius": 5.8,
 			"invMass": 1.5,
 			"pos": [
 				0,
@@ -1869,32 +1869,6 @@ room.setPassword('SPL')
 roomName = 'SPL Private Room'
 
 // ---------- END OF ROOM CONFIG ----------
-
-function getRecordingName() {
-    let d = new Date();
-    let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
-    let month = d.getMonth() < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1);
-    let year = d.getFullYear() % 100 < 10 ? '0' + (d.getFullYear() % 100) : (d.getFullYear() % 100);
-    let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours();
-    let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
-    return `${day}-${month}-${year}-${hour}h${minute}.hbr2`;
-}
-
-function fetchRecording(game) {
-	let rec = room.stopRecording()
-    if (webhook != "") {
-        let form = new FormData();
-        form.append(null, new File([rec], getRecordingName(game), { "type": "text/plain" }));
-        form.append("payload_json", JSON.stringify({
-            "username": roomName
-        }));
-
-        fetch(webhook, {
-            method: 'POST',
-            body: form,
-        }).then((res) => res);
-    }
-}
 
 // ---------- CLASSES ----------
 
@@ -2340,8 +2314,6 @@ fetch(webhook,
 	{'method': 'POST',
 	'headers': {'content-type': 'application/json'},
 	'body': JSON.stringify(msg)})
-
-	setTimeout((gameEnd) => { fetchRecording(gameEnd); }, 500, game);
 }
 
 function playerAvatar(id,avatarStart,avatarStop,timeout){
