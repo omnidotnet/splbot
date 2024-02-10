@@ -450,7 +450,7 @@ const trainingMap = `{
 	"goals": [],
 	"discs": [
 		{
-			"radius": 6.25,
+			"radius": 5.8,
 			"invMass": 1.5,
 			"pos": [
 				0,
@@ -1062,7 +1062,7 @@ const classicMap = `{
 	],
 	"discs": [
 		{
-			"radius": 6.25,
+			"radius": 5.8,
 			"invMass": 1.5,
 			"pos": [
 				0,
@@ -2297,7 +2297,7 @@ const bigMap = `{
 	],
 	"discs": [
 		{
-			"radius": 6.25,
+			"radius": 5.8,
 			"invMass": 1.5,
 			"pos": [
 				0,
