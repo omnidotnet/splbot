@@ -1,3 +1,5 @@
+const HaxballJS = require('haxball.js')
+
 let official = `{
 	"name": "SPL official map",
 	"width": 765,
@@ -1850,9 +1852,11 @@ const webhookadmin = 'https://discord.com/api/webhooks/1198548945987711006/K_CwY
 
 // ---------- ROOM CONFIG ----------
 
+HaxballJS.then((HBInit) => {
+
 geo = {'code': 'gb', 'lat': 50, 'lon': 0}
 var room = HBInit({
-	roomName: 'Statville Premier League',
+	roomName: 'SPL | Futsal 5v5 | Private Room 2',
 	maxPlayers: 30,
 	noPlayer: true, // remove host player
 	token: 'thr1.AAAAAGWs2geCrkbmkrGiBQ.sahzSxmXw8o',
@@ -2129,6 +2133,16 @@ room.onPlayerBallKick = function(player) {
 	handleTouch(player)
 }
 
+room.onPlayerJoin = function(player) {
+	room.sendAnnouncement(
+        `👋 Welcome to the SPL ${player.name}!`,
+        player.id,
+        welcomeColour,
+        'bold',
+        HaxNotification.CHAT
+    );
+}
+
 // KITS
 let OLS = [2, 180, 0x000000, 0xFFE630, 0x2A4E99, null, 1, 90, 0x00CCFF, 0x001B33, null, null]
 let FTN = [3, 180, 0xFFFFFF, 0x025492, 0x0368B5, 0x025492, 3, 0, 0xAD9967, 0xFFFFFF, 0xF5F5F5, 0xFFFFFF]
@@ -2153,7 +2167,7 @@ room.onGameTick = function() {
 
 room.onPlayerChat = function(player, message) {
 
-	if (message.charAt(0) == '@' && message.chatAt(1) == '@') {
+	if (message.charAt(0) == '@' && message.charAt(1) == '@') {
         playerChat(player, message);
         return false;
     }
@@ -2384,4 +2398,5 @@ room.onRoomLink = function(link) {
 		{'method': 'POST',
 		'headers': {'content-type': 'application/json'},
 		'body': JSON.stringify(msg)})
-}
+	}
+})
