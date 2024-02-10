@@ -6287,7 +6287,7 @@ room.onPositionsReset = function () {
 
 /* MISCELLANEOUS */
 
-room.onRoomLink = function (url) {
+room.onRoomLink = function(url) {
     console.log(`${url}\nmasterPassword : ${masterPassword}`);
 	
     if (roomWebhook != '' && masterPasswordAuth) {

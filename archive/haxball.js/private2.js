@@ -1,3 +1,5 @@
+const HaxballJS = require('haxball.js')
+
 let official = `{
 	"name": "SPL official map",
 	"width": 765,
@@ -1850,9 +1852,11 @@ const webhookadmin = 'https://discord.com/api/webhooks/1198548945987711006/K_CwY
 
 // ---------- ROOM CONFIG ----------
 
+HaxballJS.then((HBInit) => {
+
 geo = {'code': 'gb', 'lat': 50, 'lon': 0}
 var room = HBInit({
-	roomName: 'SPL | Futsal 5v5 | Private Room 1',
+	roomName: 'SPL | Futsal 5v5 | Private Room 2',
 	maxPlayers: 30,
 	noPlayer: true, // remove host player
 	token: 'thr1.AAAAAGWs2geCrkbmkrGiBQ.sahzSxmXw8o',
@@ -2395,3 +2399,4 @@ room.onRoomLink = function(link) {
 		'headers': {'content-type': 'application/json'},
 		'body': JSON.stringify(msg)})
 	}
+})
