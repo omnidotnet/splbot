@@ -2871,6 +2871,12 @@ function handleDef() {
 
 /* COMMANDS */
 let commands = {
+    discord: {
+        aliases: ['league', 'link'],
+        roles: Role.PLAYER,
+        desc: 'This command gives you the link to join our discord server.',
+        function: printDiscord
+    },
     help: {
         aliases: ['commands'],
         roles: Role.PLAYER,
@@ -3646,6 +3652,10 @@ function afkCommand(player, message) {
             HaxNotification.CHAT
         );
     }
+}
+
+function printDiscord() {
+    room.sendAnnouncement('💫 Join our discord server at https://discord.gg/cx9WWA84dv!',null,announcementColour,'bold',null)
 }
 
 function afkListCommand(player, message) {
@@ -6368,7 +6378,7 @@ class Notify { //darxe notify system
         room.sendAnnouncement(`🕹️ Join our league at https://discord.gg/cx9WWA84dv!`,null,announcementColour,'bold',null);
     }
 	update() {
-		room.sendAnnouncement('[10 Feb. 2024] Update: Ball radius fixed!', null, updateColour, 'bold')
+		room.sendAnnouncement('[16 Feb. 2024] Update: Ball physics fixed!', null, updateColour, 'bold')
 	}
 }
 const notify = new Notify();
