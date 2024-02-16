@@ -1,7 +1,7 @@
 /* VARIABLES */
 
 /* ROOM */
-const headless = false;
+const headless = true;
 const roomName = 'SPL Pub 2';
 const maxPlayers = 30;
 const roomPublic = headless ? false : true;
@@ -449,13 +449,13 @@ const trainingMap = `{
 	"discs": [
 		{
 			"radius": 5.8,
-			"invMass": 1.5,
+			"invMass": 1.55,
 			"pos": [
 				0,
 				0
 			],
-			"color": "FFCC00",
-			"bCoef": 0.4,
+			"color": "FFF26D",
+			"bCoef": 0.412,
 			"cGroup": [
 				"ball",
 				"kick",
@@ -1061,13 +1061,13 @@ const classicMap = `{
 	"discs": [
 		{
 			"radius": 5.8,
-			"invMass": 1.5,
+			"invMass": 1.55,
 			"pos": [
 				0,
 				0
 			],
-			"color": "FFCC00",
-			"bCoef": 0.4,
+			"color": "FFF26D",
+			"bCoef": 0.412,
 			"cGroup": [
 				"ball",
 				"kick",
@@ -2296,13 +2296,13 @@ const bigMap = `{
 	"discs": [
 		{
 			"radius": 5.8,
-			"invMass": 1.5,
+			"invMass": 1.55,
 			"pos": [
 				0,
 				0
 			],
-			"color": "FFCC00",
-			"bCoef": 0.4,
+			"color": "FFF26D",
+			"bCoef": 0.412,
 			"cGroup": [
 				"ball",
 				"kick",
@@ -2669,7 +2669,7 @@ let maxAdmins = 0;
 let disableBans = false;
 let debugMode = false;
 let afkLimit = debugMode ? Infinity : 21;
-let defaultSlowMode = 0.5;
+let defaultSlowMode = 0.2;
 let chooseModeSlowMode = 1;
 let slowMode = defaultSlowMode;
 let SMSet = new Set();
