@@ -1951,6 +1951,8 @@ class team {
 	}
 }
 
+let cardsArray = []
+
 class playerStats {
 	constructor(playerName) {
 		this.playerName = playerName
@@ -1986,6 +1988,7 @@ let maxDefenders = 3;
 let redDefenders = [];
 let blueDefenders = [];
 let attackers = [[], []];
+let playerRadius = 15
 
 function handleDef() {
 let oldDefenders = [JSON.stringify(redDefenders.map((p) => p.id)), JSON.stringify(blueDefenders.map((p) => p.id))];
@@ -2130,6 +2133,7 @@ room.onPlayerBallKick = function(player) {
 }
 
 room.onPlayerJoin = function(player) {
+	cardsArray[player.id] = 0
 	room.sendAnnouncement(
         `👋 Welcome to the SPL ${player.name}!`,
         player.id,
@@ -2158,7 +2162,7 @@ let availableAwayKits = ['OLS', 'FTN', 'CMT', 'EFC', 'CNT', 'ARS', 'ACS', 'KAM',
 
 room.onGameTick = function() {
 	getLastTouch()
-	handleDef()
+	// handleDef()
 }
 
 room.onPlayerChat = function(player, message) {
@@ -2178,6 +2182,16 @@ const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nig
 
 for (let i = 0; i < forbiddenWords.length; i++) {
 	if (message.toLowerCase().includes(forbiddenWords[i])) {
+		console.warn(cardsArray)
+		if (cardsArray[player.id] < 2) {
+			cardsArray[player.id] = cardsArray[player.id] + 1
+			if (cardsArray[player.id] == 1) {
+				room.sendAnnouncement(`🟨 ${player.name} gets yellow card for saying a banned word!`, null, warningColour, 'bold')
+			}
+		} if (cardsArray[player.id] == 2) {
+			room.sendAnnouncement(`🟥 ${player.name} gets a red card for saying two banned words!`, null, warningColour, 'bold')
+			room.setPlayerTeam(player.id, 0)
+		}
 		return false
 	}
 }
@@ -2277,6 +2291,7 @@ if (message.charAt(0) == 't' && message.charAt(1) == ' ') {
 }
 
 room.onPlayerTeamChange = function(changedPlayer) {
+cardsArray[changedPlayer.id] == 0
 redTeamPlayers = []
 blueTeamPlayers = []
 specs = []
@@ -2303,6 +2318,7 @@ goals = [0, 0]
 }
 
 room.onGameStop = function() {
+cardsArray = []
 let totalPoss = touches[0] + touches[1]
 poss = [(touches[0] * 100) / totalPoss, (touches[1] * 100) / totalPoss]
 let getString = `💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${Math.round(poss[0])}% | blue: ${Math.round(poss[1])}%\n⚽️ | KICKS:\nred: ${touches[0]} | blue: ${touches[1]}`

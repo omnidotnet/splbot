@@ -449,13 +449,13 @@ const trainingMap = `{
 	"discs": [
 		{
 			"radius": 5.8,
-			"invMass": 1.5,
+			"invMass": 1.55,
 			"pos": [
 				0,
 				0
 			],
-			"color": "FFCC00",
-			"bCoef": 0.4,
+			"color": "FFF26D",
+			"bCoef": 0.412,
 			"cGroup": [
 				"ball",
 				"kick",
@@ -1061,13 +1061,13 @@ const classicMap = `{
 	"discs": [
 		{
 			"radius": 5.8,
-			"invMass": 1.5,
+			"invMass": 1.55,
 			"pos": [
 				0,
 				0
 			],
-			"color": "FFCC00",
-			"bCoef": 0.4,
+			"color": "FFF26D",
+			"bCoef": 0.412,
 			"cGroup": [
 				"ball",
 				"kick",
@@ -2296,13 +2296,13 @@ const bigMap = `{
 	"discs": [
 		{
 			"radius": 5.8,
-			"invMass": 1.5,
+			"invMass": 1.55,
 			"pos": [
 				0,
 				0
 			],
-			"color": "FFCC00",
-			"bCoef": 0.4,
+			"color": "FFF26D",
+			"bCoef": 0.412,
 			"cGroup": [
 				"ball",
 				"kick",
@@ -2669,7 +2669,7 @@ let maxAdmins = 0;
 let disableBans = false;
 let debugMode = false;
 let afkLimit = debugMode ? Infinity : 21;
-let defaultSlowMode = 0.5;
+let defaultSlowMode = 0.2;
 let chooseModeSlowMode = 1;
 let slowMode = defaultSlowMode;
 let SMSet = new Set();
@@ -2871,6 +2871,12 @@ function handleDef() {
 
 /* COMMANDS */
 let commands = {
+    discord: {
+        aliases: ['league', 'link'],
+        roles: Role.PLAYER,
+        desc: 'This command gives you the link to join our discord server.',
+        function: printDiscord
+    },
     help: {
         aliases: ['commands'],
         roles: Role.PLAYER,
@@ -3646,6 +3652,10 @@ function afkCommand(player, message) {
             HaxNotification.CHAT
         );
     }
+}
+
+function printDiscord() {
+    room.sendAnnouncement('💫 Join our discord server at https://discord.gg/cx9WWA84dv!',null,announcementColour,'bold',null)
 }
 
 function afkListCommand(player, message) {
@@ -6368,7 +6378,7 @@ class Notify { //darxe notify system
         room.sendAnnouncement(`🕹️ Join our league at https://discord.gg/cx9WWA84dv!`,null,announcementColour,'bold',null);
     }
 	update() {
-		room.sendAnnouncement('[10 Feb. 2024] Update: Ball radius fixed!', null, updateColour, 'bold')
+		room.sendAnnouncement('[16 Feb. 2024] Update: Ball physics fixed!', null, updateColour, 'bold')
 	}
 }
 const notify = new Notify();

@@ -1917,15 +1917,13 @@ function playerChat(player, message) {
         messageFrom,
         player.id,
         privateMessageColour,
-        'bold',
-        HaxNotification.CHAT
+        'bold'
     );
     room.sendAnnouncement(
         messageTo,
         playerTarget.id,
         privateMessageColour,
-        'bold',
-        HaxNotification.CHAT
+        'bold'
     );
 }
 
@@ -1950,6 +1948,8 @@ class team {
 		room.setTeamColors(2, angle, avatarColour, coloursArray)
 	}
 }
+
+let cardsArray = []
 
 class playerStats {
 	constructor(playerName) {
@@ -1986,6 +1986,7 @@ let maxDefenders = 3;
 let redDefenders = [];
 let blueDefenders = [];
 let attackers = [[], []];
+let playerRadius = 15
 
 function handleDef() {
 let oldDefenders = [JSON.stringify(redDefenders.map((p) => p.id)), JSON.stringify(blueDefenders.map((p) => p.id))];
@@ -2002,15 +2003,15 @@ if (oldDefenders[1] != JSON.stringify(blueDefenders.map((p) => p.id)) && blueDef
 	}
 }
 let arr = [[], []];
-for (let i = 0; i < teamRed.length; i++) {
-	if (teamRed[i].position !== null && teamRed[i].position.x <= redLine + playerRadius - 0.01) {
-		if (redDefenders.find(a => a.id == teamRed[i].id) === undefined) {
-			arr[0].push(teamRed[i]);
+for (let i = 0; i < redTeamPlayers.length; i++) {
+	if (redTeamPlayers[i].position !== null && redTeamPlayers[i].position.x <= redLine + playerRadius - 0.01) {
+		if (redDefenders.find(a => a.id == redTeamPlayers[i].id) === undefined) {
+			arr[0].push(redTeamPlayers[i]);
 		}
 	}
 	else {
-		if (redDefenders.find(a => a.id == teamRed[i].id) !== undefined) {
-			redDefenders = redDefenders.filter(a => a.id !== teamRed[i].id);
+		if (redDefenders.find(a => a.id == redTeamPlayers[i].id) !== undefined) {
+			redDefenders = redDefenders.filter(a => a.id !== redTeamPlayers[i].id);
 			if (redDefenders.length < maxDefenders) {
 				for (let j = 0; j < attackers[0].length; j++) {
 					room.setPlayerDiscProperties(attackers[0][j].id, { cGroup: room.CollisionFlags.red });
@@ -2033,7 +2034,7 @@ for (let i = 0; i < arr[0].length; i++) {
 	if (redDefenders.length < maxDefenders) {
 		redDefenders.push(arr[0][i]);
 		if (redDefenders.length === maxDefenders) {
-			attackers[0] = teamRed.filter(a => !redDefenders.map(b => b.id).includes(a.id));
+			attackers[0] = redTeamPlayers.filter(a => !redDefenders.map(b => b.id).includes(a.id));
 			attackers[0].forEach(a => {
 				room.setPlayerDiscProperties(a.id, { cGroup: room.CollisionFlags.red | room.CollisionFlags.c0 });
 				if(def3Mess) {
@@ -2050,15 +2051,15 @@ for (let i = 0; i < arr[0].length; i++) {
 		}
 	}
 }
-for (let i = 0; i < teamBlue.length; i++) {
-	if (teamBlue[i].position !== null && teamBlue[i].position.x >= blueLine - playerRadius + 0.01) {
-		if (blueDefenders.find(a => a.id == teamBlue[i].id) === undefined) {
-			arr[1].push(teamBlue[i]);
+for (let i = 0; i < blueTeamPlayers.length; i++) {
+	if (blueTeamPlayers[i].position !== null && blueTeamPlayers[i].position.x >= blueLine - playerRadius + 0.01) {
+		if (blueDefenders.find(a => a.id == blueTeamPlayers[i].id) === undefined) {
+			arr[1].push(blueTeamPlayers[i]);
 		}
 	}
 	else {
-		if (blueDefenders.find(a => a.id == teamBlue[i].id) !== undefined) {
-			blueDefenders = blueDefenders.filter(a => a.id !== teamBlue[i].id);
+		if (blueDefenders.find(a => a.id == blueTeamPlayers[i].id) !== undefined) {
+			blueDefenders = blueDefenders.filter(a => a.id !== blueTeamPlayers[i].id);
 			if (blueDefenders.length < maxDefenders) {
 				for (let j = 0; j < attackers[1].length; j++) {
 					room.setPlayerDiscProperties(attackers[1][j].id, { cGroup: room.CollisionFlags.blue });
@@ -2081,7 +2082,7 @@ for (let i = 0; i < arr[1].length; i++) {
 	if (blueDefenders.length < maxDefenders) {
 		blueDefenders.push(arr[1][i]);
 		if (blueDefenders.length === maxDefenders) {
-			attackers[1] = teamBlue.filter(a => !blueDefenders.map(b => b.id).includes(a.id));
+			attackers[1] = blueTeamPlayers.filter(a => !blueDefenders.map(b => b.id).includes(a.id));
 			attackers[1].forEach(a => {
 				room.setPlayerDiscProperties(a.id, { cGroup: room.CollisionFlags.blue | room.CollisionFlags.c1 });
 				if(def3Mess) {
@@ -2130,12 +2131,12 @@ room.onPlayerBallKick = function(player) {
 }
 
 room.onPlayerJoin = function(player) {
+	cardsArray[player.id] = 0
 	room.sendAnnouncement(
         `👋 Welcome to the SPL ${player.name}!`,
         player.id,
         welcomeColour,
-        'bold',
-        HaxNotification.CHAT
+        'bold'
     );
 }
 
@@ -2158,7 +2159,7 @@ let availableAwayKits = ['OLS', 'FTN', 'CMT', 'EFC', 'CNT', 'ARS', 'ACS', 'KAM',
 
 room.onGameTick = function() {
 	getLastTouch()
-	handleDef()
+	// handleDef()
 }
 
 room.onPlayerChat = function(player, message) {
@@ -2178,6 +2179,16 @@ const forbiddenWords = ['reggan', 'negro', 'n1gga', 'jigga', 'fag', 'cunt', 'nig
 
 for (let i = 0; i < forbiddenWords.length; i++) {
 	if (message.toLowerCase().includes(forbiddenWords[i])) {
+		console.warn(cardsArray)
+		if (cardsArray[player.id] < 2) {
+			cardsArray[player.id] = cardsArray[player.id] + 1
+			if (cardsArray[player.id] == 1) {
+				room.sendAnnouncement(`🟨 ${player.name} gets yellow card for saying a banned word!`, null, warningColour, 'bold')
+			}
+		} if (cardsArray[player.id] == 2) {
+			room.sendAnnouncement(`🟥 ${player.name} gets a red card for saying two banned words!`, null, warningColour, 'bold')
+			room.setPlayerTeam(player.id, 0)
+		}
 		return false
 	}
 }
@@ -2277,6 +2288,7 @@ if (message.charAt(0) == 't' && message.charAt(1) == ' ') {
 }
 
 room.onPlayerTeamChange = function(changedPlayer) {
+cardsArray[changedPlayer.id] == 0
 redTeamPlayers = []
 blueTeamPlayers = []
 specs = []
@@ -2303,6 +2315,7 @@ goals = [0, 0]
 }
 
 room.onGameStop = function() {
+cardsArray = []
 let totalPoss = touches[0] + touches[1]
 poss = [(touches[0] * 100) / totalPoss, (touches[1] * 100) / totalPoss]
 let getString = `💯 | SCORE:\nred: ${goals[0]} | blue: ${goals[1]}\n📊 | POSSESSION:\nred: ${Math.round(poss[0])}% | blue: ${Math.round(poss[1])}%\n⚽️ | KICKS:\nred: ${touches[0]} | blue: ${touches[1]}`
